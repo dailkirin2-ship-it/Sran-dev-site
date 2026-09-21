@@ -83,6 +83,48 @@
   a{color:inherit; text-decoration:none;}
   :focus-visible{ outline:2px solid var(--sky-deep); outline-offset:3px; border-radius:8px; }
 
+  /* ---------- i18n: toggled by .lang-en on body ---------- */
+  body.lang-en .i18n-ru{ display:none; }
+  body:not(.lang-en) .i18n-en{ display:none; }
+
+  /* ---------- LANGUAGE SWITCH (top-right, MD3 + glass) ---------- */
+  .lang-switch{
+    position:fixed;
+    top:20px; right:20px;
+    z-index:50;
+    display:flex; gap:3px;
+    padding:4px;
+    background:var(--glass);
+    border:1.5px solid var(--glass-border);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border-radius:999px;
+    box-shadow: 0 10px 26px -14px rgba(30,111,224,.4);
+  }
+  .lang-btn{
+    appearance:none; border:none; background:transparent;
+    cursor:pointer;
+    font-family:'Unbounded'; font-weight:700; font-size:12px;
+    letter-spacing:.02em;
+    padding:8px 14px;
+    border-radius:999px;
+    color:var(--text-dim);
+    transition: transform .35s var(--spring), background .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .lang-btn:hover{ transform:scale(1.08); color:var(--navy); }
+  .lang-btn:active{ transform:scale(.98); }
+  .lang-btn.active{
+    background:linear-gradient(135deg, var(--sky), var(--sky-deep));
+    color:#fff;
+    box-shadow: 0 8px 18px -8px rgba(30,111,224,.6);
+  }
+  .lang-btn.active:hover{ transform:scale(1.1); }
+
+  @media (max-width:600px){
+    .lang-switch{ top:14px; right:14px; padding:3px; }
+    .lang-btn{ font-size:11px; padding:7px 11px; }
+  }
+
   .wrap{
     position:relative; z-index:2;
     max-width:1080px;
@@ -324,9 +366,104 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
   }
+
+  /* ================= INTRO SPLASH ANIMATION =================
+     Увеличенная аватарка появляется по центру экрана на размытом
+     полупрозрачном фоне, затем плавно (по кривой) летит на своё
+     место в шапке, а весь остальной контент одновременно расфокусируется. */
+
+  body.intro-active .wrap,
+  body.intro-active .blob,
+  body.intro-active .lang-switch{
+    filter: blur(18px);
+    opacity:.32;
+    transform: scale(.97);
+    pointer-events:none;
+    transition: filter 1s var(--ease), opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .wrap, .lang-switch{ transition: filter 1s var(--ease), opacity 1s var(--ease), transform 1s var(--ease); }
+  .blob{ transition: filter 1s var(--ease), opacity 1s var(--ease), transform 1s var(--ease); }
+
+  .intro-overlay{
+    position:fixed; inset:0;
+    z-index:90;
+    display:flex; align-items:center; justify-content:center;
+    pointer-events:none;
+    background: radial-gradient(circle at 50% 45%, rgba(255,255,255,.6), rgba(238,245,252,.18) 58%, transparent 76%);
+    opacity:1;
+    transition: opacity .5s ease;
+  }
+  .intro-overlay.overlay-hide{ opacity:0; }
+
+  .intro-avatar-wrap{
+    position:relative;
+    width:clamp(120px, 34vw, 200px);
+    aspect-ratio:1/1;
+    border-radius:30%;
+    background:#fff;
+    box-shadow: 0 22px 60px -18px rgba(30,111,224,.5), 0 0 0 1px rgba(30,111,224,.1);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+    opacity:0;
+    animation: introPop .6s var(--spring) forwards;
+    will-change: transform;
+  }
+  .intro-avatar-wrap.fly{
+    animation: introFly 1s cubic-bezier(.65,0,.35,1) forwards;
+  }
+  .intro-avatar-img{
+    width:100%; height:100%; object-fit:cover; display:block; background:#fff;
+  }
+  .intro-avatar-fallback{
+    position:absolute; inset:0;
+    display:none; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--sky), var(--sky-deep));
+    font-family:'Unbounded'; font-weight:800; color:#fff;
+    font-size:clamp(34px, 9vw, 56px);
+  }
+
+  @keyframes introPop{
+    0%{ opacity:0; transform:scale(.5); }
+    65%{ opacity:1; transform:scale(1.06); }
+    100%{ opacity:1; transform:scale(1); }
+  }
+  @keyframes introFly{
+    0%{ transform: translate(0,0) scale(1); }
+    60%{ transform: translate(calc(var(--dx) * 0.66), calc(var(--dy) * 0.2)) scale(calc(1 + (var(--s) - 1) * 0.6)); }
+    100%{ transform: translate(var(--dx), var(--dy)) scale(var(--s)); }
+  }
+
+  /* Без интро для тех, кто просит меньше анимаций — контент сразу чёткий, оверлей скрыт */
+  html.no-intro .intro-overlay{ display:none !important; }
+  html.no-intro body.intro-active .wrap,
+  html.no-intro body.intro-active .blob,
+  html.no-intro body.intro-active .lang-switch{
+    filter:none; opacity:1; transform:none; pointer-events:auto;
+  }
 </style>
 </head>
-<body>
+<body class="intro-active">
+
+<script>
+  // Синхронная проверка ДО отрисовки — чтобы не мигнуть интро тем, кто просит меньше анимаций
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('no-intro');
+  }
+</script>
+
+<!-- ============ INTRO SPLASH ============ -->
+<div class="intro-overlay" id="introOverlay" aria-hidden="true">
+  <div class="intro-avatar-wrap" id="introAvatarWrap">
+    <img class="intro-avatar-img" id="introAvatarImg" src="avatar.png" alt="">
+    <div class="intro-avatar-fallback" id="introAvatarFallback">DC</div>
+  </div>
+</div>
+
+<!-- ============ LANGUAGE SWITCH ============ -->
+<div class="lang-switch" role="group" aria-label="Language / Язык">
+  <button class="lang-btn" data-lang="ru" type="button">RU</button>
+  <button class="lang-btn" data-lang="en" type="button">EN</button>
+</div>
 
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
@@ -343,16 +480,17 @@
     <h1>Danielle Choster</h1>
     <a class="status-pill" href="https://t.me/Sran_Dev" target="_blank" rel="noopener">
       <span class="status-dot"></span>
-      Сейчас в разработке: WHAT THE CAR — следить в тг-канале
+      <span class="i18n-ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span>
+      <span class="i18n-en">Currently in development: WHAT THE CAR — follow the channel</span>
     </a>
   </div>
 
-  <!-- ============ ИГРЫ ============ -->
-  <p class="section-head">Игры</p>
+  <!-- ============ ИГРЫ / GAMES ============ -->
+  <p class="section-head"><span class="i18n-ru">Игры</span><span class="i18n-en">Games</span></p>
   <div class="bento" id="gamesGrid"></div>
 
-  <!-- ============ ССЫЛКИ ============ -->
-  <p class="section-head">Ссылки</p>
+  <!-- ============ ССЫЛКИ / LINKS ============ -->
+  <p class="section-head"><span class="i18n-ru">Ссылки</span><span class="i18n-en">Links</span></p>
   <div class="bento" id="linksGrid"></div>
 
   <footer>
@@ -364,53 +502,64 @@
 /* ======================================================================
    БЫСТРОЕ ДОБАВЛЕНИЕ ССЫЛОК / ИГР
    Дописывай новый объект в LINKS или GAMES — карточка появится сама.
+   Текстовые поля (badge, desc, meta, title у LINKS) — объекты {ru, en}.
 
    LINKS: { icon: 'telegram'|'discord'|'itch'|'youtube'|'tiktok'|'link',
-            title, desc, url, accent: 'blue'|'cyan'|'navy', size: 'sm' (опц.) }
+            title:{ru,en}, desc:{ru,en}, url, accent: 'blue'|'cyan'|'navy', size: 'sm' (опц.) }
 
-   GAMES: { title, badge, desc, url, gif (опц.), meta (опц., напр. "111 MB · Windows"), accent, size: 'lg' (по умолч.) }
+   GAMES: { title (одно и то же на обоих языках), badge:{ru,en}, desc:{ru,en}, url,
+            gif (опц.), meta:{ru,en} (опц.), accent, size: 'lg' (по умолч.) }
    ====================================================================== */
 
   const GAMES = [
     {
       title: "WHAT THE CAR",
-      badge: "В разработке",
-      desc: "Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.",
+      badge: { ru: "В разработке", en: "In development" },
+      desc: {
+        ru: "Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.",
+        en: "An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride."
+      },
       url: "https://daniellechoster.itch.io/what-the-car",
       gif: "https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif",
-      meta: "следить в тг-канале",
+      meta: { ru: "следить в тг-канале", en: "follow the channel" },
       accent: "blue",
       size: "lg"
     },
     {
       title: "OUTPATIENT",
-      badge: "Последнее демо",
-      desc: "Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.",
+      badge: { ru: "Последнее демо", en: "Latest demo" },
+      desc: {
+        ru: "Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.",
+        en: "An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors."
+      },
       url: "https://daniellechoster.itch.io/outpatient",
       gif: "https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif",
-      meta: "88 MB · Windows",
+      meta: { ru: "88 MB · Windows", en: "88 MB · Windows" },
       accent: "navy",
       size: "lg"
     },
     {
       title: "LOOP PROTOCOL",
-      badge: "4.9 ★ · 8 оценок",
-      desc: "Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.",
+      badge: { ru: "4.9 ★ · 8 оценок", en: "4.9 ★ · 8 ratings" },
+      desc: {
+        ru: "Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.",
+        en: "Write code — watch it come to life. A puzzle game about programming your character with commands."
+      },
       url: "https://daniellechoster.itch.io/loop-protocol",
       gif: "https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png",
-      meta: "53 MB · Windows, Android",
+      meta: { ru: "53 MB · Windows, Android", en: "53 MB · Windows, Android" },
       accent: "cyan",
       size: "lg"
     }
   ];
 
   const LINKS = [
-    { icon: "telegram", title: "Срань.dev", desc: "тг-канал студии — новости и апдейты", url: "https://t.me/Sran_Dev", accent: "blue" },
-    { icon: "itch",     title: "itch.io",   desc: "все игры в одном месте", url: "https://daniellechoster.itch.io/", accent: "cyan" },
-    { icon: "telegram", title: "Личка", desc: "написать напрямую в тг", url: "https://t.me/DanielleChoster", accent: "blue", size: "sm" },
-    { icon: "discord",  title: "Discord", desc: "написать в дискорде", url: "https://discord.com/users/975382866122903582", accent: "navy", size: "sm" },
-    { icon: "youtube",  title: "YouTube", desc: "видео и разработка", url: "https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC", accent: "navy", size: "sm" },
-    { icon: "tiktok",   title: "TikTok", desc: "короткие клипы", url: "https://www.tiktok.com/@danielle_choster?_r=1&_t=ZS-99tH59FkTQq", accent: "cyan", size: "sm" }
+    { icon: "telegram", title: { ru: "Срань.dev", en: "Sran.dev" }, desc: { ru: "тг-канал студии — новости и апдейты", en: "studio's Telegram channel — news & updates" }, url: "https://t.me/Sran_Dev", accent: "blue" },
+    { icon: "itch",     title: { ru: "itch.io", en: "itch.io" },   desc: { ru: "все игры в одном месте", en: "all games in one place" }, url: "https://daniellechoster.itch.io/", accent: "cyan" },
+    { icon: "telegram", title: { ru: "Личка", en: "DM" }, desc: { ru: "написать напрямую в тг", en: "message directly on Telegram" }, url: "https://t.me/DanielleChoster", accent: "blue", size: "sm" },
+    { icon: "discord",  title: { ru: "Discord", en: "Discord" }, desc: { ru: "написать в дискорде", en: "message on Discord" }, url: "https://discord.com/users/975382866122903582", accent: "navy", size: "sm" },
+    { icon: "youtube",  title: { ru: "YouTube", en: "YouTube" }, desc: { ru: "видео и разработка", en: "videos & devlogs" }, url: "https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC", accent: "navy", size: "sm" },
+    { icon: "tiktok",   title: { ru: "TikTok", en: "TikTok" }, desc: { ru: "короткие клипы", en: "short clips" }, url: "https://www.tiktok.com/@danielle_choster?_r=1&_t=ZS-99tH59FkTQq", accent: "cyan", size: "sm" }
   ];
 
   const ICONS = {
@@ -422,6 +571,11 @@
     link: '<svg viewBox="0 0 24 24" fill="none"><path d="M9.5 14.5 14.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M11.2 8.3 12.4 7a3 3 0 1 1 4.2 4.2l-1.3 1.3M12.8 15.7 11.6 17a3 3 0 1 1-4.2-4.2l1.3-1.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'
   };
 
+  // Оборачивает {ru, en} в две span'ы, которые CSS показывает/прячет по языку
+  function bi(field){
+    return `<span class="i18n-ru">${field.ru}</span><span class="i18n-en">${field.en}</span>`;
+  }
+
   function renderGames(){
     const grid = document.getElementById('gamesGrid');
     GAMES.forEach((g, i) => {
@@ -432,10 +586,10 @@
       el.innerHTML = `
         ${g.gif ? `<div class="card-media" style="background-image:url('${g.gif}')"></div>` : ''}
         <div class="card-scrim"></div>
-        <span class="card-badge accent-${g.accent}">${g.badge}</span>
+        <span class="card-badge accent-${g.accent}">${bi(g.badge)}</span>
         <h3 class="card-title">${g.title}</h3>
-        <p class="card-desc">${g.desc}</p>
-        ${g.meta ? `<p class="card-meta">${g.meta}</p>` : ''}
+        <p class="card-desc">${bi(g.desc)}</p>
+        ${g.meta ? `<p class="card-meta">${bi(g.meta)}</p>` : ''}
       `;
       grid.appendChild(el);
     });
@@ -450,8 +604,8 @@
       el.style.animationDelay = (0.2 + i * 0.07) + 's';
       el.innerHTML = `
         <div class="card-icon accent-${l.accent}">${ICONS[l.icon] || ICONS.link}</div>
-        <h3 class="card-title">${l.title}</h3>
-        <p class="card-desc">${l.desc}</p>
+        <h3 class="card-title">${bi(l.title)}</h3>
+        <p class="card-desc">${bi(l.desc)}</p>
       `;
       grid.appendChild(el);
     });
@@ -466,6 +620,83 @@
     avatarImg.style.display = 'none';
     document.getElementById('avatarFallback').style.display = 'flex';
   });
+
+  // ---------- ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА ----------
+  const langButtons = document.querySelectorAll('.lang-btn');
+
+  function setLang(lang){
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.documentElement.setAttribute('lang', lang);
+    langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+    try { localStorage.setItem('site-lang', lang); } catch (e) {}
+  }
+
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
+  let initialLang = 'ru';
+  try {
+    const saved = localStorage.getItem('site-lang');
+    if (saved === 'ru' || saved === 'en') {
+      initialLang = saved;
+    } else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) {
+      initialLang = 'en';
+    }
+  } catch (e) {}
+  setLang(initialLang);
+
+  // ---------- ИНТРО-АНИМАЦИЯ: большая аватарка по центру → летит на своё место ----------
+  (function initIntro(){
+    const overlay = document.getElementById('introOverlay');
+    const wrap = document.getElementById('introAvatarWrap');
+    const cloneImg = document.getElementById('introAvatarImg');
+    const cloneFallback = document.getElementById('introAvatarFallback');
+    const targetRing = document.querySelector('.avatar-ring');
+    if (!overlay || !wrap || !targetRing) return;
+
+    // Пропускаем анимацию, если браузер просит меньше движения
+    if (document.documentElement.classList.contains('no-intro')) {
+      document.body.classList.remove('intro-active');
+      overlay.remove();
+      return;
+    }
+
+    cloneImg.addEventListener('error', () => {
+      cloneImg.style.display = 'none';
+      cloneFallback.style.display = 'flex';
+    });
+
+    function finishIntro(){
+      overlay.classList.add('overlay-hide');
+      overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
+    }
+
+    function flyToTarget(){
+      const targetRect = targetRing.getBoundingClientRect();
+      const cloneRect = wrap.getBoundingClientRect();
+      const dx = (targetRect.left + targetRect.width / 2) - (cloneRect.left + cloneRect.width / 2);
+      const dy = (targetRect.top + targetRect.height / 2) - (cloneRect.top + cloneRect.height / 2);
+      const s = targetRect.width / cloneRect.width;
+
+      wrap.style.setProperty('--dx', dx + 'px');
+      wrap.style.setProperty('--dy', dy + 'px');
+      wrap.style.setProperty('--s', s);
+
+      // Одновременно расфокусированный фон становится чётким
+      document.body.classList.remove('intro-active');
+      wrap.classList.add('fly');
+
+      wrap.addEventListener('animationend', finishIntro, { once: true });
+    }
+
+    // Небольшая пауза после появления аватарки в центре, затем — полёт
+    wrap.addEventListener('animationend', function onPop(e){
+      if (e.animationName !== 'introPop') return;
+      wrap.removeEventListener('animationend', onPop);
+      setTimeout(flyToTarget, 380);
+    });
+  })();
 </script>
 
 </body>
