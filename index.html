@@ -47,13 +47,22 @@
   body{
     margin:0;
     min-height:100vh;
-    background:var(--bg);
+    background:linear-gradient(120deg, #EAF4FE, #FFFFFF, #D9ECFE, #F3FAFF, #E3F1FE);
+    background-size:400% 400%;
+    animation: shimmerBg 18s ease-in-out infinite;
     color:var(--text);
     font-family:'Manrope', system-ui, sans-serif;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
     position:relative;
   }
+
+  @keyframes shimmerBg{
+    0%{ background-position: 0% 40%; }
+    50%{ background-position: 100% 60%; }
+    100%{ background-position: 0% 40%; }
+  }
+  @media (prefers-reduced-motion: reduce){ body{ animation:none; } }
 
   /* ---------- floating gradient blobs (this is what the glass refracts) ---------- */
   .blob{
@@ -136,7 +145,7 @@
     box-shadow: 0 10px 26px -14px rgba(30,111,224,.4);
     transition: transform .4s var(--spring), box-shadow .4s var(--ease), background .3s var(--ease);
   }
-  .status-pill:hover{ transform:translateY(-4px) scale(1.03); box-shadow: 0 18px 34px -14px rgba(30,111,224,.55); background:var(--glass-hi); }
+  .status-pill:hover{ transform:translateY(-4px) scale(1.06); box-shadow: 0 18px 34px -14px rgba(30,111,224,.55); background:var(--glass-hi); }
   .status-dot{
     width:9px; height:9px; border-radius:50%; background:var(--sky-deep);
     box-shadow:0 0 0 0 rgba(30,111,224,.55);
@@ -186,11 +195,11 @@
     transition: transform .4s var(--spring), box-shadow .4s var(--ease), background .3s var(--ease);
   }
   .card:hover{
-    transform: translateY(-6px) scale(1.015);
+    transform: translateY(-6px) scale(1.045);
     box-shadow: 0 24px 42px -18px rgba(30,111,224,.45);
     background:var(--glass-hi);
   }
-  .card:active{ transform: translateY(-2px) scale(0.99); }
+  .card:active{ transform: translateY(-2px) scale(1.01); }
 
   .card::after{
     content:'';
