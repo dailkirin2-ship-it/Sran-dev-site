@@ -21,128 +21,115 @@
 <!--
   indieweb: один статичный файл, без сборки и фреймворков (own your data, longevity).
   h-card + rel="me": данные видны людям и читаются машинами.
-  Окна: тащи за заголовок, [_] сворачивает в заголовок, [x] убирает в таскбар.
+  Окна внутри: тащи за заголовок, [_] сворачивает, [x] убирает вниз. Картинки и кнопки при наведении выпрыгивают за рамку.
 -->
 <style>
 *{box-sizing:border-box}
-:root{--n:#14147a;--b:#3447e8;--p:#ff7ab8;--y:#ffe14d;--c:#8fe3ff;--px:'Pixelify Sans','Courier New',monospace;--ck:repeating-conic-gradient(#fff 0 25%,#000 0 50%)}
-body{margin:0;min-height:100vh;font:17px/1.3 var(--px);color:#111;background:linear-gradient(#2f6fdc,#7db7ff 45%,#d6ebff) fixed;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.92;background:radial-gradient(ellipse 240px 70px at 20% 22%,#fff 30%,#fff0 72%),radial-gradient(ellipse 160px 60px at 28% 18%,#fff 30%,#fff0 72%),radial-gradient(ellipse 300px 80px at 72% 46%,#fff 30%,#fff0 72%),radial-gradient(ellipse 200px 60px at 80% 42%,#fff 30%,#fff0 72%),radial-gradient(ellipse 260px 70px at 45% 82%,#fff 30%,#fff0 72%);background-size:1100px 640px;animation:dr 220s linear infinite}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(#fff4 35%,#0000 42%) 0 0/6px 6px}
-@keyframes dr{to{background-position:1100px 0}}
+:root{--n:#12154a;--p:#ff7ab8;--y:#ffe14d;--c:#8fe3ff;--f:#c9d2f0;--px:'Pixelify Sans','Courier New',monospace;--ui:Verdana,Tahoma,sans-serif;--ck:repeating-conic-gradient(#fff 0 25%,#000 0 50%);--out:#fff #3a3f78 #3a3f78 #fff;--in:#6a70a8 #fff #fff #6a70a8;--tt:linear-gradient(#3a4090,#12154a)}
+body{margin:0;min-height:100vh;font:12px/1.4 var(--ui);color:#10124a;overflow-x:hidden;background:#070b2a}
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(#0a0f5ad9,#0a0f5ad9),url(https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png) center/cover}
+body::after{content:"";position:fixed;inset:0;z-index:998;pointer-events:none;opacity:.35;background:repeating-linear-gradient(#0000 0 2px,#000 2px 3px),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");animation:ns .35s steps(3) infinite}
+@keyframes ns{33%{background-position:0 0,40px 70px}66%{background-position:0 0,-60px 20px}}
 a{color:inherit;text-decoration:none}
-:focus-visible{outline:3px dotted var(--p);outline-offset:2px}
+:focus-visible{outline:2px dotted #000;outline-offset:1px}
 svg{shape-rendering:crispEdges;fill:currentColor}
 body.lang-en .ru{display:none}
 body:not(.lang-en) .en{display:none}
-.wrap{position:relative;z-index:2;padding:36px 0 90px}
-.desk{position:relative;width:1000px;height:1270px;margin:0 auto}
 
-/* искры за границами */
-.o{position:absolute;z-index:6;width:40px;height:40px;color:#fff;filter:drop-shadow(3px 3px 0 #000);animation:bl 1.6s steps(1) infinite;pointer-events:none}
-.o.d{color:var(--b);filter:drop-shadow(2px 2px 0 #fff)}
-@keyframes bl{50%{transform:scale(.55)}}
+/* большое окно-оболочка */
+.shell{position:relative;z-index:2;width:880px;margin:50px auto 70px;padding:2px;background:var(--f);border:2px solid;border-color:var(--out);box-shadow:0 0 0 1px #000,6px 6px 0 #0008}
+.st,.t{position:relative;height:22px;padding:0 48px 0 24px;display:flex;align-items:center;background:var(--tt);color:#fff;font:700 12px var(--ui);white-space:nowrap}
+.t{height:20px;cursor:grab;user-select:none;touch-action:pan-y}
+.t:active{cursor:grabbing}
+.t>span:first-child{overflow:hidden;text-overflow:ellipsis}
+.ic{position:absolute;left:5px;top:5px;width:12px;height:12px;color:var(--y)}
+.tb{position:absolute;right:2px;top:3px;display:flex;gap:2px}
+.tb button{width:16px;height:14px;padding:0;display:flex;align-items:center;justify-content:center;background:var(--f);border:2px solid;border-color:var(--out);color:#000;cursor:pointer}
+.tb svg{width:7px;height:7px}
+.mn::after{content:"";width:6px;height:2px;margin-top:5px;background:#000}
 
 /* баннер */
-.ban{position:absolute;left:0;top:0;width:100%;height:250px;z-index:3;border:3px solid var(--n);box-shadow:6px 6px 0 var(--n);background:var(--n)}
+.ban{position:relative;height:190px;margin-top:2px;background:var(--n);border:2px solid;border-color:var(--in)}
 .bg{position:absolute;inset:0;display:flex;overflow:hidden}
 .bg img{flex:1;min-width:0;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.3);opacity:.6;mix-blend-mode:screen}
-.bg::after{content:"";position:absolute;inset:0;background:radial-gradient(#0000 40%,#14147acc 46%) 0 0/4px 4px,#14147a99}
-.rain{position:absolute;left:0;right:0;overflow:hidden;white-space:nowrap;font:14px/1 'Courier New',monospace;color:var(--c);opacity:.5;pointer-events:none}
-.rain i,.rb i{display:inline-block;font-style:normal;animation:rn 40s linear infinite}
+.rain{position:absolute;left:0;right:0;overflow:hidden;white-space:nowrap;font:11px/1 'Courier New',monospace;color:var(--c);opacity:.45;pointer-events:none}
+.rain i{display:inline-block;font-style:normal;animation:rn 40s linear infinite}
 .rain.rv i{animation-direction:reverse;animation-duration:55s}
 @keyframes rn{to{transform:translateX(-50%)}}
-.in{position:relative;z-index:2;padding:52px 310px 40px 28px}
-h1{margin:0;display:flex;flex-wrap:wrap;gap:10px 26px;font:400 clamp(28px,5vw,44px)/1 'Alfa Slab One',serif;color:#fff;filter:drop-shadow(2px 3px 0 #0007)}
+.in{position:relative;z-index:2;padding:42px 290px 20px 24px}
+h1{margin:0;display:flex;flex-wrap:wrap;gap:8px 20px;font:400 clamp(24px,4vw,38px)/1 'Alfa Slab One',serif;color:#fff;filter:drop-shadow(2px 2px 0 #0007)}
 .wd{display:flex;white-space:nowrap}
 h1 b{display:inline-block;padding:.04em .14em;line-height:1.05;font-weight:400}
-.face{position:absolute;z-index:9;right:8px;top:6px;width:290px;height:290px;pointer-events:none;filter:drop-shadow(3px 3px 0 #000)}
-.rb{position:absolute;left:-30px;right:-30px;top:214px;z-index:4;overflow:hidden;white-space:nowrap;background:var(--y);border:3px solid #000;transform:rotate(-1.6deg);font:700 18px/1.5 var(--px);pointer-events:none}
-.rb i{animation-duration:30s}
+.face{position:absolute;z-index:9;right:24px;top:-48px;width:250px;height:250px;pointer-events:none;filter:drop-shadow(2px 2px 0 #000)}
+.np{display:flex;gap:8px;align-items:center;height:22px;margin-top:2px;padding:0 8px;background:var(--n);color:#39ff6a;font:700 12px var(--px)}
+.mq{display:block;flex:1;overflow:hidden;white-space:nowrap;color:#39ff6a}
+.mq>span{display:inline-block;padding-left:100%;animation:mq 16s linear infinite}
+@keyframes mq{to{transform:translateX(-100%)}}
 
-/* окна */
-.w{position:absolute;z-index:10;left:var(--l);top:var(--t);width:var(--wd);background:#e4e9ff;border:3px solid var(--n);box-shadow:6px 6px 0 var(--n)}
+/* сетка */
+.grid{display:grid;grid-template-columns:200px 1fr;gap:10px;padding:8px 6px;align-items:start}
+.side{display:flex;flex-direction:column;gap:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.w{position:relative;z-index:10;padding:2px;background:var(--f);border:2px solid;border-color:var(--out);box-shadow:2px 2px 0 #0005}
 .w.h{display:none}
 .w.s>:not(.t):not(.o){display:none}
-.w::before{content:"";position:absolute;top:-16px;left:22px;width:76px;height:22px;z-index:4;background:var(--tp,var(--y));opacity:.88;transform:rotate(-5deg);border:0 dotted #0004;border-width:0 2px;pointer-events:none}
-.w:nth-child(even)::before{left:auto;right:60px;transform:rotate(4deg);--tp:var(--p)}
-.w:nth-child(3n)::before{--tp:var(--c)}
-.t{position:relative;min-height:28px;padding:3px 52px;background:var(--n);color:#fff;text-align:center;font:700 16px/1.6 var(--px);cursor:grab;touch-action:pan-y;user-select:none}
-.t:active{cursor:grabbing}
-.tb{position:absolute;right:4px;top:4px;display:flex;gap:4px}
-.tb button{width:20px;height:20px;padding:0;display:flex;align-items:center;justify-content:center;background:#fff;border:2px solid #000;color:#000;cursor:pointer}
-.tb button:hover{background:var(--p)}
-.tb svg{width:8px;height:8px}
-.mn::after{content:"";width:8px;height:2px;margin-top:6px;background:#000}
-.b{display:block;margin:3px;padding:14px;background:#fff;border:2px solid var(--n)}
+.w:has(.m:hover,.n a:hover,.ims img:hover){z-index:500!important}
+.b{display:block;margin:2px 0 0;padding:8px;background:linear-gradient(#f2f4ff,#bcc7ec);border:2px solid;border-color:var(--in)}
+.b p{margin:0 0 6px}
+.o{position:absolute;z-index:6;width:30px;height:30px;color:#fff;filter:drop-shadow(2px 2px 0 #000);animation:bl 1.4s steps(1) infinite;pointer-events:none}
+.o.d{color:var(--y)}
+@keyframes bl{50%{transform:scale(.5)}}
 
-/* профиль */
-.k .b{background:#000;color:#fff}
-.av{width:150px;height:150px;margin:2px auto 12px;padding:7px;background:var(--ck) 0 0/14px 14px;border:2px solid #fff;display:flex;transform:rotate(-2deg)}
+/* аватар */
+.av{width:120px;height:120px;margin:0 auto;padding:6px;background:var(--ck) 0 0/10px 10px;border:1px solid #fff;display:flex;transform:rotate(-2deg)}
 .av>*{flex:1;min-width:0;background:#000}
 .av img{width:100%;height:100%;object-fit:cover;display:block}
-.av div{display:flex;align-items:center;justify-content:center;font:400 34px 'Alfa Slab One',serif;color:#fff}
-.hr{border:0;border-top:2px dashed #e8a33c;margin:12px 0}
-.st{display:block;padding:5px;font-size:19px;line-height:1.25}
-.st:hover{background:var(--y);color:#000}
-.cu{display:inline-block;width:.5em;height:.85em;margin-left:5px;vertical-align:-1px;background:currentColor;animation:cu 1s steps(1) infinite}
-@keyframes cu{50%{opacity:0}}
+.av div{display:flex;align-items:center;justify-content:center;font:400 28px 'Alfa Slab One',serif;color:#fff}
 
-/* игры */
-.m{position:relative;height:150px;margin-bottom:12px;border:3px solid var(--n);background:#10204a;overflow:hidden}
-.m.big{height:230px}
+/* картинки выпрыгивают за рамку */
+.m{position:relative;height:130px;margin-bottom:8px;border:2px solid;border-color:var(--in);background:#10204a;transition:transform .2s steps(4)}
+.m.big{height:210px}
+.m:hover{transform:scale(1.4) rotate(-2deg);z-index:7;box-shadow:4px 4px 0 #000}
 .m img{width:100%;height:100%;object-fit:cover;display:block}
-.m::after{content:"";position:absolute;inset:0;background:radial-gradient(#0000 40%,#14147a55 46%) 0 0/4px 4px}
-h3{display:inline-block;margin:2px 0 10px;padding:3px 12px;font:700 24px/1.1 var(--px);letter-spacing:2px;background:#111;color:#fff;box-shadow:3px 3px 0 var(--p);transform:rotate(-1.5deg)}
-.w:nth-child(even) h3{box-shadow:3px 3px 0 var(--c);transform:rotate(1.2deg)}
-.b p{margin:0 0 8px;font-size:18px}
-.b p.mt{display:inline-block;margin:2px 0 0;padding:2px 9px;background:var(--y);color:#000;font:700 15px var(--px);border:2px solid #000;transform:rotate(-2deg)}
-.w:nth-child(even) p.mt{background:var(--p);transform:rotate(2deg)}
+h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px dotted var(--n)}
+.mt{display:inline-block;margin:0;padding:1px 6px;background:var(--y);border:2px solid;border-color:var(--out);font-weight:700}
+.ims{display:flex;gap:3px;margin-bottom:6px}
+.ims img{position:relative;flex:1;min-width:0;height:56px;object-fit:cover;border:2px solid;border-color:var(--in);transition:transform .2s steps(4)}
+.ims img:hover{transform:scale(2.3) rotate(3deg);z-index:7;box-shadow:3px 3px 0 #000}
 
-/* itch.io: три картинки */
-.ims{display:flex;gap:4px;margin-bottom:10px}
-.ims img{flex:1;min-width:0;height:84px;object-fit:cover;border:2px solid var(--n)}
-.ims img:nth-child(2){transform:translateY(-8px) rotate(2deg)}
-
-/* ссылки: по одной большой кнопке, фоны как у маленьких */
-.n{display:flex;flex-direction:column;gap:10px;padding:12px 12px 34px}
-.n a{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:58px;padding:9px 12px;border:3px solid #000;box-shadow:4px 4px 0 var(--n);box-shadow:inset 0 0 0 1px #fff9,4px 4px 0 var(--n)}
-.n a:hover{filter:brightness(1.12)}
-.n b{font:700 20px/1.1 var(--px)}
-.n small{font-size:16px;line-height:1.1}
+/* ссылки: по одной большой кнопке */
+.n{display:flex;flex-direction:column;gap:7px;padding:8px}
+.n a{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:5px 8px;border:2px solid #000;box-shadow:inset 0 0 0 1px #fff9;transition:transform .15s steps(3)}
+.n a:hover{transform:scale(1.2) rotate(-2deg);z-index:7;box-shadow:inset 0 0 0 1px #fff9,3px 3px 0 #000}
+.n a:nth-child(even):hover{transform:scale(1.2) rotate(2deg)}
+.n b{font:700 16px/1.1 var(--px)}
+.n small{font-size:11px;line-height:1.1}
 .n a:nth-child(1){background:linear-gradient(#6f86ff,#14147a);color:#fff}
-.n a:nth-child(2){background:var(--ck) 0 0/10px 10px;color:#fff}
-.n a:nth-child(2) b,.n a:nth-child(2) small{background:#000;padding:0 5px}
+.n a:nth-child(2){background:var(--ck) 0 0/8px 8px;color:#fff}
+.n a:nth-child(2) b,.n a:nth-child(2) small{background:#000;padding:0 4px}
 .n a:nth-child(3){background:var(--p);color:#4a0030}
 .n a:nth-child(4){background:#000;color:#39ff6a}
 .n a:nth-child(5){background:var(--y)}
 .n a:nth-child(6){background:linear-gradient(90deg,var(--p),var(--c))}
 
-/* таскбар */
-.tk{position:fixed;left:0;right:0;bottom:0;z-index:999;display:flex;align-items:center;gap:8px;padding:5px;background:#e4e9ff;border-top:3px solid var(--n)}
-.lg{display:flex;gap:5px}
-.lb,.tz{font:700 15px var(--px);background:#fff;border:2px solid var(--n);box-shadow:2px 2px 0 var(--n);cursor:pointer;color:var(--n)}
-.lb{padding:4px 16px}
-.lb.on{background:var(--n);color:#fff}
-#tbz{flex:1;display:flex;gap:5px;overflow:hidden;min-width:0}
-.tz{padding:4px 12px;max-width:170px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.tz:hover{background:var(--y)}
-.tr{padding:4px 12px;font:700 15px var(--px);border:2px solid var(--n);background:#fff;white-space:nowrap}
+/* нижняя панель */
+.foot{display:flex;align-items:center;gap:6px;padding:4px 6px;background:var(--tt);color:#fff}
+.lg{display:flex;gap:3px}
+.lb,.tz{font:700 11px var(--ui);background:var(--f);border:2px solid;border-color:var(--out);cursor:pointer;color:#000}
+.lb{padding:2px 12px}
+.lb.on{border-color:var(--in);background:#e4e8ff}
+#tbz{flex:1;display:flex;gap:3px;overflow:hidden;min-width:0}
+.tz{padding:2px 10px;max-width:150px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.tr{font:11px var(--ui);white-space:nowrap}
 
-/* отступы, чтобы перекрытия окон не закрывали текст */
-@media (min-width:1041px){.pl{padding-left:56px}.pr{padding-right:36px}.pb{padding-bottom:40px}}
-@media (max-width:1040px){
-.wrap{padding:24px 12px 90px}
-.desk{width:auto;height:auto;display:flex;flex-direction:column;gap:34px}
-.ban{position:relative;height:auto;min-height:230px}
-.in{padding:30px 150px 60px 18px}
-.face{top:30px;right:4px;width:170px;height:170px}
-.rb{display:none}
-.w{position:relative;left:auto;top:auto;width:auto;order:var(--o)}
-.w:nth-of-type(even){margin-left:14px}
-.tz{max-width:90px}
+@media (min-width:941px){.side>.w:first-child{margin:-44px 0 0 -26px}}
+@media (max-width:940px){
+.shell{width:auto;margin:14px 8px 60px}
+.grid,.two{grid-template-columns:1fr}
+.in{padding:30px 130px 40px 14px}
+.face{top:10px;right:4px;width:150px;height:150px}
 }
-@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
 </style>
 </head>
 <body>
@@ -152,106 +139,101 @@ h3{display:inline-block;margin:2px 0 10px;padding:3px 12px;font:700 24px/1.1 var
   <symbol id="xx" viewBox="0 0 7 7"><path d="M0 0h2v1h1v1h1V1h1V0h2v2H6v1H5v1h1v1h1v2H5V6H4V5H3v1H2v1H0V5h1V4h1V3H1V2H0z"/></symbol>
 </svg>
 
-<div class="wrap">
-<div class="desk h-card">
+<div class="shell h-card">
 
-  <!-- баннер -->
+  <div class="st"><svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg><span><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></span></div>
+
   <header class="ban">
     <div class="bg" aria-hidden="true">
       <img src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif" alt="">
       <img src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif" alt="">
       <img src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png" alt="">
     </div>
-    <div class="rain" style="top:10px" aria-hidden="true"></div>
-    <div class="rain rv" style="bottom:30px" aria-hidden="true"></div>
-    <div class="rain" style="bottom:10px" aria-hidden="true"></div>
-    <svg class="o" style="top:-24px;left:-20px" viewBox="0 0 9 9"><use href="#sp"/></svg>
+    <div class="rain" style="top:4px" aria-hidden="true"></div>
+    <div class="rain rv" style="bottom:4px" aria-hidden="true"></div>
     <div class="in"><h1 class="rz p-name">Danielle Choster</h1></div>
   </header>
   <canvas class="face" id="face" aria-hidden="true"></canvas>
-  <div class="rb" aria-hidden="true"><i></i></div>
 
-  <!-- В разработке -->
-  <article class="w" style="--l:250px;--t:300px;--wd:670px;--o:2">
-    <div class="t"><span><span class="ru">В разработке</span><span class="en">In development</span></span><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span></div>
-    <a class="b pl pb" href="https://daniellechoster.itch.io/what-the-car" target="_blank" rel="noopener">
-      <div class="m big"><img src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif" alt="WHAT THE CAR" loading="lazy"></div>
-      <h3>WHAT THE CAR</h3>
-      <p><span class="ru">Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.</span><span class="en">An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride.</span></p>
-      <p class="mt"><span class="ru">следить в тг-канале</span><span class="en">follow the channel</span></p>
-    </a>
-    <svg class="o" style="bottom:-22px;right:-18px" viewBox="0 0 9 9"><use href="#sp"/></svg>
-  </article>
+  <div class="np"><span aria-hidden="true">▶</span><a class="mq" rel="me noopener" href="https://t.me/Sran_Dev" target="_blank"><span><span class="ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span><span class="en">Currently in development: WHAT THE CAR — follow the channel</span></span></a></div>
 
-  <!-- Срань.dev -->
-  <section class="w k" style="--l:0px;--t:232px;--wd:300px;--o:1">
-    <div class="t"><span><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></span><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span></div>
-    <div class="b pb">
-      <div class="av"><img class="u-photo" src="avatar.png" alt="Danielle Choster" onerror="this.parentNode.innerHTML='<div>DC</div>'"></div>
-      <hr class="hr">
-      <a class="st" rel="me noopener" href="https://t.me/Sran_Dev" target="_blank"><span class="ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span><span class="en">Currently in development: WHAT THE CAR — follow the channel</span><i class="cu"></i></a>
-    </div>
-    <svg class="o d" style="top:-22px;right:-16px;animation-delay:-.4s" viewBox="0 0 9 9"><use href="#sp"/></svg>
-  </section>
+  <div class="grid">
 
-  <!-- Ссылки -->
-  <nav class="w" style="--l:20px;--t:548px;--wd:300px;--o:5">
-    <div class="t"><span><span class="ru">Ссылки</span><span class="en">Links</span></span><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span></div>
-    <div class="b n" style="margin-bottom:0;border-bottom:0">
-      <a rel="me noopener" href="https://t.me/Sran_Dev" target="_blank"><b><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></b><small><span class="ru">тг-канал студии — новости и апдейты</span><span class="en">studio's Telegram channel — news &amp; updates</span></small></a>
-      <a rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank"><b>itch.io</b><small><span class="ru">все игры в одном месте</span><span class="en">all games in one place</span></small></a>
-      <a rel="me noopener" href="https://t.me/DanielleChoster" target="_blank"><b><span class="ru">Личка</span><span class="en">DM</span></b><small><span class="ru">написать напрямую в тг</span><span class="en">message directly on Telegram</span></small></a>
-      <a rel="me noopener" href="https://discord.com/users/975382866122903582" target="_blank"><b>Discord</b><small><span class="ru">написать в дискорде</span><span class="en">message on Discord</span></small></a>
-      <a rel="me noopener" href="https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC" target="_blank"><b>YouTube</b><small><span class="ru">видео и разработка</span><span class="en">videos &amp; devlogs</span></small></a>
-      <a rel="me noopener" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq" target="_blank"><b>TikTok</b><small><span class="ru">короткие клипы</span><span class="en">short clips</span></small></a>
-    </div>
-    <svg class="o d" style="bottom:-24px;left:-18px;animation-delay:-.7s" viewBox="0 0 9 9"><use href="#sp"/></svg>
-  </nav>
+    <aside class="side">
+      <section class="w">
+        <div class="t"><span><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></span></div>
+        <div class="b"><div class="av"><img class="u-photo" src="avatar.png" alt="Danielle Choster" onerror="this.parentNode.innerHTML='<div>DC</div>'"></div></div>
+        <svg class="o d" style="top:-14px;right:-12px;animation-delay:-.4s" viewBox="0 0 9 9"><use href="#sp"/></svg>
+      </section>
 
-  <!-- Последнее демо -->
-  <article class="w" style="--l:330px;--t:745px;--wd:330px;--o:3">
-    <div class="t"><span><span class="ru">Последнее демо</span><span class="en">Latest demo</span></span><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span></div>
-    <a class="b pr" href="https://daniellechoster.itch.io/outpatient" target="_blank" rel="noopener">
-      <div class="m"><img src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif" alt="OUTPATIENT" loading="lazy"></div>
-      <h3>OUTPATIENT</h3>
-      <p><span class="ru">Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.</span><span class="en">An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors.</span></p>
-      <p class="mt">88 MB · Windows</p>
-    </a>
-    <svg class="o d" style="bottom:-22px;left:-16px;animation-delay:-.9s" viewBox="0 0 7 7"><use href="#xx"/></svg>
-  </article>
+      <nav class="w">
+        <div class="t"><span><span class="ru">Ссылки</span><span class="en">Links</span></span></div>
+        <div class="b n">
+          <a rel="me noopener" href="https://t.me/Sran_Dev" target="_blank"><b><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></b><small><span class="ru">тг-канал студии — новости и апдейты</span><span class="en">studio's Telegram channel — news &amp; updates</span></small></a>
+          <a rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank"><b>itch.io</b><small><span class="ru">все игры в одном месте</span><span class="en">all games in one place</span></small></a>
+          <a rel="me noopener" href="https://t.me/DanielleChoster" target="_blank"><b><span class="ru">Личка</span><span class="en">DM</span></b><small><span class="ru">написать напрямую в тг</span><span class="en">message directly on Telegram</span></small></a>
+          <a rel="me noopener" href="https://discord.com/users/975382866122903582" target="_blank"><b>Discord</b><small><span class="ru">написать в дискорде</span><span class="en">message on Discord</span></small></a>
+          <a rel="me noopener" href="https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC" target="_blank"><b>YouTube</b><small><span class="ru">видео и разработка</span><span class="en">videos &amp; devlogs</span></small></a>
+          <a rel="me noopener" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq" target="_blank"><b>TikTok</b><small><span class="ru">короткие клипы</span><span class="en">short clips</span></small></a>
+        </div>
+      </nav>
 
-  <!-- 4.9 ★ -->
-  <article class="w" style="--l:640px;--t:800px;--wd:340px;--o:4">
-    <div class="t"><span><span class="ru">4.9 ★ · 8 оценок</span><span class="en">4.9 ★ · 8 ratings</span></span><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span></div>
-    <a class="b" href="https://daniellechoster.itch.io/loop-protocol" target="_blank" rel="noopener">
-      <div class="m"><img src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png" alt="LOOP PROTOCOL" loading="lazy"></div>
-      <h3>LOOP PROTOCOL</h3>
-      <p><span class="ru">Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.</span><span class="en">Write code — watch it come to life. A puzzle game about programming your character with commands.</span></p>
-      <p class="mt">53 MB · Windows, Android</p>
-    </a>
-    <svg class="o" style="top:-20px;right:-18px;animation-delay:-1.3s" viewBox="0 0 9 9"><use href="#sp"/></svg>
-  </article>
+      <section class="w">
+        <div class="t"><span>itch.io</span></div>
+        <a class="b" rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank">
+          <div class="ims"><img src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif" alt="" loading="lazy"><img src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif" alt="" loading="lazy"><img src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png" alt="" loading="lazy"></div>
+          <p><span class="ru">все игры в одном месте</span><span class="en">all games in one place</span></p>
+        </a>
+      </section>
+    </aside>
 
-  <!-- itch.io -->
-  <section class="w" style="--l:40px;--t:970px;--wd:270px;--o:6">
-    <div class="t"><span>itch.io</span><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span></div>
-    <a class="b" rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank">
-      <div class="ims"><img src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif" alt="" loading="lazy"><img src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif" alt="" loading="lazy"><img src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png" alt="" loading="lazy"></div>
-      <p><span class="ru">все игры в одном месте</span><span class="en">all games in one place</span></p>
-    </a>
-  </section>
+    <main>
+      <article class="w">
+        <div class="t"><span><span class="ru">В разработке</span><span class="en">In development</span></span></div>
+        <a class="b" href="https://daniellechoster.itch.io/what-the-car" target="_blank" rel="noopener">
+          <div class="m big"><img src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif" alt="WHAT THE CAR" loading="lazy"></div>
+          <h3>WHAT THE CAR</h3>
+          <p><span class="ru">Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.</span><span class="en">An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride.</span></p>
+          <p class="mt"><span class="ru">следить в тг-канале</span><span class="en">follow the channel</span></p>
+        </a>
+        <svg class="o" style="bottom:-14px;right:-12px" viewBox="0 0 9 9"><use href="#sp"/></svg>
+      </article>
 
-</div>
-</div>
+      <div class="two">
+        <article class="w">
+          <div class="t"><span><span class="ru">Последнее демо</span><span class="en">Latest demo</span></span></div>
+          <a class="b" href="https://daniellechoster.itch.io/outpatient" target="_blank" rel="noopener">
+            <div class="m"><img src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif" alt="OUTPATIENT" loading="lazy"></div>
+            <h3>OUTPATIENT</h3>
+            <p><span class="ru">Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.</span><span class="en">An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors.</span></p>
+            <p class="mt">88 MB · Windows</p>
+          </a>
+        </article>
+        <article class="w">
+          <div class="t"><span><span class="ru">4.9 ★ · 8 оценок</span><span class="en">4.9 ★ · 8 ratings</span></span></div>
+          <a class="b" href="https://daniellechoster.itch.io/loop-protocol" target="_blank" rel="noopener">
+            <div class="m"><img src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png" alt="LOOP PROTOCOL" loading="lazy"></div>
+            <h3>LOOP PROTOCOL</h3>
+            <p><span class="ru">Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.</span><span class="en">Write code — watch it come to life. A puzzle game about programming your character with commands.</span></p>
+            <p class="mt">53 MB · Windows, Android</p>
+          </a>
+          <svg class="o d" style="top:-14px;right:-12px;animation-delay:-1.3s" viewBox="0 0 9 9"><use href="#sp"/></svg>
+        </article>
+      </div>
+    </main>
 
-<footer class="tk">
-  <div class="lg" role="group" aria-label="Language / Язык">
-    <button class="lb" data-lang="ru" type="button">RU</button>
-    <button class="lb" data-lang="en" type="button">EN</button>
   </div>
-  <div id="tbz"></div>
-  <div class="tr">© <span id="year"></span> Danielle Choster</div>
-</footer>
+
+  <footer class="foot">
+    <div class="lg" role="group" aria-label="Language / Язык">
+      <button class="lb" data-lang="ru" type="button">RU</button>
+      <button class="lb" data-lang="en" type="button">EN</button>
+    </div>
+    <div id="tbz"></div>
+    <div class="tr">© <span id="year"></span> Danielle Choster</div>
+  </footer>
+
+</div>
 
 <script>
 /* ---------- язык ---------- */
@@ -265,15 +247,15 @@ document.getElementById('year').textContent=new Date().getFullYear();
 /* ---------- бегущие ASCII-строки и лента ---------- */
 const RW='.:-=+*#%@~'.repeat(60);
 document.querySelectorAll('.rain').forEach(e=>e.innerHTML='<i>'+RW+'</i>');
-document.querySelector('.rb i').textContent='WHAT THE CAR ★ OUTPATIENT ★ LOOP PROTOCOL ★ '.repeat(8);
 
 /* ---------- окна: тащи за заголовок, [_] сворачивает, [x] в таскбар ---------- */
+document.querySelectorAll('.t').forEach(t=>t.insertAdjacentHTML('beforeend','<svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span>'));
 const tbz=document.getElementById('tbz');let zi=11;
 document.querySelectorAll('.w').forEach(w=>{
   const t=w.querySelector('.t');let ox=0,oy=0,sx=0,sy=0;
   w.addEventListener('pointerdown',()=>{w.style.zIndex=++zi});
   t.addEventListener('pointerdown',e=>{
-    if(e.target.closest('button')||innerWidth<=1040)return;
+    if(e.target.closest('button')||innerWidth<=940)return;
     sx=e.clientX-ox;sy=e.clientY-oy;t.setPointerCapture(e.pointerId);
     t.onpointermove=m=>{ox=m.clientX-sx;oy=m.clientY-sy;w.style.translate=ox+'px '+oy+'px'};
     t.onpointerup=()=>{t.onpointermove=null};
