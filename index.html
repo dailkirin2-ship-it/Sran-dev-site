@@ -5,699 +5,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Danielle Choster — Срань.dev</title>
 <meta name="description" content="Игры, проекты и ссылки Danielle Choster (Срань.dev)">
-
-<!-- favicon: buквa D на синем -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231E6FE0'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='800' font-size='30' fill='white' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
-
-<!-- превью при шаринге ссылки (тг, дискорд и тд). Когда купишь домен — замени og:url и og:image на абсолютные ссылки вида https://твойдомен/avatar.png -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231a1a80'/%3E%3Crect x='4' y='4' width='56' height='56' fill='%23c0c0c0'/%3E%3Ctext x='32' y='45' font-family='monospace' font-weight='700' font-size='38' fill='%231a1a80' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Danielle Choster — Срань.dev">
 <meta property="og:description" content="Игры и ссылки Danielle Choster (Срань.dev)">
 <meta property="og:image" content="avatar.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Danielle Choster — Срань.dev">
-<meta name="twitter:description" content="Игры и ссылки Danielle Choster (Срань.dev)">
-<meta name="twitter:image" content="avatar.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #EEF5FC;
-    --sky: #3AA0FF;
-    --sky-deep: #1E6FE0;
-    --cyan: #4FD6E8;
-    --navy: #0E1E36;
-    --text: #16233A;
-    --text-dim: #5C6C85;
-    --glass: rgba(255,255,255,0.46);
-    --glass-hi: rgba(255,255,255,0.68);
-    --glass-border: rgba(255,255,255,0.75);
-    --r-xl: 40px;
-    --r-lg: 28px;
-    --r-md: 22px;
-    --spring: cubic-bezier(.34,1.56,.64,1);
-    --ease: cubic-bezier(.22,1,.36,1);
-  }
+:root{
+  --navy:#1c1c8a; --navy2:#3a3ad0; --lav:#c9cdf2; --gray:#c6c6c6; --w:#fff; --dk:#0b0b0b; --sh:#404040;
+  --rain:linear-gradient(90deg,#ff9ac8,#ffd89a,#fff59a,#a8ffb5,#9ad8ff,#c9a8ff,#ff9ac8);
+  --body:'VT323','Courier New',monospace; --head:'Pixelify Sans','VT323',monospace;
+}
+*{box-sizing:border-box}
+html{background:#2f6fd0}
+body{margin:0;min-height:100vh;padding:16px 10px 40px;font:20px/1.15 var(--body);color:var(--dk)}
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+/* Bliss-style wallpaper */
+.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;
+  background:
+    radial-gradient(ellipse 260px 70px at 18% 22%,rgba(255,255,255,.9),transparent 70%),
+    radial-gradient(ellipse 340px 90px at 72% 14%,rgba(255,255,255,.85),transparent 70%),
+    radial-gradient(ellipse 300px 80px at 88% 48%,rgba(255,255,255,.8),transparent 70%),
+    radial-gradient(ellipse 220px 60px at 40% 40%,rgba(255,255,255,.7),transparent 70%),
+    linear-gradient(#2b66cc,#5b9bea 40%,#bcdcf7 62%)}
+.sky::after{content:"";position:absolute;left:-20%;right:-20%;bottom:-28vh;height:62vh;border-radius:50%;
+  background:radial-gradient(ellipse at 40% 20%,#7cc23a,#4a9a1c 55%,#2c6e10)}
+a{color:inherit}
+:focus-visible{outline:2px dotted #fff;outline-offset:2px}
+body.en .ru,body:not(.en) .en{display:none}
 
-  body{
-    margin:0;
-    min-height:100vh;
-    background:linear-gradient(120deg, #EAF4FE, #FFFFFF, #D9ECFE, #F3FAFF, #E3F1FE);
-    background-size:400% 400%;
-    animation: shimmerBg 18s ease-in-out infinite;
-    color:var(--text);
-    font-family:'Manrope', system-ui, sans-serif;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-    position:relative;
-  }
+.wrap{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:230px 1fr;gap:16px;align-items:start}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}}
+.col{display:grid;gap:16px;align-content:start}
 
-  @keyframes shimmerBg{
-    0%{ background-position: 0% 40%; }
-    50%{ background-position: 100% 60%; }
-    100%{ background-position: 0% 40%; }
-  }
-  @media (prefers-reduced-motion: reduce){ body{ animation:none; } }
+/* window */
+.win{background:var(--gray);border:2px solid;border-color:var(--w) var(--sh) var(--sh) var(--w);box-shadow:0 0 0 2px #000,5px 5px 0 2px rgba(0,0,0,.55);padding:3px}
+.tb{display:flex;align-items:center;justify-content:center;position:relative;min-height:26px;padding:2px 30px;color:#fff;text-align:center;
+  background:linear-gradient(#3535c8,var(--navy));font:600 17px/1.1 var(--head)}
+.tb h1,.tb h2,.tb h3{margin:0;font:inherit}
+.tb.rb{background:var(--rain);color:#111}
+.x{position:absolute;right:3px;top:3px;width:20px;height:20px;background:#000;border:1px solid #fff;color:#fff}
+.x::before,.x::after{content:"";position:absolute;left:3px;right:3px;top:8px;height:2px;background:#fff;transform:rotate(45deg)}
+.x::after{transform:rotate(-45deg)}
+.pane{background:var(--dk);color:#fff;text-align:center;padding:10px;margin-top:3px;
+  background-image:linear-gradient(45deg,#161616 25%,transparent 25% 75%,#161616 75%),linear-gradient(45deg,#161616 25%,transparent 25% 75%,#161616 75%);background-size:16px 16px;background-position:0 0,8px 8px}
+.pane.lt{background:var(--lav);color:var(--dk);background-image:none;border:2px solid;border-color:var(--sh) var(--w) var(--w) var(--sh)}
 
-  /* ---------- floating gradient blobs (this is what the glass refracts) ---------- */
-  .blob{
-    position:fixed; border-radius:50%;
-    filter:blur(2px);
-    opacity:.55;
-    z-index:0;
-    will-change:transform;
-  }
-  .blob-1{ width:520px; height:520px; top:-220px; left:-180px; background:radial-gradient(circle at 30% 30%, var(--sky), transparent 72%); opacity:.4; filter:blur(30px); animation: float1 32s ease-in-out infinite; }
-  .blob-2{ width:460px; height:460px; bottom:-200px; right:-160px; background:radial-gradient(circle at 60% 40%, var(--cyan), transparent 72%); opacity:.3; filter:blur(30px); animation: float2 36s ease-in-out infinite; }
-  .blob-3{ display:none; }
+/* buttons */
+.btn{display:block;text-decoration:none;text-align:center;color:#000;background:var(--gray);padding:5px 8px;font:600 17px/1.1 var(--head);
+  border:2px solid;border-color:var(--w) var(--sh) var(--sh) var(--w);box-shadow:0 0 0 1px #000;cursor:pointer}
+.btn:hover,.btn:focus-visible{background:var(--navy);color:#fff;border-color:var(--sh) var(--w) var(--w) var(--sh)}
+button.btn{width:100%}
+button.btn[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--sh) var(--w) var(--w) var(--sh)}
+.nav{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.nav .btn{text-align:left;padding-left:12px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 
-  @keyframes float1{ 0%,100%{ transform:translate(0,0);} 50%{ transform:translate(40px,30px);} }
-  @keyframes float2{ 0%,100%{ transform:translate(0,0);} 50%{ transform:translate(-30px,-30px);} }
-  @media (prefers-reduced-motion: reduce){ .blob{ animation:none; } }
+/* profile */
+.me .avatar,.me .ph{width:140px;height:140px;border:3px solid #fff;outline:2px solid #000;object-fit:cover;background:#222;image-rendering:auto}
+.me .ph{display:none;margin:0 auto;font:700 44px var(--head);align-items:center;justify-content:center}
+.me .avatar{margin:0 auto;display:block}
+.me .tb h1{font:700 24px/1.1 var(--head)}
 
-  a{color:inherit; text-decoration:none;}
-  :focus-visible{ outline:2px solid var(--sky-deep); outline-offset:3px; border-radius:8px; }
+/* status */
+.status{display:block;text-decoration:none;color:#111;background:var(--rain);padding:6px 10px;font:600 17px/1.2 var(--head);text-align:center;border:2px solid #000}
+.status:hover{background:#000;color:#fff}
 
-  /* ---------- i18n: toggled by .lang-en on body ---------- */
-  body.lang-en .i18n-ru{ display:none; }
-  body:not(.lang-en) .i18n-en{ display:none; }
+/* games */
+.game{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;margin-top:3px;background:#000;border:2px solid #000}
+@media(max-width:560px){.game{grid-template-columns:1fr}}
+.shot{display:block;line-height:0;position:relative;background:#000;min-height:180px}
+.shot img{width:100%;height:100%;min-height:180px;object-fit:cover;display:block;filter:saturate(1.15)}
+.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,#000)}
+@media(max-width:560px){.shot::after{background:linear-gradient(transparent 55%,#000)}}
+.gi{padding:12px;color:#fff;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:8px;
+  background-image:linear-gradient(45deg,#181818 25%,transparent 25% 75%,#181818 75%),linear-gradient(45deg,#181818 25%,transparent 25% 75%,#181818 75%);background-size:20px 20px;background-position:0 0,10px 10px}
+.gi h3{margin:0;font:700 22px/1.1 var(--head)}
+.gi .tag{font-size:18px;color:#ffd89a}
+.gi p{margin:0;font-size:19px}
+.gi .meta{color:#aaa;font-size:17px}
 
-  /* ---------- LANGUAGE SWITCH (top-right, MD3 + glass) ---------- */
-  .lang-switch{
-    position:fixed;
-    top:20px; right:20px;
-    z-index:50;
-    display:flex; gap:3px;
-    padding:4px;
-    background:var(--glass);
-    border:1.5px solid var(--glass-border);
-    backdrop-filter: blur(22px) saturate(160%);
-    -webkit-backdrop-filter: blur(22px) saturate(160%);
-    border-radius:999px;
-    box-shadow: 0 10px 26px -14px rgba(30,111,224,.4);
-  }
-  .lang-btn{
-    appearance:none; border:none; background:transparent;
-    cursor:pointer;
-    font-family:'Unbounded'; font-weight:700; font-size:12px;
-    letter-spacing:.02em;
-    padding:8px 14px;
-    border-radius:999px;
-    color:var(--text-dim);
-    transition: transform .35s var(--spring), background .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease);
-  }
-  .lang-btn:hover{ transform:scale(1.08); color:var(--navy); }
-  .lang-btn:active{ transform:scale(.98); }
-  .lang-btn.active{
-    background:linear-gradient(135deg, var(--sky), var(--sky-deep));
-    color:#fff;
-    box-shadow: 0 8px 18px -8px rgba(30,111,224,.6);
-  }
-  .lang-btn.active:hover{ transform:scale(1.1); }
+/* link button wall — cooltext-style animated text buttons */
+.wall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.wall a.b{display:flex;align-items:center;justify-content:center;height:46px;text-decoration:none;color:#fff;font:700 22px var(--head);letter-spacing:1px;
+  border:3px solid #000;box-shadow:0 0 0 1px #fff inset;text-shadow:-2px 0 #000,2px 0 #000,0 -2px #000,0 2px #000,3px 3px 0 #000;position:relative;overflow:hidden}
+.wall a.b:hover,.wall a.b:focus-visible{filter:invert(1)}
+.wall li:nth-child(1) a.b{background:conic-gradient(#f0f 25%,#0ff 0 50%,#ff0 0 75%,#0f0 0) 0 0/16px 16px;animation:sl 1s steps(8) infinite}
+.wall li:nth-child(2) a.b{background:repeating-linear-gradient(45deg,#fff 0 8px,#5ab8ff 8px 16px);background-size:22.6px 22.6px;animation:st 1s linear infinite}
+.wall li:nth-child(3) a.b{background:radial-gradient(#fff 1px,transparent 1.5px) 0 0/6px 6px,radial-gradient(#ffb0c8 1px,transparent 1.5px) 3px 3px/6px 6px,#8a0a2a;animation:gl .5s steps(2) infinite}
+.wall li:nth-child(4) a.b{background:#050510;color:#bff;text-shadow:0 0 4px #0ff,0 0 10px #0ff,0 0 18px #08f;border-color:#0ff;animation:ng 1.4s ease-in-out infinite alternate}
+.wall li:nth-child(5) a.b{background:linear-gradient(#ffe14a,#ff7a00 35%,#c00 70%,#300);background-size:100% 200%;animation:fr .6s steps(3) infinite alternate}
+.wall li:nth-child(6) a.b{background:var(--rain);background-size:200% 100%;color:#fff;animation:rn 3s linear infinite}
+@keyframes sl{to{background-position:16px 0}}
+@keyframes st{to{background-position:22.6px 0}}
+@keyframes gl{50%{background-position:3px 3px,0 0,0 0}}
+@keyframes ng{to{box-shadow:0 0 0 1px #fff inset,0 0 12px #0ff}}
+@keyframes fr{to{background-position:0 100%}}
+@keyframes rn{to{background-position:200% 0}}
+.wall small{display:block;margin-top:4px;color:var(--dk);font-size:17px;line-height:1.05;text-align:center}
+.tb.rb{background-size:200% 100%;animation:rn 6s linear infinite}
+.me .tb h1{background:linear-gradient(#fff 0 45%,#9aa8c8 50%,#fff 55% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:3px #000;paint-order:stroke fill;filter:drop-shadow(2px 2px 0 #000)}
 
-  @media (max-width:600px){
-    .lang-switch{ top:14px; right:14px; padding:3px; }
-    .lang-btn{ font-size:11px; padding:7px 11px; }
-  }
-
-  .wrap{
-    position:relative; z-index:2;
-    max-width:1080px;
-    margin:0 auto;
-    padding: 56px 20px 70px;
-  }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    display:flex; flex-direction:column; align-items:center; text-align:center;
-    gap:16px;
-    margin-bottom:52px;
-    opacity:0; transform:translateY(24px) scale(.94);
-    animation: pop .8s var(--spring) forwards;
-  }
-
-  .avatar-ring{
-    position:relative;
-    width:104px; height:104px;
-    border-radius:32px;
-    display:flex; align-items:center; justify-content:center;
-    background:#fff;
-    box-shadow: 0 10px 26px -10px rgba(30,111,224,.35), 0 0 0 1px rgba(30,111,224,.08);
-  }
-
-  .avatar{
-    width:100%; height:100%;
-    border-radius:inherit;
-    object-fit:cover;
-    background:#fff;
-    display:block;
-  }
-  .avatar-fallback{
-    width:100%; height:100%;
-    border-radius:inherit;
-    background:linear-gradient(135deg, var(--sky), var(--sky-deep));
-    display:none;
-    align-items:center; justify-content:center;
-    font-family:'Unbounded'; font-weight:800; font-size:32px; color:#fff;
-  }
-
-  h1{
-    font-family:'Unbounded'; font-weight:800;
-    font-size: clamp(30px, 5.4vw, 46px);
-    letter-spacing:-0.015em;
-    margin:6px 0 0;
-    color:var(--navy);
-  }
-
-  .status-pill{
-    display:inline-flex; align-items:center; gap:10px;
-    padding:11px 22px 11px 16px;
-    background:var(--glass);
-    border:1.5px solid var(--glass-border);
-    backdrop-filter: blur(22px) saturate(160%);
-    -webkit-backdrop-filter: blur(22px) saturate(160%);
-    border-radius:999px;
-    font-size:14.5px; font-weight:700;
-    color:var(--navy);
-    box-shadow: 0 10px 26px -14px rgba(30,111,224,.4);
-    transition: transform .4s var(--spring), box-shadow .4s var(--ease), background .3s var(--ease);
-  }
-  .status-pill:hover{ transform:translateY(-4px) scale(1.06); box-shadow: 0 18px 34px -14px rgba(30,111,224,.55); background:var(--glass-hi); }
-  .status-dot{
-    width:9px; height:9px; border-radius:50%; background:var(--sky-deep);
-    box-shadow:0 0 0 0 rgba(30,111,224,.55);
-    animation: pulse 2.2s ease-out infinite;
-    flex-shrink:0;
-  }
-  @media (prefers-reduced-motion: reduce){ .status-dot{ animation:none; } }
-
-  /* ---------- SECTION LABELS ---------- */
-  .section-head{
-    font-family:'Unbounded'; font-weight:700;
-    font-size:14px;
-    color:var(--sky-deep);
-    margin: 0 6px 16px;
-    display:flex; align-items:center; gap:8px;
-  }
-  .section-head::after{
-    content:'';
-    flex:1;
-    height:1px;
-    background:linear-gradient(90deg, rgba(30,111,224,.25), transparent);
-  }
-
-  /* ---------- BENTO GRID (desktop) ---------- */
-  .bento{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap:16px;
-    margin-bottom:48px;
-  }
-
-  .card{
-    position:relative;
-    grid-column: span 2;
-    border-radius: var(--r-lg);
-    background:var(--glass);
-    border:1.5px solid var(--glass-border);
-    backdrop-filter: blur(24px) saturate(160%);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
-    padding:24px;
-    overflow:hidden;
-    display:flex; flex-direction:column; justify-content:flex-end;
-    min-height:160px;
-    opacity:0; transform:translateY(30px) scale(.9);
-    animation: pop .65s var(--spring) forwards;
-    box-shadow: 0 14px 34px -18px rgba(30,111,224,.35);
-    transition: transform .4s var(--spring), box-shadow .4s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
-  }
-  .card:hover{
-    transform: translateY(-8px) scale(1.08);
-    box-shadow: 0 28px 48px -16px rgba(30,111,224,.55);
-    background:var(--glass-hi);
-    border-color: rgba(58,160,255,.65);
-    z-index:3;
-  }
-  .card:active{ transform: translateY(-3px) scale(1.03); }
-
-  .card::after{
-    content:'';
-    position:absolute; inset:0;
-    background:linear-gradient(115deg, transparent 38%, rgba(255,255,255,.55) 50%, transparent 62%);
-    transform:translateX(-130%);
-    transition: transform .75s var(--ease);
-    pointer-events:none;
-  }
-  .card:hover::after{ transform:translateX(130%); }
-
-  .card.lg{ grid-column: span 4; min-height:280px; }
-  .card.sm{ grid-column: span 2; min-height:128px; }
-
-  .card-media{
-    position:absolute; inset:0;
-    background-size:cover; background-position:center;
-    opacity:.62;
-    transition: transform .6s var(--ease);
-  }
-  .card:hover .card-media{ transform:scale(1.06); }
-  .card-scrim{
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(14,30,54,.1) 0%, rgba(14,30,54,.55) 55%, rgba(14,30,54,.9) 100%);
-  }
-  .card.lg .card-title, .card.lg .card-desc, .card.lg .card-badge{ color:#fff; }
-  .card.lg .card-desc{ color:rgba(255,255,255,.85); }
-
-  .card-icon{
-    width:42px; height:42px;
-    border-radius:14px;
-    display:flex; align-items:center; justify-content:center;
-    background:#fff;
-    box-shadow: 0 6px 16px -6px rgba(30,111,224,.4);
-    margin-bottom:auto;
-    position:relative; z-index:1;
-    transition: transform .4s var(--spring);
-  }
-  .card:hover .card-icon{ transform: scale(1.08); }
-  .card-icon svg{ width:21px; height:21px; }
-
-  .card-badge{
-    position:relative; z-index:1;
-    align-self:flex-start;
-    font-size:12px; font-weight:800;
-    letter-spacing:.01em;
-    padding:6px 13px;
-    border-radius:999px;
-    margin-bottom:11px;
-  }
-
-  .card-title{
-    position:relative; z-index:1;
-    font-family:'Unbounded'; font-weight:700;
-    font-size:19px;
-    margin:0 0 4px;
-    color:var(--navy);
-  }
-  .card.lg .card-title{ font-size:26px; }
-
-  .card-desc{
-    position:relative; z-index:1;
-    color:var(--text-dim);
-    font-size:13.5px;
-    line-height:1.45;
-    margin:0;
-  }
-
-  .card-meta{
-    position:relative; z-index:1;
-    font-size:12px;
-    color:rgba(255,255,255,.7);
-    margin-top:8px;
-    font-weight:600;
-  }
-
-  .accent-blue{ color:var(--sky-deep); background:rgba(58,160,255,.18); }
-  .accent-cyan{ color:#0891A8; background:rgba(79,214,232,.22); }
-  .accent-navy{ color:var(--navy); background:rgba(14,30,54,.08); }
-
-  footer{
-    text-align:center;
-    color:var(--text-dim);
-    font-size:12.5px;
-    padding-top:22px;
-  }
-
-  @keyframes pop{
-    to{ opacity:1; transform:translateY(0) scale(1) rotate(0); }
-  }
-  @keyframes pulse{
-    0%{ box-shadow:0 0 0 0 rgba(30,111,224,.5); }
-    70%{ box-shadow:0 0 0 9px rgba(30,111,224,0); }
-    100%{ box-shadow:0 0 0 0 rgba(30,111,224,0); }
-  }
-
-  /* ---------- TABLET ---------- */
-  @media (max-width:880px){
-    .bento{ grid-template-columns: repeat(2,1fr); }
-    .card.lg{ grid-column: span 2; }
-  }
-
-  /* ---------- MOBILE: separate, simplified layout ---------- */
-  @media (max-width:600px){
-    .wrap{ padding: 40px 16px 56px; }
-    .hero{ margin-bottom:36px; gap:12px; }
-    .avatar-ring{ width:88px; height:88px; border-radius:26px; }
-    h1{ font-size:26px; }
-    .status-pill{ font-size:13px; padding:9px 16px 9px 13px; }
-
-    .bento{ grid-template-columns: 1fr; gap:12px; }
-    .card, .card.sm, .card.lg{ grid-column: span 1; min-height:auto; padding:20px; }
-    .card.lg{ min-height:220px; }
-    .card-icon{ width:38px; height:38px; }
-
-    .blob{ opacity:.4; filter:blur(6px); }
-    .blob-3{ display:none; } /* fewer blobs on mobile for perf/clarity */
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
-  }
-
-  /* ================= INTRO SPLASH ANIMATION =================
-     Увеличенная аватарка появляется по центру экрана на размытом
-     полупрозрачном фоне, затем плавно (по кривой) летит на своё
-     место в шапке, а весь остальной контент одновременно расфокусируется. */
-
-  body.intro-active .wrap,
-  body.intro-active .blob,
-  body.intro-active .lang-switch{
-    filter: blur(18px);
-    opacity:.32;
-    transform: scale(.97);
-    pointer-events:none;
-    transition: filter 1s var(--ease), opacity 1s var(--ease), transform 1s var(--ease);
-  }
-  .wrap, .lang-switch{ transition: filter 1s var(--ease), opacity 1s var(--ease), transform 1s var(--ease); }
-  .blob{ transition: filter 1s var(--ease), opacity 1s var(--ease), transform 1s var(--ease); }
-
-  .intro-overlay{
-    position:fixed; inset:0;
-    z-index:90;
-    display:flex; align-items:center; justify-content:center;
-    pointer-events:none;
-    background: radial-gradient(circle at 50% 45%, rgba(255,255,255,.6), rgba(238,245,252,.18) 58%, transparent 76%);
-    opacity:1;
-    transition: opacity .5s ease;
-  }
-  .intro-overlay.overlay-hide{ opacity:0; }
-
-  .intro-avatar-wrap{
-    position:relative;
-    width:clamp(120px, 34vw, 200px);
-    aspect-ratio:1/1;
-    border-radius:30%;
-    background:#fff;
-    box-shadow: 0 22px 60px -18px rgba(30,111,224,.5), 0 0 0 1px rgba(30,111,224,.1);
-    display:flex; align-items:center; justify-content:center;
-    overflow:hidden;
-    opacity:0;
-    animation: introPop .6s var(--spring) forwards;
-    will-change: transform;
-  }
-  .intro-avatar-wrap.fly{
-    animation: introFly 1s cubic-bezier(.65,0,.35,1) forwards;
-  }
-  .intro-avatar-img{
-    width:100%; height:100%; object-fit:cover; display:block; background:#fff;
-  }
-  .intro-avatar-fallback{
-    position:absolute; inset:0;
-    display:none; align-items:center; justify-content:center;
-    background:linear-gradient(135deg, var(--sky), var(--sky-deep));
-    font-family:'Unbounded'; font-weight:800; color:#fff;
-    font-size:clamp(34px, 9vw, 56px);
-  }
-
-  @keyframes introPop{
-    0%{ opacity:0; transform:scale(.5); }
-    65%{ opacity:1; transform:scale(1.06); }
-    100%{ opacity:1; transform:scale(1); }
-  }
-  @keyframes introFly{
-    0%{ transform: translate(0,0) scale(1); }
-    60%{ transform: translate(calc(var(--dx) * 0.66), calc(var(--dy) * 0.2)) scale(calc(1 + (var(--s) - 1) * 0.6)); }
-    100%{ transform: translate(var(--dx), var(--dy)) scale(var(--s)); }
-  }
-
-  /* Без интро для тех, кто просит меньше анимаций — контент сразу чёткий, оверлей скрыт */
-  html.no-intro .intro-overlay{ display:none !important; }
-  html.no-intro body.intro-active .wrap,
-  html.no-intro body.intro-active .blob,
-  html.no-intro body.intro-active .lang-switch{
-    filter:none; opacity:1; transform:none; pointer-events:auto;
-  }
+footer{grid-column:1/-1;text-align:center;color:#fff;text-shadow:1px 1px 0 #000;font-size:19px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-<body class="intro-active">
-
-<script>
-  // Синхронная проверка ДО отрисовки — чтобы не мигнуть интро тем, кто просит меньше анимаций
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.documentElement.classList.add('no-intro');
-  }
-</script>
-
-<!-- ============ INTRO SPLASH ============ -->
-<div class="intro-overlay" id="introOverlay" aria-hidden="true">
-  <div class="intro-avatar-wrap" id="introAvatarWrap">
-    <img class="intro-avatar-img" id="introAvatarImg" src="avatar.png" alt="">
-    <div class="intro-avatar-fallback" id="introAvatarFallback">DC</div>
-  </div>
-</div>
-
-<!-- ============ LANGUAGE SWITCH ============ -->
-<div class="lang-switch" role="group" aria-label="Language / Язык">
-  <button class="lang-btn" data-lang="ru" type="button">RU</button>
-  <button class="lang-btn" data-lang="en" type="button">EN</button>
-</div>
-
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
-
+<body>
+<div class="sky" aria-hidden="true"></div>
 <div class="wrap">
 
-  <!-- ============ HERO ============ -->
-  <div class="hero">
-    <div class="avatar-ring">
-      <img class="avatar" src="avatar.png" alt="Danielle Choster" id="avatarImg">
-      <div class="avatar-fallback" id="avatarFallback">DC</div>
+<aside class="col">
+  <section class="win me">
+    <div class="tb"><h1>Danielle Choster</h1><span class="x"></span></div>
+    <div class="pane">
+      <img class="avatar" id="av" src="avatar.png" alt="Danielle Choster">
+      <div class="ph" id="ph">DC</div>
     </div>
-    <h1>Danielle Choster</h1>
-    <a class="status-pill" href="https://t.me/Sran_Dev" target="_blank" rel="noopener">
-      <span class="status-dot"></span>
-      <span class="i18n-ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span>
-      <span class="i18n-en">Currently in development: WHAT THE CAR — follow the channel</span>
-    </a>
-  </div>
+  </section>
 
-  <!-- ============ ИГРЫ / GAMES ============ -->
-  <p class="section-head"><span class="i18n-ru">Игры</span><span class="i18n-en">Games</span></p>
-  <div class="bento" id="gamesGrid"></div>
+  <section class="win">
+    <div class="tb rb"><h2><span class="ru">Навигация</span><span class="en">Navigation</span></h2></div>
+    <div class="pane lt"><ul class="nav">
+      <li><a class="btn" href="#games"><span class="ru">Игры</span><span class="en">Games</span></a></li>
+      <li><a class="btn" href="#links"><span class="ru">Ссылки</span><span class="en">Links</span></a></li>
+    </ul></div>
+  </section>
 
-  <!-- ============ ССЫЛКИ / LINKS ============ -->
-  <p class="section-head"><span class="i18n-ru">Ссылки</span><span class="i18n-en">Links</span></p>
-  <div class="bento" id="linksGrid"></div>
+  <section class="win">
+    <div class="tb"><h2><span class="ru">Язык</span><span class="en">Language</span></h2><span class="x"></span></div>
+    <div class="pane"><div class="pair">
+      <button class="btn" type="button" data-l="ru">RU</button>
+      <button class="btn" type="button" data-l="en">EN</button>
+    </div></div>
+  </section>
+</aside>
 
-  <footer>
-    © <span id="year"></span> Danielle Choster
-  </footer>
+<main class="col">
+  <a class="status" href="https://t.me/Sran_Dev" target="_blank" rel="noopener">
+    <span class="ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span>
+    <span class="en">Currently in development: WHAT THE CAR — follow the channel</span>
+  </a>
+
+  <section class="win" id="games">
+    <div class="tb"><h2><span class="ru">Игры</span><span class="en">Games</span></h2><span class="x"></span></div>
+    <div class="pane lt" style="display:grid;gap:14px">
+
+      <article class="win">
+        <div class="tb rb"><h3>WHAT THE CAR</h3></div>
+        <div class="game">
+          <a class="shot" href="https://daniellechoster.itch.io/what-the-car"><img loading="lazy" alt="WHAT THE CAR" src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif"></a>
+          <div class="gi">
+            <span class="tag"><span class="ru">В разработке</span><span class="en">In development</span></span>
+            <p><span class="ru">Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.</span><span class="en">An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride.</span></p>
+            <p class="meta"><span class="ru">следить в тг-канале</span><span class="en">follow the channel</span></p>
+            <a class="btn" href="https://daniellechoster.itch.io/what-the-car">itch.io</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="win">
+        <div class="tb rb"><h3>OUTPATIENT</h3></div>
+        <div class="game">
+          <a class="shot" href="https://daniellechoster.itch.io/outpatient"><img loading="lazy" alt="OUTPATIENT" src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif"></a>
+          <div class="gi">
+            <span class="tag"><span class="ru">Последнее демо</span><span class="en">Latest demo</span></span>
+            <p><span class="ru">Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.</span><span class="en">An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors.</span></p>
+            <p class="meta">88 MB · Windows</p>
+            <a class="btn" href="https://daniellechoster.itch.io/outpatient">itch.io</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="win">
+        <div class="tb rb"><h3>LOOP PROTOCOL</h3></div>
+        <div class="game">
+          <a class="shot" href="https://daniellechoster.itch.io/loop-protocol"><img loading="lazy" alt="LOOP PROTOCOL" src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png"></a>
+          <div class="gi">
+            <span class="tag"><span class="ru">4.9 ★ · 8 оценок</span><span class="en">4.9 ★ · 8 ratings</span></span>
+            <p><span class="ru">Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.</span><span class="en">Write code — watch it come to life. A puzzle game about programming your character with commands.</span></p>
+            <p class="meta">53 MB · Windows, Android</p>
+            <a class="btn" href="https://daniellechoster.itch.io/loop-protocol">itch.io</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="win" id="links">
+    <div class="tb"><h2><span class="ru">Ссылки</span><span class="en">Links</span></h2><span class="x"></span></div>
+    <div class="pane lt"><ul class="wall">
+      <li><a class="b" rel="me" href="https://t.me/Sran_Dev">Срань.dev</a><small><span class="ru">тг-канал студии — новости и апдейты</span><span class="en">studio's Telegram channel — news &amp; updates</span></small></li>
+      <li><a class="b" rel="me" href="https://daniellechoster.itch.io/">itch.io</a><small><span class="ru">все игры в одном месте</span><span class="en">all games in one place</span></small></li>
+      <li><a class="b" rel="me" href="https://t.me/DanielleChoster"><span class="ru">Личка</span><span class="en">DM</span></a><small><span class="ru">написать напрямую в тг</span><span class="en">message directly on Telegram</span></small></li>
+      <li><a class="b" rel="me" href="https://discord.com/users/975382866122903582">Discord</a><small><span class="ru">написать в дискорде</span><span class="en">message on Discord</span></small></li>
+      <li><a class="b" rel="me" href="https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC">YouTube</a><small><span class="ru">видео и разработка</span><span class="en">videos &amp; devlogs</span></small></li>
+      <li><a class="b" rel="me" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq">TikTok</a><small><span class="ru">короткие клипы</span><span class="en">short clips</span></small></li>
+    </ul></div>
+  </section>
+</main>
+
+<footer>© <span id="y"></span> Danielle Choster</footer>
 </div>
 
 <script>
-/* ======================================================================
-   БЫСТРОЕ ДОБАВЛЕНИЕ ССЫЛОК / ИГР
-   Дописывай новый объект в LINKS или GAMES — карточка появится сама.
-   Текстовые поля (badge, desc, meta, title у LINKS) — объекты {ru, en}.
-
-   LINKS: { icon: 'telegram'|'discord'|'itch'|'youtube'|'tiktok'|'link',
-            title:{ru,en}, desc:{ru,en}, url, accent: 'blue'|'cyan'|'navy', size: 'sm' (опц.) }
-
-   GAMES: { title (одно и то же на обоих языках), badge:{ru,en}, desc:{ru,en}, url,
-            gif (опц.), meta:{ru,en} (опц.), accent, size: 'lg' (по умолч.) }
-   ====================================================================== */
-
-  const GAMES = [
-    {
-      title: "WHAT THE CAR",
-      badge: { ru: "В разработке", en: "In development" },
-      desc: {
-        ru: "Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.",
-        en: "An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride."
-      },
-      url: "https://daniellechoster.itch.io/what-the-car",
-      gif: "https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif",
-      meta: { ru: "следить в тг-канале", en: "follow the channel" },
-      accent: "blue",
-      size: "lg"
-    },
-    {
-      title: "OUTPATIENT",
-      badge: { ru: "Последнее демо", en: "Latest demo" },
-      desc: {
-        ru: "Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.",
-        en: "An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors."
-      },
-      url: "https://daniellechoster.itch.io/outpatient",
-      gif: "https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif",
-      meta: { ru: "88 MB · Windows", en: "88 MB · Windows" },
-      accent: "navy",
-      size: "lg"
-    },
-    {
-      title: "LOOP PROTOCOL",
-      badge: { ru: "4.9 ★ · 8 оценок", en: "4.9 ★ · 8 ratings" },
-      desc: {
-        ru: "Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.",
-        en: "Write code — watch it come to life. A puzzle game about programming your character with commands."
-      },
-      url: "https://daniellechoster.itch.io/loop-protocol",
-      gif: "https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png",
-      meta: { ru: "53 MB · Windows, Android", en: "53 MB · Windows, Android" },
-      accent: "cyan",
-      size: "lg"
-    }
-  ];
-
-  const LINKS = [
-    { icon: "telegram", title: { ru: "Срань.dev", en: "Sran.dev" }, desc: { ru: "тг-канал студии — новости и апдейты", en: "studio's Telegram channel — news & updates" }, url: "https://t.me/Sran_Dev", accent: "blue" },
-    { icon: "itch",     title: { ru: "itch.io", en: "itch.io" },   desc: { ru: "все игры в одном месте", en: "all games in one place" }, url: "https://daniellechoster.itch.io/", accent: "cyan" },
-    { icon: "telegram", title: { ru: "Личка", en: "DM" }, desc: { ru: "написать напрямую в тг", en: "message directly on Telegram" }, url: "https://t.me/DanielleChoster", accent: "blue", size: "sm" },
-    { icon: "discord",  title: { ru: "Discord", en: "Discord" }, desc: { ru: "написать в дискорде", en: "message on Discord" }, url: "https://discord.com/users/975382866122903582", accent: "navy", size: "sm" },
-    { icon: "youtube",  title: { ru: "YouTube", en: "YouTube" }, desc: { ru: "видео и разработка", en: "videos & devlogs" }, url: "https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC", accent: "navy", size: "sm" },
-    { icon: "tiktok",   title: { ru: "TikTok", en: "TikTok" }, desc: { ru: "короткие клипы", en: "short clips" }, url: "https://www.tiktok.com/@danielle_choster?_r=1&_t=ZS-99tH59FkTQq", accent: "cyan", size: "sm" }
-  ];
-
-  const ICONS = {
-    telegram: '<svg viewBox="0 0 24 24" fill="none"><path d="M21 4.5 3.6 11.2c-1 .4-1 1.5.1 1.8l4.1 1.3 1.6 4.9c.3.9 1.4 1.1 2 .4l2.3-2.6 4.4 3.3c.8.6 2 .2 2.2-.8L23 5.4c.2-.9-.7-1.6-1.5-1.3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.7 14.4 18 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
-    discord: '<svg viewBox="0 0 24 24" fill="none"><path d="M8 15.5c2.8 1.4 5.2 1.4 8 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9.2 6.3C7 6.7 5.4 7.4 5.4 7.4c-1.6 3-2 6-1.8 9 0 0 1.6 1.5 4.4 1.7l.9-1.4M14.8 6.3c2.2.4 3.8 1.1 3.8 1.1 1.6 3 2 6 1.8 9 0 0-1.6 1.5-4.4 1.7l-.9-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="9" cy="13" rx="1.3" ry="1.5" fill="currentColor"/><ellipse cx="15" cy="13" rx="1.3" ry="1.5" fill="currentColor"/><path d="M9.2 6.3c1.7-.5 3.9-.5 5.6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
-    itch: '<svg viewBox="0 0 24 24" fill="none"><path d="M3.5 8.5 5.8 4.8c.3-.4.7-.6 1.2-.6h10c.5 0 .9.2 1.2.6l2.3 3.7c.6 1 .1 2.5-1.3 2.5-1.1 0-1.9-.8-2-1.8-.1 1-1 1.8-2 1.8-1.1 0-2-.8-2-1.8-.1 1-1 1.8-2 1.8s-1.9-.8-2-1.8c-.1 1-.9 1.8-2 1.8-1.4 0-1.9-1.5-1.3-2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4.3 11v6.2c0 1 .8 1.8 1.8 1.8h11.8c1 0 1.8-.8 1.8-1.8V11" stroke="currentColor" stroke-width="1.6"/><path d="M9.3 17v-2.3c0-1 .8-1.7 1.7-1.7h2c1 0 1.7.8 1.7 1.7V17" stroke="currentColor" stroke-width="1.6"/></svg>',
-    youtube: '<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 9.5v5l4.3-2.5-4.3-2.5Z" fill="currentColor"/></svg>',
-    tiktok: '<svg viewBox="0 0 24 24" fill="none"><path d="M14 4v9.6a2.9 2.9 0 1 1-2.3-2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4c.3 2.2 1.8 3.8 4 4.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-    link: '<svg viewBox="0 0 24 24" fill="none"><path d="M9.5 14.5 14.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M11.2 8.3 12.4 7a3 3 0 1 1 4.2 4.2l-1.3 1.3M12.8 15.7 11.6 17a3 3 0 1 1-4.2-4.2l1.3-1.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'
-  };
-
-  // Оборачивает {ru, en} в две span'ы, которые CSS показывает/прячет по языку
-  function bi(field){
-    return `<span class="i18n-ru">${field.ru}</span><span class="i18n-en">${field.en}</span>`;
-  }
-
-  function renderGames(){
-    const grid = document.getElementById('gamesGrid');
-    GAMES.forEach((g, i) => {
-      const el = document.createElement('a');
-      el.href = g.url; el.target = '_blank'; el.rel = 'noopener';
-      el.className = `card ${g.size === 'lg' ? 'lg' : ''}`;
-      el.style.animationDelay = (i * 0.1) + 's';
-      el.innerHTML = `
-        ${g.gif ? `<div class="card-media" style="background-image:url('${g.gif}')"></div>` : ''}
-        <div class="card-scrim"></div>
-        <span class="card-badge accent-${g.accent}">${bi(g.badge)}</span>
-        <h3 class="card-title">${g.title}</h3>
-        <p class="card-desc">${bi(g.desc)}</p>
-        ${g.meta ? `<p class="card-meta">${bi(g.meta)}</p>` : ''}
-      `;
-      grid.appendChild(el);
-    });
-  }
-
-  function renderLinks(){
-    const grid = document.getElementById('linksGrid');
-    LINKS.forEach((l, i) => {
-      const el = document.createElement('a');
-      el.href = l.url; el.target = '_blank'; el.rel = 'noopener';
-      el.className = `card ${l.size === 'sm' ? 'sm' : ''}`;
-      el.style.animationDelay = (0.2 + i * 0.07) + 's';
-      el.innerHTML = `
-        <div class="card-icon accent-${l.accent}">${ICONS[l.icon] || ICONS.link}</div>
-        <h3 class="card-title">${bi(l.title)}</h3>
-        <p class="card-desc">${bi(l.desc)}</p>
-      `;
-      grid.appendChild(el);
-    });
-  }
-
-  renderGames();
-  renderLinks();
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const avatarImg = document.getElementById('avatarImg');
-  avatarImg.addEventListener('error', () => {
-    avatarImg.style.display = 'none';
-    document.getElementById('avatarFallback').style.display = 'flex';
-  });
-
-  // ---------- ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА ----------
-  const langButtons = document.querySelectorAll('.lang-btn');
-
-  function setLang(lang){
-    document.body.classList.toggle('lang-en', lang === 'en');
-    document.documentElement.setAttribute('lang', lang);
-    langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-    try { localStorage.setItem('site-lang', lang); } catch (e) {}
-  }
-
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.lang));
-  });
-
-  let initialLang = 'ru';
-  try {
-    const saved = localStorage.getItem('site-lang');
-    if (saved === 'ru' || saved === 'en') {
-      initialLang = saved;
-    } else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) {
-      initialLang = 'en';
-    }
-  } catch (e) {}
-  setLang(initialLang);
-
-  // ---------- ИНТРО-АНИМАЦИЯ: большая аватарка по центру → летит на своё место ----------
-  (function initIntro(){
-    const overlay = document.getElementById('introOverlay');
-    const wrap = document.getElementById('introAvatarWrap');
-    const cloneImg = document.getElementById('introAvatarImg');
-    const cloneFallback = document.getElementById('introAvatarFallback');
-    const targetRing = document.querySelector('.avatar-ring');
-    if (!overlay || !wrap || !targetRing) return;
-
-    // Пропускаем анимацию, если браузер просит меньше движения
-    if (document.documentElement.classList.contains('no-intro')) {
-      document.body.classList.remove('intro-active');
-      overlay.remove();
-      return;
-    }
-
-    cloneImg.addEventListener('error', () => {
-      cloneImg.style.display = 'none';
-      cloneFallback.style.display = 'flex';
-    });
-
-    function finishIntro(){
-      overlay.classList.add('overlay-hide');
-      overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
-    }
-
-    function flyToTarget(){
-      const targetRect = targetRing.getBoundingClientRect();
-      const cloneRect = wrap.getBoundingClientRect();
-      const dx = (targetRect.left + targetRect.width / 2) - (cloneRect.left + cloneRect.width / 2);
-      const dy = (targetRect.top + targetRect.height / 2) - (cloneRect.top + cloneRect.height / 2);
-      const s = targetRect.width / cloneRect.width;
-
-      wrap.style.setProperty('--dx', dx + 'px');
-      wrap.style.setProperty('--dy', dy + 'px');
-      wrap.style.setProperty('--s', s);
-
-      // Одновременно расфокусированный фон становится чётким
-      document.body.classList.remove('intro-active');
-      wrap.classList.add('fly');
-
-      wrap.addEventListener('animationend', finishIntro, { once: true });
-    }
-
-    // Небольшая пауза после появления аватарки в центре, затем — полёт
-    wrap.addEventListener('animationend', function onPop(e){
-      if (e.animationName !== 'introPop') return;
-      wrap.removeEventListener('animationend', onPop);
-      setTimeout(flyToTarget, 380);
-    });
-  })();
+document.getElementById('y').textContent=new Date().getFullYear();
+var av=document.getElementById('av');
+av.addEventListener('error',function(){av.style.display='none';document.getElementById('ph').style.display='flex'});
+var bs=document.querySelectorAll('button[data-l]');
+function setLang(l){document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;
+  bs.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l)});
+  try{localStorage.setItem('site-lang',l)}catch(e){}}
+bs.forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
+var s='ru';try{var v=localStorage.getItem('site-lang');if(v==='ru'||v==='en')s=v;else if((navigator.language||'').toLowerCase().indexOf('en')===0)s='en'}catch(e){}
+setLang(s);
 </script>
-
 </body>
 </html>
