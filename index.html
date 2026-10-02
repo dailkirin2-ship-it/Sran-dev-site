@@ -6,7 +6,6 @@
 <title>Danielle Choster — Срань.dev</title>
 <meta name="description" content="Игры, проекты и ссылки Danielle Choster (Срань.dev)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231E6FE0'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='800' font-size='30' fill='white' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
-<!-- когда купишь домен — замени og:image на абсолютную ссылку https://твойдомен/avatar.png -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Danielle Choster — Срань.dev">
 <meta property="og:description" content="Игры и ссылки Danielle Choster (Срань.dev)">
@@ -15,234 +14,1145 @@
 <meta name="twitter:title" content="Danielle Choster — Срань.dev">
 <meta name="twitter:description" content="Игры и ссылки Danielle Choster (Срань.dev)">
 <meta name="twitter:image" content="avatar.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Alfa+Slab+One&family=Lobster&family=Playfair+Display:wght@900&family=Oswald:wght@700&family=Courier+Prime:wght@700&family=Rubik:wght@800&display=swap" rel="stylesheet">
-<!--
-  indieweb: один статичный файл, без сборки и фреймворков (own your data, longevity).
-  h-card + rel="me": данные видны людям и читаются машинами.
-  Окна внутри: тащи за заголовок, [_] сворачивает, [x] убирает вниз. Картинки и кнопки при наведении выпрыгивают за рамку.
--->
+
 <style>
 *{box-sizing:border-box}
-:root{--n:#12154a;--p:#ff7ab8;--y:#ffe14d;--c:#8fe3ff;--f:#c9d2f0;--px:'Pixelify Sans','Courier New',monospace;--ui:Verdana,Tahoma,sans-serif;--ck:repeating-conic-gradient(#fff 0 25%,#000 0 50%);--out:#fff #3a3f78 #3a3f78 #fff;--in:#6a70a8 #fff #fff #6a70a8;--tt:linear-gradient(#3a4090,#12154a)}
-body{margin:0;min-height:100vh;font:12px/1.4 var(--ui);color:#10124a;overflow-x:hidden;background:#070b2a}
-body::before{content:"";position:fixed;inset:0;background:linear-gradient(#0a0f5ad9,#0a0f5ad9),url(https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png) center/cover}
-body::after{content:"";position:fixed;inset:0;z-index:998;pointer-events:none;opacity:.35;background:repeating-linear-gradient(#0000 0 2px,#000 2px 3px),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");animation:ns .35s steps(3) infinite}
-@keyframes ns{33%{background-position:0 0,40px 70px}66%{background-position:0 0,-60px 20px}}
+
+:root{
+  --n:#12154a;
+  --p:#ff7ab8;
+  --y:#ffe14d;
+  --c:#8fe3ff;
+  --f:#c9d2f0;
+  --px:'Pixelify Sans','Courier New',monospace;
+  --ui:Verdana,Tahoma,sans-serif;
+  --ck:repeating-conic-gradient(#fff 0 25%,#000 0 50%);
+  --out:#fff #3a3f78 #3a3f78 #fff;
+  --in:#6a70a8 #fff #fff #6a70a8;
+  --tt:linear-gradient(#3a4090,#12154a)
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font:12px/1.4 var(--ui);
+  color:#10124a;
+  overflow-x:hidden;
+  background:#070b2a
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(#0a0f5ad9,#0a0f5ad9),
+    url(https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png) center/cover
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:998;
+  pointer-events:none;
+  opacity:.35;
+  background:
+    repeating-linear-gradient(#0000 0 2px,#000 2px 3px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+  animation:ns .35s steps(3) infinite
+}
+
+@keyframes ns{
+  33%{background-position:0 0,40px 70px}
+  66%{background-position:0 0,-60px 20px}
+}
+
 a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px dotted #000;outline-offset:1px}
+
+:focus-visible{
+  outline:2px dotted #000;
+  outline-offset:1px
+}
+
 svg{shape-rendering:crispEdges;fill:currentColor}
+
 body.lang-en .ru{display:none}
 body:not(.lang-en) .en{display:none}
 
-/* большое окно-оболочка */
-.shell{position:relative;z-index:2;width:880px;margin:50px auto 70px;padding:2px;background:var(--f);border:2px solid;border-color:var(--out);box-shadow:0 0 0 1px #000,6px 6px 0 #0008}
-.st,.t{position:relative;height:22px;padding:0 48px 0 24px;display:flex;align-items:center;background:var(--tt);color:#fff;font:700 12px var(--ui);white-space:nowrap}
-.t{height:20px;cursor:grab;user-select:none;touch-action:pan-y}
+.shell{
+  position:relative;
+  z-index:2;
+  width:880px;
+  margin:50px auto 70px;
+  padding:2px;
+  background:var(--f);
+  border:2px solid;
+  border-color:var(--out);
+  box-shadow:0 0 0 1px #000,6px 6px 0 #0008
+}
+
+.st,.t{
+  position:relative;
+  height:22px;
+  padding:0 48px 0 24px;
+  display:flex;
+  align-items:center;
+  background:var(--tt);
+  color:#fff;
+  font:700 12px var(--ui);
+  white-space:nowrap
+}
+
+.t{
+  height:20px;
+  cursor:grab;
+  user-select:none;
+  touch-action:pan-y
+}
+
 .t:active{cursor:grabbing}
-.t>span:first-child{overflow:hidden;text-overflow:ellipsis}
-.ic{position:absolute;left:5px;top:5px;width:12px;height:12px;color:var(--y)}
-.tb{position:absolute;right:2px;top:3px;display:flex;gap:2px}
-.tb button{width:16px;height:14px;padding:0;display:flex;align-items:center;justify-content:center;background:var(--f);border:2px solid;border-color:var(--out);color:#000;cursor:pointer}
+
+.t>span:first-child{
+  overflow:hidden;
+  text-overflow:ellipsis
+}
+
+.ic{
+  position:absolute;
+  left:5px;
+  top:5px;
+  width:12px;
+  height:12px;
+  color:var(--y)
+}
+
+.tb{
+  position:absolute;
+  right:2px;
+  top:3px;
+  display:flex;
+  gap:2px
+}
+
+.tb button{
+  width:16px;
+  height:14px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--f);
+  border:2px solid;
+  border-color:var(--out);
+  color:#000;
+  cursor:pointer
+}
+
 .tb svg{width:7px;height:7px}
-.mn::after{content:"";width:6px;height:2px;margin-top:5px;background:#000}
 
-/* баннер */
-.ban{position:relative;height:190px;margin-top:2px;background:var(--n);border:2px solid;border-color:var(--in)}
-.bg{position:absolute;inset:0;display:flex;overflow:hidden}
-.bg img{flex:1;min-width:0;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.3);opacity:.6;mix-blend-mode:screen}
-.rain{position:absolute;left:0;right:0;overflow:hidden;white-space:nowrap;font:11px/1 'Courier New',monospace;color:var(--c);opacity:.45;pointer-events:none}
-.rain i{display:inline-block;font-style:normal;animation:rn 40s linear infinite}
-.rain.rv i{animation-direction:reverse;animation-duration:55s}
-@keyframes rn{to{transform:translateX(-50%)}}
-.in{position:relative;z-index:2;padding:42px 290px 20px 24px}
-h1{margin:0;display:flex;flex-wrap:wrap;gap:8px 20px;font:400 clamp(24px,4vw,38px)/1 'Alfa Slab One',serif;color:#fff;filter:drop-shadow(2px 2px 0 #0007)}
-.wd{display:flex;white-space:nowrap}
-h1 b{display:inline-block;padding:.04em .14em;line-height:1.05;font-weight:400}
-.face{position:absolute;z-index:9;right:24px;top:-48px;width:250px;height:250px;pointer-events:none;filter:drop-shadow(0 7px 0 #0009) drop-shadow(2px 2px 0 #000)}
-.np{display:flex;gap:8px;align-items:center;height:22px;margin-top:2px;padding:0 8px;background:var(--n);color:#39ff6a;font:700 12px var(--px)}
-.mq{display:block;flex:1;overflow:hidden;white-space:nowrap;color:#39ff6a}
-.mq>span{display:inline-block;padding-left:100%;animation:mq 16s linear infinite}
-@keyframes mq{to{transform:translateX(-100%)}}
+.mn::after{
+  content:"";
+  width:6px;
+  height:2px;
+  margin-top:5px;
+  background:#000
+}
 
-/* сетка */
-.grid{display:grid;grid-template-columns:180px minmax(0,1fr);gap:8px;padding:8px 6px;align-items:start}
-.side{display:flex;flex-direction:column;gap:10px;position:relative;z-index:30}
-.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px}
-.gc{position:relative;display:block}
-.gc .d{display:none;position:absolute;left:0;right:0;top:100%;z-index:8;margin:2px 0 0;padding:6px;background:#fff;border:2px solid #000;box-shadow:3px 3px 0 #000}
-.gc:hover .d,.gc.sel .d{display:block}
-.gc.sel .m{outline:3px dashed var(--p);outline-offset:3px}
-.ls{max-height:230px;overflow:auto;scrollbar-color:#6a70a8 #dde}
-.po{margin:0 0 6px}.po summary{cursor:pointer}.po p{margin:4px 0 0}
-.lr{margin:0 0 8px;padding-bottom:6px;border-bottom:1px dotted var(--n)}
-.lr i,.po i{padding:0 4px;margin-right:4px;font:700 11px var(--px);font-style:normal;color:#fff;background:var(--n)}
-.ch{display:inline-block;margin-left:4px;padding:0 5px;background:var(--y);border:1px solid #000;font-weight:700;cursor:pointer}
+/* БАННЕР */
+
+.ban{
+  position:relative;
+  height:190px;
+  margin-top:2px;
+  background:var(--n);
+  border:2px solid;
+  border-color:var(--in)
+}
+
+.bg{
+  position:absolute;
+  inset:0;
+  display:flex;
+  overflow:hidden
+}
+
+.bg img{
+  flex:1;
+  min-width:0;
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(1) contrast(1.3);
+  opacity:.6;
+  mix-blend-mode:screen
+}
+
+.rain{
+  position:absolute;
+  left:0;
+  right:0;
+  overflow:hidden;
+  white-space:nowrap;
+  font:11px/1 'Courier New',monospace;
+  color:var(--c);
+  opacity:.45;
+  pointer-events:none
+}
+
+.rain i{
+  display:inline-block;
+  font-style:normal;
+  animation:rn 40s linear infinite
+}
+
+.rain.rv i{
+  animation-direction:reverse;
+  animation-duration:55s
+}
+
+@keyframes rn{
+  to{transform:translateX(-50%)}
+}
+
+.in{
+  position:relative;
+  z-index:2;
+  padding:42px 290px 20px 24px
+}
+
+h1{
+  margin:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 20px;
+  font:400 clamp(24px,4vw,38px)/1 'Alfa Slab One',serif;
+  color:#fff;
+  filter:drop-shadow(2px 2px 0 #0007)
+}
+
+.wd{
+  display:flex;
+  white-space:nowrap
+}
+
+h1 b{
+  display:inline-block;
+  padding:.04em .14em;
+  line-height:1.05;
+  font-weight:400
+}
+
+/* ТЕНЬ ПОД ASCII-НЕКО */
+
+.face{
+  position:absolute;
+  z-index:9;
+  right:24px;
+  top:-48px;
+  width:250px;
+  height:250px;
+  pointer-events:none;
+  filter:
+    drop-shadow(0 14px 0 #000b)
+    drop-shadow(0 22px 16px #0008)
+    drop-shadow(3px 3px 0 #000)
+}
+
+.np{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  height:22px;
+  margin-top:2px;
+  padding:0 8px;
+  background:var(--n);
+  color:#39ff6a;
+  font:700 12px var(--px)
+}
+
+.mq{
+  display:block;
+  flex:1;
+  overflow:hidden;
+  white-space:nowrap;
+  color:#39ff6a
+}
+
+.mq>span{
+  display:inline-block;
+  padding-left:100%;
+  animation:mq 16s linear infinite
+}
+
+@keyframes mq{
+  to{transform:translateX(-100%)}
+}
+
+/* СЕТКА */
+
+.grid{
+  display:grid;
+  grid-template-columns:180px minmax(0,1fr);
+  gap:8px;
+  padding:8px 6px;
+  align-items:start
+}
+
+.side{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  position:relative;
+  z-index:30
+}
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:8px
+}
+
+.two>.w{min-width:0}
+
+.gl{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
+  gap:10px
+}
+
+.gc{
+  position:relative;
+  display:block
+}
+
+.gc .d{
+  display:none;
+  position:absolute;
+  left:0;
+  right:0;
+  top:100%;
+  z-index:8;
+  margin:2px 0 0;
+  padding:6px;
+  background:#fff;
+  border:2px solid #000;
+  box-shadow:3px 3px 0 #000
+}
+
+.gc:hover .d,
+.gc.sel .d{display:block}
+
+.gc.sel .m{
+  outline:3px dashed var(--p);
+  outline-offset:3px
+}
+
+.ls{
+  max-height:230px;
+  overflow:auto;
+  scrollbar-color:#6a70a8 #dde
+}
+
+.po{margin:0 0 6px}
+.po summary{cursor:pointer}
+.po p{margin:4px 0 0}
+
+.lr{
+  margin:0 0 8px;
+  padding-bottom:6px;
+  border-bottom:1px dotted var(--n)
+}
+
+.lr i,
+.po i{
+  padding:0 4px;
+  margin-right:4px;
+  font:700 11px var(--px);
+  font-style:normal;
+  color:#fff;
+  background:var(--n)
+}
+
+.ch{
+  display:inline-block;
+  margin-left:4px;
+  padding:0 5px;
+  background:var(--y);
+  border:1px solid #000;
+  font-weight:700;
+  cursor:pointer
+}
+
 .ch:hover{background:var(--p)}
-.cnt{padding:1px 6px;font:700 13px 'Courier New',monospace;letter-spacing:2px;color:#39ff6a;background:#000;border:2px solid;border-color:var(--in)}
-.cnt::before{content:"◉ ";color:#ff5b8a}
-.ed input,.ed select,.ed textarea{display:block;width:100%;margin:0 0 4px;font:11px var(--ui)}
-.w{position:relative;z-index:10;padding:2px;background:var(--f);border:2px solid;border-color:var(--out);box-shadow:3px 3px 0 #0007}
+
+.cnt{
+  padding:1px 6px;
+  font:700 13px 'Courier New',monospace;
+  letter-spacing:2px;
+  color:#39ff6a;
+  background:#000;
+  border:2px solid;
+  border-color:var(--in)
+}
+
+.cnt::before{
+  content:"◉ ";
+  color:#ff5b8a
+}
+
+.w{
+  position:relative;
+  z-index:10;
+  padding:2px;
+  background:var(--f);
+  border:2px solid;
+  border-color:var(--out);
+  box-shadow:3px 3px 0 #0007
+}
+
 .w.h{display:none}
+
 .w.s>:not(.t):not(.o){display:none}
-.w:has(.m:hover,.n a:hover,.ims img:hover){z-index:500!important}
-.b{display:block;margin:2px 0 0;padding:7px;background:linear-gradient(#f2f4ff,#bcc7ec);border:2px solid;border-color:var(--in)}
+
+.w:has(.m:hover,.n a:hover,.ims img:hover){
+  z-index:500!important
+}
+
+.b{
+  display:block;
+  margin:2px 0 0;
+  padding:7px;
+  background:linear-gradient(#f2f4ff,#bcc7ec);
+  border:2px solid;
+  border-color:var(--in)
+}
+
 .b p{margin:0 0 6px}
-.o{position:absolute;z-index:6;width:30px;height:30px;color:#fff;filter:drop-shadow(2px 2px 0 #000);animation:bl 1.4s steps(1) infinite;pointer-events:none}
+
+.o{
+  position:absolute;
+  z-index:6;
+  width:30px;
+  height:30px;
+  color:#fff;
+  filter:drop-shadow(2px 2px 0 #000);
+  animation:bl 1.4s steps(1) infinite;
+  pointer-events:none
+}
+
 .o.d{color:var(--y)}
-@keyframes bl{50%{transform:scale(.5)}}
 
+@keyframes bl{
+  50%{transform:scale(.5)}
+}
 
+/* КОММЕНТАРИИ */
 
-
-/* ---------- комментарии ---------- */
 .comments-window{margin-top:8px}
-.comments-layout{display:grid;grid-template-columns:minmax(0,1fr) 185px;gap:8px}
-.comment-list{max-height:330px;overflow:auto;padding:4px;background:#d7d9e2;border:2px inset #fff}
-.comment{margin:0 0 7px;padding:7px;background:#f4f5fb;border:1px solid #858aa9;box-shadow:1px 1px 0 #fff}
+
+.comments-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 185px;
+  gap:8px
+}
+
+.comment-list{
+  max-height:330px;
+  overflow:auto;
+  padding:4px;
+  background:#d7d9e2;
+  border:2px inset #fff
+}
+
+.comment{
+  margin:0 0 7px;
+  padding:7px;
+  background:#f4f5fb;
+  border:1px solid #858aa9;
+  box-shadow:1px 1px 0 #fff
+}
+
 .comment:last-child{margin-bottom:0}
-.comment-head{display:flex;align-items:baseline;gap:6px;justify-content:space-between;border-bottom:1px dotted #777;margin-bottom:4px;padding-bottom:3px}
-.comment-name{font:700 12px var(--px);color:var(--n)}
-.comment-date{font:10px var(--ui);color:#666;white-space:nowrap}
-.comment-site{font-size:10px;color:#394b99}
-.comment-text{margin:4px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
-.comment-form{padding:7px;background:#d7d9e2;border:2px inset #fff}
-.comment-form h3{font-size:14px;margin-bottom:7px}
-.comment-form input,.comment-form textarea{display:block;width:100%;margin:0 0 5px;padding:4px 5px;background:#fff;border:2px inset #fff;font:11px var(--ui);color:#111}
-.comment-form textarea{min-height:94px;resize:vertical}
-.comment-form .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.comment-form button{padding:4px 10px;background:linear-gradient(#fff,#bcc7ec);border:2px solid;border-color:var(--out);font:700 11px var(--ui);cursor:pointer}
+
+.comment-head{
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+  justify-content:space-between;
+  border-bottom:1px dotted #777;
+  margin-bottom:4px;
+  padding-bottom:3px
+}
+
+.comment-name{
+  font:700 12px var(--px);
+  color:var(--n)
+}
+
+.comment-date{
+  font:10px var(--ui);
+  color:#666;
+  white-space:nowrap
+}
+
+.comment-text{
+  margin:4px 0 0;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere
+}
+
+.comment-actions{
+  display:flex;
+  gap:5px;
+  margin-top:6px
+}
+
+.comment-actions button{
+  padding:1px 5px;
+  background:transparent;
+  border:0;
+  color:#394b99;
+  font:10px var(--ui);
+  text-decoration:underline;
+  cursor:pointer
+}
+
+.comment-actions button:hover{color:#000}
+
+.comment[style*="--depth:1"]{
+  margin-left:20px;
+  border-left:3px solid #858aa9
+}
+
+.comment[style*="--depth:2"]{
+  margin-left:40px;
+  border-left:3px solid #858aa9
+}
+
+.comment[style*="--depth:3"]{
+  margin-left:60px;
+  border-left:3px solid #858aa9
+}
+
+.comment[style*="--depth:4"]{
+  margin-left:80px;
+  border-left:3px solid #858aa9
+}
+
+.comment[style*="--depth:5"]{
+  margin-left:100px;
+  border-left:3px solid #858aa9
+}
+
+.comment[style*="--depth:6"]{
+  margin-left:120px;
+  border-left:3px solid #858aa9
+}
+
+.comment[style*="--depth:7"]{
+  margin-left:140px;
+  border-left:3px solid #858aa9
+}
+
+.comment[style*="--depth:8"]{
+  margin-left:160px;
+  border-left:3px solid #858aa9
+}
+
+.comment-form{
+  padding:7px;
+  background:#d7d9e2;
+  border:2px inset #fff
+}
+
+.comment-form h3{
+  font-size:14px;
+  margin-bottom:7px
+}
+
+.comment-form input,
+.comment-form textarea{
+  display:block;
+  width:100%;
+  margin:0 0 5px;
+  padding:4px 5px;
+  background:#fff;
+  border:2px inset #fff;
+  font:11px var(--ui);
+  color:#111
+}
+
+.comment-form textarea{
+  min-height:94px;
+  resize:vertical
+}
+
+.comment-form .cf-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px
+}
+
+.comment-form button{
+  padding:4px 10px;
+  background:linear-gradient(#fff,#bcc7ec);
+  border:2px solid;
+  border-color:var(--out);
+  font:700 11px var(--ui);
+  cursor:pointer
+}
+
 .comment-form button:active{border-color:var(--in)}
-.comment-note{margin-top:5px;font-size:9px;color:#555}
-.comment-status{min-height:13px;margin-top:4px;font-size:10px}
-.comment-empty{padding:18px 8px;text-align:center;color:#666}
-@media (max-width:940px){
-  .comments-layout{grid-template-columns:1fr}
+
+.comment-note{
+  margin-top:5px;
+  font-size:9px;
+  color:#555
 }
 
-/* аватар */
-.av{width:120px;height:120px;margin:0 auto;padding:6px;background:var(--ck) 0 0/10px 10px;border:1px solid #fff;display:flex;transform:rotate(-2deg)}
-.av>*{flex:1;min-width:0;background:#000}
-.av img{width:100%;height:100%;object-fit:cover;display:block}
-.av div{display:flex;align-items:center;justify-content:center;font:400 28px 'Alfa Slab One',serif;color:#fff}
+.comment-status{
+  min-height:13px;
+  margin-top:4px;
+  font-size:10px
+}
 
-/* картинки выпрыгивают за рамку */
-.m{position:relative;height:130px;margin-bottom:8px;border:2px solid;border-color:var(--in);background:#10204a;transition:transform .2s steps(4)}
+.comment-empty{
+  padding:18px 8px;
+  text-align:center;
+  color:#666
+}
+
+.comment-form input[type="hidden"]{display:none}
+
+/* КАРТИНКИ */
+
+.pics-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px
+}
+
+.pics-grid a{
+  display:block;
+  overflow:hidden;
+  border:2px solid;
+  border-color:var(--in);
+  background:#111
+}
+
+.pics-grid img{
+  display:block;
+  width:100%;
+  height:82px;
+  object-fit:cover;
+  filter:grayscale(.15) contrast(1.1);
+  transition:transform .15s steps(3)
+}
+
+.pics-grid a:hover img{
+  transform:scale(1.25) rotate(-2deg)
+}
+
+/* АВАТАР */
+
+.av{
+  width:120px;
+  height:120px;
+  margin:0 auto;
+  padding:6px;
+  background:var(--ck) 0 0/10px 10px;
+  border:1px solid #fff;
+  display:flex;
+  transform:rotate(-2deg)
+}
+
+.av>*{
+  flex:1;
+  min-width:0;
+  background:#000
+}
+
+.av img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
+
+.av div{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font:400 28px 'Alfa Slab One',serif;
+  color:#fff
+}
+
+/* ИЗОБРАЖЕНИЯ ИГР */
+
+.m{
+  position:relative;
+  height:130px;
+  margin-bottom:8px;
+  border:2px solid;
+  border-color:var(--in);
+  background:#10204a;
+  transition:transform .2s steps(4)
+}
+
 .gc .m{height:120px}
-.m:hover{transform:scale(1.4) rotate(-2deg);z-index:7;box-shadow:4px 4px 0 #000}
-.m img{width:100%;height:100%;object-fit:cover;display:block}
-h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px dotted var(--n)}
-.mt{display:inline-block;margin:0;padding:1px 6px;background:var(--y);border:2px solid;border-color:var(--out);font-weight:700}
-.gactions{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
-.ga{display:inline-block;padding:3px 7px;background:#111;color:#fff;border:2px solid #000;box-shadow:2px 2px 0 #000; font:700 11px var(--ui)}
-.ga:hover{background:var(--p);color:#111}
-.ga.itch{background:#fff;color:#111}
 
-.ims{display:flex;gap:3px;margin-bottom:6px}
-.ims img{position:relative;flex:1;min-width:0;height:56px;object-fit:cover;border:2px solid;border-color:var(--in);transition:transform .2s steps(4)}
-.ims img:hover{transform:scale(2.3) rotate(3deg);z-index:7;box-shadow:3px 3px 0 #000}
+.m:hover{
+  transform:scale(1.4) rotate(-2deg);
+  z-index:7;
+  box-shadow:4px 4px 0 #000
+}
 
-/* ссылки: по одной большой кнопке */
-.n{display:flex;flex-direction:column;gap:7px;padding:8px}
-.n a{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:5px 8px;border:2px solid #000;box-shadow:inset 0 0 0 1px #fff9;transition:transform .15s steps(3)}
-.n a:hover{transform:scale(1.2) rotate(-2deg);z-index:7;box-shadow:inset 0 0 0 1px #fff9,3px 3px 0 #000}
-.n a:nth-child(even):hover{transform:scale(1.2) rotate(2deg)}
-.n b{font:700 16px/1.1 var(--px)}
-.n a:nth-child(1){background:linear-gradient(#6f86ff,#14147a);color:#fff}
-.n a:nth-child(2){background:var(--ck) 0 0/8px 8px;color:#fff}
-.n a:nth-child(2) b,.n a:nth-child(2) small{background:#000;padding:0 4px}
-.n a:nth-child(3){background:var(--p);color:#4a0030}
-.n a:nth-child(4){background:#000;color:#39ff6a}
+.m img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
+
+h3{
+  margin:0 0 6px;
+  font:700 17px/1.1 var(--px);
+  color:var(--n);
+  border-bottom:2px dotted var(--n)
+}
+
+.mt{
+  display:inline-block;
+  margin:0;
+  padding:1px 6px;
+  background:var(--y);
+  border:2px solid;
+  border-color:var(--out);
+  font-weight:700
+}
+
+.gactions{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+  margin-top:6px
+}
+
+.ga{
+  display:inline-block;
+  padding:3px 7px;
+  background:#111;
+  color:#fff;
+  border:2px solid #000;
+  box-shadow:2px 2px 0 #000;
+  font:700 11px var(--ui)
+}
+
+.ga:hover{
+  background:var(--p);
+  color:#111
+}
+
+.ga.itch{
+  background:#fff;
+  color:#111
+}
+
+.ims{
+  display:flex;
+  gap:3px;
+  margin-bottom:6px
+}
+
+.ims img{
+  position:relative;
+  flex:1;
+  min-width:0;
+  height:56px;
+  object-fit:cover;
+  border:2px solid;
+  border-color:var(--in);
+  transition:transform .2s steps(4)
+}
+
+.ims img:hover{
+  transform:scale(2.3) rotate(3deg);
+  z-index:7;
+  box-shadow:3px 3px 0 #000
+}
+
+/* ССЫЛКИ */
+
+.n{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  padding:8px
+}
+
+.n a{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:1px;
+  padding:5px 8px;
+  border:2px solid #000;
+  box-shadow:inset 0 0 0 1px #fff9;
+  transition:transform .15s steps(3)
+}
+
+.n a:hover{
+  transform:scale(1.2) rotate(-2deg);
+  z-index:7;
+  box-shadow:inset 0 0 0 1px #fff9,3px 3px 0 #000
+}
+
+.n a:nth-child(even):hover{
+  transform:scale(1.2) rotate(2deg)
+}
+
+.n b{
+  font:700 16px/1.1 var(--px)
+}
+
+.n a:nth-child(1){
+  background:linear-gradient(#6f86ff,#14147a);
+  color:#fff
+}
+
+.n a:nth-child(2){
+  background:var(--ck) 0 0/8px 8px;
+  color:#fff
+}
+
+.n a:nth-child(2) b,
+.n a:nth-child(2) small{
+  background:#000;
+  padding:0 4px
+}
+
+.n a:nth-child(3){
+  background:var(--p);
+  color:#4a0030
+}
+
+.n a:nth-child(4){
+  background:#000;
+  color:#39ff6a
+}
+
 .n a:nth-child(5){background:var(--y)}
-.n a:nth-child(6){background:linear-gradient(90deg,var(--p),var(--c))}
 
-/* нижняя панель */
-.foot{display:flex;align-items:center;gap:6px;padding:4px 6px;background:var(--tt);color:#fff}
-.lg{display:flex;gap:3px}
-.lb,.tz{font:700 11px var(--ui);background:var(--f);border:2px solid;border-color:var(--out);cursor:pointer;color:#000}
+.n a:nth-child(6){
+  background:linear-gradient(90deg,var(--p),var(--c))
+}
+
+/* НИЖНЯЯ ПАНЕЛЬ */
+
+.foot{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:4px 6px;
+  background:var(--tt);
+  color:#fff
+}
+
+.lg{
+  display:flex;
+  gap:3px
+}
+
+.lb,.tz{
+  font:700 11px var(--ui);
+  background:var(--f);
+  border:2px solid;
+  border-color:var(--out);
+  cursor:pointer;
+  color:#000
+}
+
 .lb{padding:2px 12px}
-.lb.on{border-color:var(--in);background:#e4e8ff}
-#tbz{flex:1;display:flex;gap:3px;overflow:hidden;min-width:0}
-.tz{padding:2px 10px;max-width:150px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.tr{font:11px var(--ui);white-space:nowrap}
+
+.lb.on{
+  border-color:var(--in);
+  background:#e4e8ff
+}
+
+#tbz{
+  flex:1;
+  display:flex;
+  gap:3px;
+  overflow:hidden;
+  min-width:0
+}
+
+.tz{
+  padding:2px 10px;
+  max-width:150px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis
+}
+
+.tr{
+  font:11px var(--ui);
+  white-space:nowrap
+}
+
+@media (min-width:941px){
+  .side>.w:first-child{
+    margin:-44px 0 0 -26px
+  }
+}
 
 @media (max-width:940px){
-.shell{width:auto;margin:14px 8px 60px}
-.grid{grid-template-columns:1fr}
-.in{padding:30px 130px 40px 14px}
-.face{top:10px;right:4px;width:150px;height:150px}
+  .shell{
+    width:auto;
+    margin:14px 8px 60px
+  }
+
+  .grid{grid-template-columns:1fr}
+
+  .two{flex-direction:column}
+
+  .in{
+    padding:30px 130px 40px 14px
+  }
+
+  .face{
+    top:10px;
+    right:4px;
+    width:150px;
+    height:150px
+  }
 }
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important}
+}
 </style>
 </head>
+
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="sp" viewBox="0 0 9 9"><path d="M4 0h1v3h1v1h3v1H6v1H5v3H4V6H3V5H0V4h3V3h1z"/></symbol>
-  <symbol id="xx" viewBox="0 0 7 7"><path d="M0 0h2v1h1v1h1V1h1V0h2v2H6v1H5v1h1v1h1v2H5V6H4V5H3v1H2v1H0V5h1V4h1V3H1V2H0z"/></symbol>
+  <symbol id="sp" viewBox="0 0 9 9">
+    <path d="M4 0h1v3h1v1h3v1H6v1H5v3H4V6H3V5H0V4h3V3h1z"/>
+  </symbol>
+
+  <symbol id="xx" viewBox="0 0 7 7">
+    <path d="M0 0h2v1h1v1h1V1h1V0h2v2H6v1H5v1h1v1h1v2H5V6H4V5H3v1H2v1H0V5h1V4h1V3H1V2H0z"/>
+  </symbol>
 </svg>
 
 <div class="shell h-card">
 
-  <div class="st"><svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg><span><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></span></div>
+  <div class="st">
+    <svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg>
+    <span>
+      <span class="ru">Срань.dev</span>
+      <span class="en">Sran.dev</span>
+    </span>
+  </div>
 
   <header class="ban">
+
     <div class="bg" aria-hidden="true">
       <img src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif" alt="">
       <img src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif" alt="">
       <img src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png" alt="">
     </div>
+
     <div class="rain" style="top:4px" aria-hidden="true"></div>
     <div class="rain rv" style="bottom:4px" aria-hidden="true"></div>
-    <div class="in"><h1 class="rz p-name">Danielle Choster</h1></div>
+
+    <div class="in">
+      <h1 class="rz p-name">Danielle Choster</h1>
+    </div>
   </header>
+
   <canvas class="face" id="face" aria-hidden="true"></canvas>
 
-  <div class="np"><span aria-hidden="true">▶</span><a class="mq" rel="me noopener" href="https://t.me/Sran_Dev" target="_blank"><span><span class="ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span><span class="en">Currently in development: WHAT THE CAR — follow the channel</span></span></a></div>
+  <div class="np">
+    <span aria-hidden="true">▶</span>
+    <a class="mq" rel="me noopener" href="https://t.me/Sran_Dev" target="_blank">
+      <span>
+        <span class="ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span>
+        <span class="en">Currently in development: WHAT THE CAR — follow the channel</span>
+      </span>
+    </a>
+  </div>
 
   <div class="grid">
 
     <aside class="side">
+
       <section class="w">
-        <div class="t"><span><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></span></div>
-        <div class="b"><div class="av"><img class="u-photo" src="avatar.png" alt="Danielle Choster" onerror="this.parentNode.innerHTML='<div>DC</div>'"></div></div>
-        <svg class="o d" style="top:-14px;right:-12px;animation-delay:-.4s" viewBox="0 0 9 9"><use href="#sp"/></svg>
+        <div class="t">
+          <span>
+            <span class="ru">Срань.dev</span>
+            <span class="en">Sran.dev</span>
+          </span>
+        </div>
+
+        <div class="b">
+          <div class="av">
+            <img class="u-photo" src="avatar.png" alt="Danielle Choster"
+                 onerror="this.parentNode.innerHTML='<div>DC</div>'">
+          </div>
+        </div>
+
+        <svg class="o d" style="top:-14px;right:-12px;animation-delay:-.4s" viewBox="0 0 9 9">
+          <use href="#sp"/>
+        </svg>
       </section>
+
       <nav class="w">
-        <div class="t"><span><span class="ru">Ссылки</span><span class="en">Links</span></span></div>
+        <div class="t">
+          <span>
+            <span class="ru">Ссылки</span>
+            <span class="en">Links</span>
+          </span>
+        </div>
+
         <div class="b n">
-          <a rel="me noopener" href="https://t.me/Sran_Dev" target="_blank"><b><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></b></a>
-          <a rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank"><b>itch.io</b></a>
-          <a rel="me noopener" href="https://t.me/DanielleChoster" target="_blank"><b><span class="ru">Личка</span><span class="en">DM</span></b></a>
-          <a rel="me noopener" href="https://discord.com/users/975382866122903582" target="_blank"><b>Discord</b></a>
-          <a rel="me noopener" href="https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC" target="_blank"><b>YouTube</b></a>
-          <a rel="me noopener" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq" target="_blank"><b>TikTok</b></a>
+          <a rel="me noopener" href="https://t.me/Sran_Dev" target="_blank">
+            <b>
+              <span class="ru">Срань.dev</span>
+              <span class="en">Sran.dev</span>
+            </b>
+          </a>
+
+          <a rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank">
+            <b>itch.io</b>
+          </a>
+
+          <a rel="me noopener" href="https://t.me/DanielleChoster" target="_blank">
+            <b>
+              <span class="ru">Личка</span>
+              <span class="en">DM</span>
+            </b>
+          </a>
+
+          <a rel="me noopener" href="https://discord.com/users/975382866122903582" target="_blank">
+            <b>Discord</b>
+          </a>
+
+          <a rel="me noopener" href="https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC" target="_blank">
+            <b>YouTube</b>
+          </a>
+
+          <a rel="me noopener" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq" target="_blank">
+            <b>TikTok</b>
+          </a>
         </div>
       </nav>
 
-      <section class="w" id="wl">
-        <div class="t"><span><span class="ru">Ченджлог</span><span class="en">Changelog</span></span></div>
+      <article class="w" id="wl">
+        <div class="t">
+          <span>
+            <span class="ru">Ченджлог</span>
+            <span class="en">Changelog</span>
+          </span>
+        </div>
+
         <div class="b ls" id="cl"></div>
-        <svg class="o d" style="top:-14px;right:-12px;animation-delay:-1.3s" viewBox="0 0 9 9"><use href="#sp"/></svg>
-      </section>
+
+        <svg class="o d" style="top:-14px;right:-12px;animation-delay:-1.3s" viewBox="0 0 9 9">
+          <use href="#sp"/>
+        </svg>
+      </article>
+
+      <article class="w" id="pics">
+
+        <div class="t">
+          <span>
+            <span class="ru">Картинки</span>
+            <span class="en">Pics</span>
+          </span>
+        </div>
+
+        <div class="b pics-grid">
+
+          <a href="https://i.kym-cdn.com/photos/images/newsfeed/000/799/792/ef4.png"
+             target="_blank" rel="noopener">
+            <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/799/792/ef4.png"
+                 alt="Lucky Star / Konata">
+          </a>
+
+          <a href="https://i.kym-cdn.com/photos/images/newsfeed/000/864/976/c4d.png"
+             target="_blank" rel="noopener">
+            <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/864/976/c4d.png"
+                 alt="Evangelion / Rei">
+          </a>
+
+          <a href="https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png"
+             target="_blank" rel="noopener">
+            <img src="https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png"
+                 alt="Lucky Star / Konata">
+          </a>
+
+          <a href="https://i.kym-cdn.com/photos/images/newsfeed/000/743/070/dc4.png"
+             target="_blank" rel="noopener">
+            <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/743/070/dc4.png"
+                 alt="Evangelion / Rei">
+          </a>
+
+        </div>
+      </article>
+
     </aside>
 
     <main>
+
       <article class="w" id="wg">
-        <div class="t"><span><span class="ru">Игры</span><span class="en">Games</span></span></div>
-        <div class="b gl" id="gl"></div>
-        <svg class="o" style="bottom:-14px;right:-12px" viewBox="0 0 9 9"><use href="#sp"/></svg>
-      </article>
-      <article class="w" id="wp">
-        <div class="t"><span><span class="ru">Посты</span><span class="en">Posts</span></span></div>
-        <div class="b ls" id="pl"></div>
-      </article>
-      <section class="w comments-window" id="comments">
+
         <div class="t">
-          <span><span class="ru">Комментарии</span><span class="en">Comments</span></span>
+          <span>
+            <span class="ru">Игры</span>
+            <span class="en">Games</span>
+          </span>
         </div>
+
+        <div class="b gl" id="gl"></div>
+
+        <svg class="o" style="bottom:-14px;right:-12px" viewBox="0 0 9 9">
+          <use href="#sp"/>
+        </svg>
+
+      </article>
+
+      <article class="w" id="wp">
+
+        <div class="t">
+          <span>
+            <span class="ru">Посты</span>
+            <span class="en">Posts</span>
+          </span>
+        </div>
+
+        <div class="b ls" id="pl"></div>
+
+      </article>
+
+      <section class="w comments-window" id="comments">
+
+        <div class="t">
+          <span>
+            <span class="ru">Комментарии</span>
+            <span class="en">Comments</span>
+          </span>
+        </div>
+
         <div class="b comments-layout">
+
           <div class="comment-list" id="commentList">
             <div class="comment-empty">
               <span class="ru">Загрузка комментариев...</span>
@@ -251,261 +1161,1021 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
           </div>
 
           <form class="comment-form" id="commentForm">
-            <h3><span class="ru">Оставить комментарий</span><span class="en">Leave a comment</span></h3>
+
+            <input type="hidden" id="replyTo" value="">
+
+            <h3>
+              <span class="ru">Оставить комментарий</span>
+              <span class="en">Leave a comment</span>
+            </h3>
+
             <div class="cf-row">
-              <input id="commentName" name="name" maxlength="40" required
-                     placeholder="Ник">
-              <input id="commentSite" name="site" maxlength="120"
-                     placeholder="Сайт (необязательно)">
+
+              <input id="commentName"
+                     name="name"
+                     maxlength="40"
+                     required
+                     placeholder="Ник"
+                     data-ph-ru="Ник"
+                     data-ph-en="Name">
+
+              <input id="commentSite"
+                     name="site"
+                     maxlength="120"
+                     placeholder="Сайт (необязательно)"
+                     data-ph-ru="Сайт (необязательно)"
+                     data-ph-en="Website (optional)">
+
             </div>
-            <textarea id="commentText" name="message" maxlength="1000" required
-                      placeholder="Сообщение"></textarea>
+
+            <textarea id="commentText"
+                      name="message"
+                      maxlength="1000"
+                      required
+                      placeholder="Сообщение"
+                      data-ph-ru="Сообщение"
+                      data-ph-en="Message"></textarea>
+
             <button type="submit">
-              <span class="ru">Отправить</span><span class="en">Submit</span>
+              <span class="ru">Отправить</span>
+              <span class="en">Submit</span>
             </button>
+
             <div class="comment-status" id="commentStatus"></div>
+
             <div class="comment-note">
               <span class="ru">Сайт можно оставить пустым.</span>
               <span class="en">Website is optional.</span>
             </div>
+
           </form>
+
         </div>
+
       </section>
+
     </main>
 
   </div>
 
   <footer class="foot">
+
     <div class="lg" role="group" aria-label="Language / Язык">
       <button class="lb" data-lang="ru" type="button">RU</button>
       <button class="lb" data-lang="en" type="button">EN</button>
     </div>
+
     <div id="tbz"></div>
+
     <div class="cnt" id="cnt">——</div>
-    <div class="tr">© <span id="year"></span> Danielle Choster</div>
+
+    <div class="tr">
+      © <span id="year"></span> Danielle Choster
+    </div>
+
   </footer>
 
 </div>
 
 <script src="content.js"></script>
+
 <script>
 /* ---------- язык ---------- */
+
 const bs=document.querySelectorAll('.lb');
-function setLang(l){document.body.classList.toggle('lang-en',l==='en');document.documentElement.lang=l;bs.forEach(b=>b.classList.toggle('on',b.dataset.lang===l));const n=document.getElementById('commentName'),t=document.getElementById('commentText'),s=document.getElementById('commentSite');if(n)n.placeholder=l==='en'?'Name':'Ник';if(t)t.placeholder=l==='en'?'Message':'Сообщение';if(s)s.placeholder=l==='en'?'Website (optional)':'Сайт (необязательно)';try{localStorage.setItem('site-lang',l)}catch(e){}}
-bs.forEach(b=>b.onclick=()=>{setLang(b.dataset.lang);if(typeof loadComments==='function')loadComments()});
-let L='ru';try{const s=localStorage.getItem('site-lang');if(s==='ru'||s==='en')L=s;else if((navigator.language||'').toLowerCase().startsWith('en'))L='en'}catch(e){}
+
+function setLang(l){
+  document.body.classList.toggle('lang-en',l==='en');
+  document.documentElement.lang=l;
+
+  bs.forEach(b=>{
+    b.classList.toggle('on',b.dataset.lang===l);
+  });
+
+  document.querySelectorAll('[data-ph-ru]').forEach(e=>{
+    e.placeholder=l==='en'
+      ?e.dataset.phEn
+      :e.dataset.phRu;
+  });
+
+  try{
+    localStorage.setItem('site-lang',l);
+  }catch(e){}
+}
+
+bs.forEach(b=>{
+  b.onclick=()=>{
+    setLang(b.dataset.lang);
+    if(typeof loadComments==='function')loadComments();
+  };
+});
+
+let L='ru';
+
+try{
+  const x=localStorage.getItem('site-lang');
+
+  if(x==='ru'||x==='en')L=x;
+  else if((navigator.language||'').toLowerCase().startsWith('en'))
+    L='en';
+
+}catch(e){}
+
 setLang(L);
+
 document.getElementById('year').textContent=new Date().getFullYear();
 
-/* ---------- бегущие ASCII-строки и лента ---------- */
+/* ---------- бегущие ASCII-строки ---------- */
+
 const RW='.:-=+*#%@~'.repeat(60);
-document.querySelectorAll('.rain').forEach(e=>e.innerHTML='<i>'+RW+'</i>');
 
-/* =====================================================================
-   ТВОИ ДАННЫЕ — правишь только тут. Всё остальное собирается само.
-   ИГРА:  добавь объект в GAMES (id — латиницей, без пробелов).
-   ПОСТ:  добавь объект в POSTS; game:'id игры' — в посте появится ссылка на игру.
-   ЧЕНДЖЛОГ: добавь объект в LOG; game — по желанию. Новое — сверху.
-   Подсказка: открой сайт с #edit на конце адреса — форма выдаст готовую строку.
-   ===================================================================== */
-const SUPABASE_URL='';
-const SUPABASE_ANON_KEY='';
-const COMMENTS_TABLE='comments';
+document.querySelectorAll('.rain').forEach(e=>{
+  e.innerHTML='<i>'+RW+'</i>';
+});
 
-/* Данные сайта находятся в content.js */
-/* ---------- сборка окон из данных ---------- */
-const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const T=x=>esc(x||'');
-const M=m=>Array.isArray(m)?esc(m[0]||''):esc(m||'');
-const chip=id=>{const g=GAMES.find(x=>x.id===id);return g?`<a class="ch" href="#g-${esc(id)}" data-g="${esc(id)}">${esc(g.title)}</a>`:''};
+/* ---------- данные из content.js ---------- */
+
+const esc=x=>String(x??'').replace(
+  /[&<>"]/g,
+  c=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;'
+  }[c])
+);
+
+const M=m=>{
+  if(Array.isArray(m)){
+    return `<span class="ru">${esc(m[0])}</span><span class="en">${esc(m[1]||m[0])}</span>`;
+  }
+
+  return `<span class="ru">${esc(m||'')}</span><span class="en">${esc(m||'')}</span>`;
+};
+
+const chip=id=>{
+  const g=GAMES.find(x=>x.id===id);
+
+  return g
+    ?`<a class="ch" href="#g-${esc(id)}" data-g="${esc(id)}">${esc(g.title)}</a>`
+    :'';
+};
+
 document.getElementById('gl').innerHTML=GAMES.map(g=>`
   <article class="gc" id="g-${esc(g.id)}">
-    <div class="m"><img src="${esc(g.img)}" alt="${esc(g.title)}" loading="lazy"></div>
-    <h3>${esc(g.title)}</h3>
-    <p class="mt">${M(g.meta||'')}</p>
-    <p class="d">${T(g.text||'')}</p>
-    <div class="gactions">
-      <a class="ga itch" href="${esc(g.itch||g.url||'#')}" target="_blank" rel="noopener">Открыть на itch.io</a>
-    </div>
-  </article>`).join('');
-document.getElementById('pl').innerHTML=POSTS.map(p=>`<details class="po"><summary><i>${esc(p.date||'')}</i>${esc(p.title||'')}${chip(p.game)}</summary><p>${T(p.text||'')}</p></details>`).join('');
-document.getElementById('cl').innerHTML=LOG.map(l=>`<div class="lr"><i>${esc(l.date||'')}</i>${T(l.text||'')}${chip(l.game)}</div>`).join('');
-function goto(id){const c=document.getElementById('g-'+id);if(!c)return;const w=c.closest('.w');if(w._c)w._c.remove();w.classList.remove('h','s');w.style.zIndex=++zi;document.querySelectorAll('.gc.sel').forEach(e=>e.classList.remove('sel'));c.classList.add('sel');c.scrollIntoView({block:'center',behavior:'smooth'});setTimeout(()=>c.classList.remove('sel'),4000)}
-document.addEventListener('click',e=>{const a=e.target.closest('[data-g]');if(a){e.preventDefault();goto(a.dataset.g)}});
 
-/* ---------- комментарии ---------- */
+    <div class="m">
+      <img src="${esc(g.img)}"
+           alt="${esc(g.title)}"
+           loading="lazy">
+    </div>
+
+    <h3>${esc(g.title)}</h3>
+
+    <p class="mt">${M(g.meta||'')}</p>
+
+    <p class="d">${esc(g.text||'')}</p>
+
+    <div class="gactions">
+      <a class="ga itch"
+         href="${esc(g.itch||'#')}"
+         target="_blank"
+         rel="noopener">
+        Открыть на itch.io
+      </a>
+    </div>
+
+  </article>
+`).join('');
+
+document.getElementById('pl').innerHTML=POSTS.map(p=>`
+  <details class="po">
+
+    <summary>
+      <i>${esc(p.date||'')}</i>
+      ${esc(p.title||'')}
+      ${chip(p.game)}
+    </summary>
+
+    <p>${esc(p.text||'')}</p>
+
+  </details>
+`).join('');
+
+document.getElementById('cl').innerHTML=LOG.map(l=>`
+  <div class="lr">
+    <i>${esc(l.date||'')}</i>
+    ${esc(l.text||'')}
+    ${chip(l.game)}
+  </div>
+`).join('');
+
+if(!POSTS.length)
+  document.getElementById('wp').classList.add('h');
+
+function goto(id){
+
+  const c=document.getElementById('g-'+id);
+
+  if(!c)return;
+
+  const w=c.closest('.w');
+
+  if(w._c)w._c.remove();
+
+  w.classList.remove('h','s');
+
+  w.style.zIndex=++zi;
+
+  document
+    .querySelectorAll('.gc.sel')
+    .forEach(e=>e.classList.remove('sel'));
+
+  c.classList.add('sel');
+
+  c.scrollIntoView({
+    block:'center',
+    behavior:'smooth'
+  });
+
+  setTimeout(()=>{
+    c.classList.remove('sel');
+  },4000);
+}
+
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-g]');
+
+  if(a){
+    e.preventDefault();
+    goto(a.dataset.g);
+  }
+});
+
+
+/* ---------- КОММЕНТАРИИ ---------- */
+
 const commentList=document.getElementById('commentList');
 const commentForm=document.getElementById('commentForm');
 const commentStatus=document.getElementById('commentStatus');
 
-const demoComments=[
-  {name:'visitor',site:'',message:'Первый комментарий. Оставь свой, если хочешь.',created_at:'2026-10-02T20:00:00Z'}
-];
-
 function safeSite(v){
+
   v=(v||'').trim();
+
   if(!v)return '';
-  if(!/^https?:\/\//i.test(v))v='https://'+v;
-  try{return new URL(v).href}catch(e){return '';}
+
+  if(!/^https?:\/\//i.test(v))
+    v='https://'+v;
+
+  try{
+    return new URL(v).href;
+  }catch(e){
+    return '';
+  }
 }
+
 function renderComments(items){
+
   if(!items.length){
-    commentList.innerHTML='<div class="comment-empty"><span class="ru">Пока никто ничего не написал.</span><span class="en">No comments yet.</span></div>';
+
+    commentList.innerHTML=`
+      <div class="comment-empty">
+        <span class="ru">Пока никто ничего не написал.</span>
+        <span class="en">No comments yet.</span>
+      </div>
+    `;
+
     return;
   }
-  commentList.innerHTML=items.map(c=>{
-    const name=esc(c.name||'Anonymous');
-    const site=safeSite(c.site);
-    const nm=site?`<a class="comment-name" href="${esc(site)}" target="_blank" rel="noopener nofollow">${name}</a>`:`<span class="comment-name">${name}</span>`;
-    const date=c.created_at?new Date(c.created_at).toLocaleDateString(document.documentElement.lang==='en'?'en-US':'ru-RU'):'';
-    return `<article class="comment"><div class="comment-head">${nm}<span class="comment-date">${esc(date)}</span></div><div class="comment-text">${esc(c.message||'')}</div></article>`;
-  }).join('');
-}
 
-async function loadComments(){
-  try{
-    if(SUPABASE_URL&&SUPABASE_ANON_KEY){
-      const r=await fetch(`${SUPABASE_URL}/rest/v1/${COMMENTS_TABLE}?select=id,created_at,name,site,message&order=created_at.desc&limit=100`,{
-        headers:{apikey:SUPABASE_ANON_KEY,Authorization:`Bearer ${SUPABASE_ANON_KEY}`}
-      });
-      if(!r.ok)throw new Error('comments load failed');
-      renderComments(await r.json());
-      return;
-    }
-  }catch(e){
-    commentStatus.textContent='Comments service unavailable.';
+  const by={};
+
+  items.forEach(c=>{
+    const parent=c.parent_id||'root';
+
+    if(!by[parent])by[parent]=[];
+
+    by[parent].push(c);
+  });
+
+  Object.values(by).forEach(a=>{
+    a.sort((x,y)=>new Date(x.created_at)-new Date(y.created_at));
+  });
+
+  function tree(parent,depth){
+
+    return (by[parent]||[]).map(c=>{
+
+      const name=esc(c.name||'Anonymous');
+
+      const site=safeSite(c.site);
+
+      const nm=site
+        ?`<a class="comment-name"
+             href="${esc(site)}"
+             target="_blank"
+             rel="noopener nofollow">${name}</a>`
+        :`<span class="comment-name">${name}</span>`;
+
+      const date=c.created_at
+        ?new Date(c.created_at).toLocaleDateString(
+          document.documentElement.lang==='en'
+            ?'en-US'
+            :'ru-RU'
+        )
+        :'';
+
+      return `
+        <article class="comment"
+                 data-id="${esc(c.id)}"
+                 style="--depth:${Math.min(depth,8)}">
+
+          <div class="comment-head">
+            <div>${nm}</div>
+            <span class="comment-date">${esc(date)}</span>
+          </div>
+
+          <div class="comment-text">
+            ${esc(c.message||'')}
+          </div>
+
+          <div class="comment-actions">
+
+            <button type="button"
+                    data-reply="${esc(c.id)}">
+              <span class="ru">Ответить</span>
+              <span class="en">Reply</span>
+            </button>
+
+            <button type="button"
+                    data-delete="${esc(c.id)}">
+              <span class="ru">Удалить</span>
+              <span class="en">Delete</span>
+            </button>
+
+          </div>
+
+          ${tree(c.id,depth+1)}
+
+        </article>
+      `;
+
+    }).join('');
   }
-  try{
-    const local=JSON.parse(localStorage.getItem('site-comments')||'[]');
-    renderComments(local.length?local:demoComments);
-  }catch(e){renderComments(demoComments)}
+
+  commentList.innerHTML=tree('root',0);
 }
 
-commentForm.addEventListener('submit',async e=>{
+function loadComments(){
+
+  let a=[];
+
+  try{
+    a=JSON.parse(
+      localStorage.getItem('site-comments')||'[]'
+    );
+  }catch(e){}
+
+  renderComments(a);
+}
+
+function saveComments(a){
+  localStorage.setItem(
+    'site-comments',
+    JSON.stringify(a.slice(-200))
+  );
+}
+
+commentList.addEventListener('click',e=>{
+
+  const r=e.target.closest('[data-reply]');
+
+  if(r){
+
+    document.getElementById('replyTo').value=r.dataset.reply;
+
+    document.getElementById('commentText').focus();
+
+    commentStatus.innerHTML=`
+      <span class="ru">Ответ на комментарий.</span>
+      <span class="en">Replying to a comment.</span>
+    `;
+
+    return;
+  }
+
+  const d=e.target.closest('[data-delete]');
+
+  if(d){
+
+    let a=[];
+
+    try{
+      a=JSON.parse(
+        localStorage.getItem('site-comments')||'[]'
+      );
+    }catch(x){}
+
+    const gone=new Set([d.dataset.delete]);
+
+    let again=true;
+
+    while(again){
+
+      again=false;
+
+      a.forEach(c=>{
+
+        if(
+          c.parent_id &&
+          gone.has(String(c.parent_id)) &&
+          !gone.has(String(c.id))
+        ){
+          gone.add(String(c.id));
+          again=true;
+        }
+
+      });
+
+    }
+
+    saveComments(
+      a.filter(c=>!gone.has(String(c.id)))
+    );
+
+    loadComments();
+  }
+
+});
+
+commentForm.addEventListener('submit',e=>{
+
   e.preventDefault();
+
   const name=document.getElementById('commentName').value.trim();
-  const site=safeSite(document.getElementById('commentSite').value);
+  const site=safeSite(
+    document.getElementById('commentSite').value
+  );
   const message=document.getElementById('commentText').value.trim();
+  const parent_id=document.getElementById('replyTo').value||null;
+
   if(!name||!message)return;
 
-  const item={name,site,message,created_at:new Date().toISOString()};
-  commentStatus.textContent='';
+  let a=[];
 
   try{
-    if(SUPABASE_URL&&SUPABASE_ANON_KEY){
-      const r=await fetch(`${SUPABASE_URL}/rest/v1/${COMMENTS_TABLE}`,{
-        method:'POST',
-        headers:{
-          apikey:SUPABASE_ANON_KEY,
-          Authorization:`Bearer ${SUPABASE_ANON_KEY}`,
-          'Content-Type':'application/json',
-          Prefer:'return=minimal'
-        },
-        body:JSON.stringify(item)
-      });
-      if(!r.ok)throw new Error('comments save failed');
-      commentForm.reset();
-      commentStatus.textContent='✓ Sent';
-      await loadComments();
-      return;
-    }
+    a=JSON.parse(
+      localStorage.getItem('site-comments')||'[]'
+    );
+  }catch(x){}
 
-    const local=JSON.parse(localStorage.getItem('site-comments')||'[]');
-    local.unshift(item);
-    localStorage.setItem('site-comments',JSON.stringify(local.slice(0,100)));
-    commentForm.reset();
-    commentStatus.textContent='✓ Saved in this browser (demo mode)';
-    renderComments(local);
-  }catch(err){
-    commentStatus.textContent='Could not send comment.';
-  }
+  a.push({
+    id:Date.now()+'-'+Math.random().toString(36).slice(2),
+    created_at:new Date().toISOString(),
+    name,
+    site,
+    message,
+    parent_id
+  });
+
+  saveComments(a);
+
+  commentForm.reset();
+
+  document.getElementById('replyTo').value='';
+
+  commentStatus.innerHTML=`
+    <span class="ru">✓ Сохранено</span>
+    <span class="en">✓ Saved</span>
+  `;
+
+  loadComments();
 });
 
 loadComments();
 
 
-/* ---------- окна: тащи за заголовок, [_] сворачивает, [x] в таскбар ---------- */
-document.querySelectorAll('.t').forEach(t=>t.insertAdjacentHTML('beforeend','<svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span>'));
-const tbz=document.getElementById('tbz');let zi=11;
+/* ---------- ОКНА ---------- */
+
+document.querySelectorAll('.t').forEach(t=>
+  t.insertAdjacentHTML(
+    'beforeend',
+    '<svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg>'+
+    '<span class="tb">'+
+      '<button class="mn" type="button"></button>'+
+      '<button class="x" type="button">'+
+        '<svg viewBox="0 0 7 7"><use href="#xx"/></svg>'+
+      '</button>'+
+    '</span>'
+  )
+);
+
+const tbz=document.getElementById('tbz');
+let zi=11;
+
 document.querySelectorAll('.w').forEach(w=>{
-  const t=w.querySelector('.t');let ox=0,oy=0,sx=0,sy=0;
-  w.addEventListener('pointerdown',()=>{w.style.zIndex=++zi});
+
+  const t=w.querySelector('.t');
+
+  let ox=0,oy=0,sx=0,sy=0;
+
+  w.addEventListener('pointerdown',()=>{
+    w.style.zIndex=++zi;
+  });
+
   t.addEventListener('pointerdown',e=>{
-    if(e.target.closest('button')||innerWidth<=940)return;
-    sx=e.clientX-ox;sy=e.clientY-oy;t.setPointerCapture(e.pointerId);
-    t.onpointermove=m=>{ox=m.clientX-sx;oy=m.clientY-sy;w.style.translate=ox+'px '+oy+'px'};
-    t.onpointerup=()=>{t.onpointermove=null};
+
+    if(e.target.closest('button')||innerWidth<=940)
+      return;
+
+    sx=e.clientX-ox;
+    sy=e.clientY-oy;
+
+    t.setPointerCapture(e.pointerId);
+
+    t.onpointermove=m=>{
+      ox=m.clientX-sx;
+      oy=m.clientY-sy;
+
+      w.style.translate=
+        ox+'px '+oy+'px';
+    };
+
+    t.onpointerup=()=>{
+      t.onpointermove=null;
+    };
+
   });
-  t.querySelector('.mn').onclick=()=>w.classList.toggle('s');
-  t.querySelector('.x').onclick=()=>{
-    w.classList.add('h');
-    const b=document.createElement('button');b.className='tz';b.type='button';b.innerHTML=t.firstElementChild.innerHTML;
-    b.onclick=()=>{w.classList.remove('h');w.style.zIndex=++zi;b.remove()};w._c=b;tbz.append(b);
+
+  t.querySelector('.mn').onclick=()=>{
+    w.classList.toggle('s');
   };
+
+  t.querySelector('.x').onclick=()=>{
+
+    w.classList.add('h');
+
+    const b=document.createElement('button');
+
+    b.className='tz';
+    b.type='button';
+
+    b.innerHTML=t.firstElementChild.innerHTML;
+
+    b.onclick=()=>{
+      w.classList.remove('h');
+      w.style.zIndex=++zi;
+      b.remove();
+    };
+
+    w._c=b;
+    tbz.append(b);
+  };
+
 });
 
-/* ---------- заголовок-«записка» (ransomizer) ---------- */
-let s=11;const r=()=>(s=s*16807%2147483647)/2147483647;
-const F=['Alfa Slab One','Lobster','Playfair Display','Oswald','Courier Prime','Rubik'];
-const C=[['#fff','#111'],['#ffe14d','#111'],['#ff7ab8','#111'],['#8fe3ff','#111'],['#111','#fff'],['#ebe5d3','#8a1c1c'],['#3447e8','#fff']];
-const sty=e=>{const c=C[r()*C.length|0],f=n=>(r()*n).toFixed(1);e.style.fontFamily=`'${F[r()*F.length|0]}',serif`;e.style.fontSize=(.8+r()*.4).toFixed(2)+'em';e.style.background=c[0];e.style.color=c[1];e.style.transform=`rotate(${(r()*12-6).toFixed(1)}deg) translateY(${(r()*8-4)|0}px)`;e.style.clipPath=`polygon(${f(5)}% ${f(8)}%,${100-f(5)}% ${f(6)}%,${100-f(4)}% ${100-f(8)}%,${f(6)}% ${100-f(6)}%)`};
+
+/* ---------- ЗАГОЛОВОК ---------- */
+
+let s=11;
+
+const r=()=>
+  (s=s*16807%2147483647)/
+  2147483647;
+
+const F=[
+  'Alfa Slab One',
+  'Lobster',
+  'Playfair Display',
+  'Oswald',
+  'Courier Prime',
+  'Rubik'
+];
+
+const C=[
+  ['#fff','#111'],
+  ['#ffe14d','#111'],
+  ['#ff7ab8','#111'],
+  ['#8fe3ff','#111'],
+  ['#111','#fff'],
+  ['#ebe5d3','#8a1c1c'],
+  ['#3447e8','#fff']
+];
+
+const sty=e=>{
+
+  const c=C[r()*C.length|0];
+
+  const f=n=>
+    (r()*n).toFixed(1);
+
+  e.style.fontFamily=
+    `'${F[r()*F.length|0]}',serif`;
+
+  e.style.fontSize=
+    (.8+r()*.4).toFixed(2)+'em';
+
+  e.style.background=c[0];
+  e.style.color=c[1];
+
+  e.style.transform=
+    `rotate(${(r()*12-6).toFixed(1)}deg) translateY(${(r()*8-4)|0}px)`;
+
+  e.style.clipPath=
+    `polygon(
+      ${f(5)}% ${f(8)}%,
+      ${100-f(5)}% ${f(6)}%,
+      ${100-f(4)}% ${100-f(8)}%,
+      ${f(6)}% ${100-f(6)}%
+    )`;
+};
+
 document.querySelectorAll('.rz').forEach(h=>{
-  const t=h.textContent;h.setAttribute('aria-label',t);h.textContent='';
+
+  const t=h.textContent;
+
+  h.setAttribute('aria-label',t);
+
+  h.textContent='';
+
   t.split(' ').forEach((wd,i)=>{
+
     if(i)h.append(' ');
-    const w=document.createElement('span');w.className='wd';
-    [...wd].forEach(ch=>{const e=document.createElement('b');e.textContent=ch;e.setAttribute('aria-hidden','true');sty(e);w.append(e)});
+
+    const w=document.createElement('span');
+
+    w.className='wd';
+
+    [...wd].forEach(ch=>{
+
+      const e=document.createElement('b');
+
+      e.textContent=ch;
+      e.setAttribute('aria-hidden','true');
+
+      sty(e);
+
+      w.append(e);
+
+    });
+
     h.append(w);
+
   });
+
 });
 
-/* ---------- ASCII-неко (синий): форма -> яркость -> символ; глаза следят за курсором ---------- */
-const cv=document.getElementById('face'),X=cv.getContext('2d'),CC=56,RR=28,CW=10,CH=20;
-cv.width=CC*CW;cv.height=RR*CH;
-const oc=document.createElement('canvas');oc.width=CC;oc.height=RR;
-const g=oc.getContext('2d',{willReadFrequently:true});
-const RAMP=' .,:;-~=+*x#%@',HAIR='#6a86ff';
-let tx=0,ty=0,lx=0,ly=0,bl=0,nb=2500;
-const ell=(x,y,a,b)=>{g.beginPath();g.ellipse(x,y,Math.max(a,.1),Math.max(b,.1),0,0,7);g.fill()};
+
+/* ---------- ASCII-НЕКО ---------- */
+
+const cv=document.getElementById('face');
+const X=cv.getContext('2d');
+
+const CC=56;
+const RR=28;
+const CW=10;
+const CH=20;
+
+cv.width=CC*CW;
+cv.height=RR*CH;
+
+const oc=document.createElement('canvas');
+
+oc.width=CC;
+oc.height=RR;
+
+const g=oc.getContext(
+  '2d',
+  {willReadFrequently:true}
+);
+
+const RAMP=' .,:;-~=+*x#%@';
+const HAIR='#6a86ff';
+
+let tx=0;
+let ty=0;
+let lx=0;
+let ly=0;
+let bl=0;
+let nb=2500;
+
+const ell=(x,y,a,b)=>{
+
+  g.beginPath();
+
+  g.ellipse(
+    x,
+    y,
+    Math.max(a,.1),
+    Math.max(b,.1),
+    0,
+    0,
+    7
+  );
+
+  g.fill();
+};
+
 function eye(x){
+
   const o=1-bl;
-  g.fillStyle='#fff';ell(x,38,6.5,7.5*o+.6);
-  if(o>.2){const ix=x+lx*2.4,iy=38+ly*2.6;g.fillStyle='#1c1c7a';ell(ix,iy,4.2,5.6*o);g.fillStyle='#000';ell(ix,iy+.4,2,3*o);g.fillStyle='#fff';ell(ix-1.6,iy-2.4*o,1.4,1.6*o)}
-  g.strokeStyle='#2a1450';g.lineWidth=1.5;g.beginPath();g.ellipse(x,38,6.5,7.5*o+.6,0,Math.PI*1.05,Math.PI*1.95);g.stroke();
+
+  g.fillStyle='#fff';
+
+  ell(
+    x,
+    38,
+    6.5,
+    7.5*o+.6
+  );
+
+  if(o>.2){
+
+    const ix=x+lx*2.4;
+    const iy=38+ly*2.6;
+
+    g.fillStyle='#1c1c7a';
+
+    ell(
+      ix,
+      iy,
+      4.2,
+      5.6*o
+    );
+
+    g.fillStyle='#000';
+
+    ell(
+      ix,
+      iy+.4,
+      2,
+      3*o
+    );
+
+    g.fillStyle='#fff';
+
+    ell(
+      ix-1.6,
+      iy-2.4*o,
+      1.4,
+      1.6*o
+    );
+  }
+
+  g.strokeStyle='#2a1450';
+  g.lineWidth=1.5;
+
+  g.beginPath();
+
+  g.ellipse(
+    x,
+    38,
+    6.5,
+    7.5*o+.6,
+    0,
+    Math.PI*1.05,
+    Math.PI*1.95
+  );
+
+  g.stroke();
 }
+
 function draw(t){
+
   const fl=Math.sin(t/300)*.6;
-  g.setTransform(CC/64,0,0,RR/64,0,0);g.clearRect(0,0,64,64);
-  g.save();g.translate(lx*1.6,3+Math.sin(t/650)*.9+ly);
+
+  g.setTransform(
+    CC/64,
+    0,
+    0,
+    RR/64,
+    0,
+    0
+  );
+
+  g.clearRect(0,0,64,64);
+
+  g.save();
+
+  g.translate(
+    lx*1.6,
+    3+Math.sin(t/650)*.9+ly
+  );
+
   g.fillStyle=HAIR;
-  g.beginPath();g.moveTo(12,20);g.lineTo(9,2+fl);g.lineTo(27,10);g.fill();
-  g.beginPath();g.moveTo(52,20);g.lineTo(55,2-fl);g.lineTo(37,10);g.fill();
-  g.fillStyle='#ff9cc4';g.beginPath();g.moveTo(14,17);g.lineTo(12,7+fl);g.lineTo(23,12);g.fill();
-  g.beginPath();g.moveTo(50,17);g.lineTo(52,7-fl);g.lineTo(41,12);g.fill();
-  g.fillStyle=HAIR;ell(32,32,26,28);ell(9,45,5,14);ell(55,45,5,14);
-  const gr=g.createRadialGradient(32,36,2,32,40,23);gr.addColorStop(0,'#fff');gr.addColorStop(1,'#d9c8e8');g.fillStyle=gr;ell(32,38,19,19);
-  g.fillStyle='#ff9cc4';ell(18,46,5,2.8);ell(46,46,5,2.8);
-  eye(24);eye(40);
-  g.strokeStyle='#4a1030';g.lineWidth=1.8;g.beginPath();g.arc(32,48,3.2,.15*Math.PI,.85*Math.PI);g.stroke();
-  g.fillStyle=HAIR;g.beginPath();g.moveTo(11,36);g.quadraticCurveTo(11,7,32,8);g.quadraticCurveTo(53,7,53,36);g.quadraticCurveTo(47,22,41,27);g.quadraticCurveTo(35,19,32,29);g.quadraticCurveTo(29,19,23,27);g.quadraticCurveTo(17,22,11,36);g.fill();
-  g.fillStyle='rgba(255,255,255,.5)';ell(24,15,7,1.6);ell(40,14,5,1.2);
+
+  g.beginPath();
+  g.moveTo(12,20);
+  g.lineTo(9,2+fl);
+  g.lineTo(27,10);
+  g.fill();
+
+  g.beginPath();
+  g.moveTo(52,20);
+  g.lineTo(55,2-fl);
+  g.lineTo(37,10);
+  g.fill();
+
+  g.fillStyle='#ff9cc4';
+
+  g.beginPath();
+  g.moveTo(14,17);
+  g.lineTo(12,7+fl);
+  g.lineTo(23,12);
+  g.fill();
+
+  g.beginPath();
+  g.moveTo(50,17);
+  g.lineTo(52,7-fl);
+  g.lineTo(41,12);
+  g.fill();
+
+  g.fillStyle=HAIR;
+
+  ell(32,32,26,28);
+  ell(9,45,5,14);
+  ell(55,45,5,14);
+
+  const gr=
+    g.createRadialGradient(
+      32,36,2,
+      32,40,23
+    );
+
+  gr.addColorStop(0,'#fff');
+  gr.addColorStop(1,'#d9c8e8');
+
+  g.fillStyle=gr;
+
+  ell(32,38,19,19);
+
+  g.fillStyle='#ff9cc4';
+
+  ell(18,46,5,2.8);
+  ell(46,46,5,2.8);
+
+  eye(24);
+  eye(40);
+
+  g.strokeStyle='#4a1030';
+  g.lineWidth=1.8;
+
+  g.beginPath();
+
+  g.arc(
+    32,
+    48,
+    3.2,
+    .15*Math.PI,
+    .85*Math.PI
+  );
+
+  g.stroke();
+
+  g.fillStyle=HAIR;
+
+  g.beginPath();
+
+  g.moveTo(11,36);
+  g.quadraticCurveTo(11,7,32,8);
+  g.quadraticCurveTo(53,7,53,36);
+  g.quadraticCurveTo(47,22,41,27);
+  g.quadraticCurveTo(35,19,32,29);
+  g.quadraticCurveTo(29,19,23,27);
+  g.quadraticCurveTo(17,22,11,36);
+  g.fill();
+
+  g.fillStyle='rgba(255,255,255,.5)';
+
+  ell(24,15,7,1.6);
+  ell(40,14,5,1.2);
+
   g.restore();
 }
+
 function render(){
-  const d=g.getImageData(0,0,CC,RR).data;
-  X.clearRect(0,0,cv.width,cv.height);X.font='700 17px "Courier Prime","Courier New",monospace';X.textAlign='center';X.textBaseline='middle';
-  for(let j=0;j<RR;j++)for(let i=0;i<CC;i++){
-    const k=(j*CC+i)*4,a=d[k+3];if(a<40)continue;
-    const l=(.299*d[k]+.587*d[k+1]+.114*d[k+2])/255*(a/255),ch=RAMP[Math.min(RAMP.length-1,Math.round(l*(RAMP.length-1)))];
-    if(ch===' ')continue;X.fillStyle=`rgb(${d[k]},${d[k+1]},${d[k+2]})`;X.fillText(ch,i*CW+CW/2,j*CH+CH/2);
-  }
+
+  const d=g.getImageData(
+    0,
+    0,
+    CC,
+    RR
+  ).data;
+
+  X.clearRect(
+    0,
+    0,
+    cv.width,
+    cv.height
+  );
+
+  X.font=
+    '700 17px "Courier Prime","Courier New",monospace';
+
+  X.textAlign='center';
+  X.textBaseline='middle';
+
+  for(let j=0;j<RR;j++)
+    for(let i=0;i<CC;i++){
+
+      const k=(j*CC+i)*4;
+      const a=d[k+3];
+
+      if(a<40)continue;
+
+      const l=
+        (.299*d[k]+
+         .587*d[k+1]+
+         .114*d[k+2])/255*
+        (a/255);
+
+      const ch=
+        RAMP[
+          Math.min(
+            RAMP.length-1,
+            Math.round(
+              l*(RAMP.length-1)
+            )
+          )
+        ];
+
+      if(ch===' ')continue;
+
+      X.fillStyle=
+        `rgb(${d[k]},${d[k+1]},${d[k+2]})`;
+
+      X.fillText(
+        ch,
+        i*CW+CW/2,
+        j*CH+CH/2
+      );
+    }
 }
-addEventListener('pointermove',e=>{const q=cv.getBoundingClientRect();tx=Math.max(-1,Math.min(1,(e.clientX-q.left-q.width/2)/350));ty=Math.max(-1,Math.min(1,(e.clientY-q.top-q.height/2)/300))});
-const still=matchMedia('(prefers-reduced-motion:reduce)').matches;let last=0;
-(function loop(t){requestAnimationFrame(loop);if(t-last<60||document.hidden||(still&&last))return;last=t;
-  if(t>nb){bl=1;nb=t+2500+Math.random()*3000;setTimeout(()=>bl=0,140)}
-  lx+=(tx-lx)*.3;ly+=(ty-ly)*.3;draw(t);render();
+
+addEventListener('pointermove',e=>{
+
+  const q=cv.getBoundingClientRect();
+
+  tx=Math.max(
+    -1,
+    Math.min(
+      1,
+      (e.clientX-q.left-q.width/2)/350
+    )
+  );
+
+  ty=Math.max(
+    -1,
+    Math.min(
+      1,
+      (e.clientY-q.top-q.height/2)/300
+    )
+  );
+
+});
+
+const still=
+  matchMedia(
+    '(prefers-reduced-motion:reduce)'
+  ).matches;
+
+let last=0;
+
+(function loop(t){
+
+  requestAnimationFrame(loop);
+
+  if(
+    t-last<60||
+    document.hidden||
+    (still&&last)
+  )return;
+
+  last=t;
+
+  if(t>nb){
+
+    bl=1;
+
+    nb=
+      t+
+      2500+
+      Math.random()*3000;
+
+    setTimeout(()=>{
+      bl=0;
+    },140);
+  }
+
+  lx+=(tx-lx)*.3;
+  ly+=(ty-ly)*.3;
+
+  draw(t);
+  render();
+
 })(0);
 </script>
+
 </body>
 </html>
