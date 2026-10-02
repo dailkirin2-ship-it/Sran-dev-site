@@ -19,105 +19,107 @@
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --g:#c0c0c0; --hi:#fff; --lo:#808080; --dk:#000; --navy:#000080; --blue:#1084d0;
-  --arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Cpath d='M2 2h3v3h3v3h3v3h3v3h-5v3h-3v3h-3z' fill='%23fff' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") 2 2, default;
-  --hand:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' shape-rendering='crispEdges' fill='%23fff' stroke='%23000' stroke-width='2'%3E%3Crect x='11' y='2' width='6' height='14'/%3E%3Crect x='6' y='14' width='18' height='12'/%3E%3Crect x='2' y='16' width='6' height='6'/%3E%3C/svg%3E") 13 2, pointer;
+  --nv:#0c0c6a; --nv2:#2a2ab8; --pale:#e6e9ff; --lav:#b9c0ff; --ink:#10104a;
+  --cloud:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='700'%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .011' numOctaves='5' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 2.6 -.95'/%3E%3C/filter%3E%3Crect width='900' height='700' filter='url(%23c)'/%3E%3C/svg%3E");
+  --arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Cpath d='M2 2h3v3h3v3h3v3h3v3h-5v3h-3v3h-3z' fill='%23fff' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+  --hand:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' shape-rendering='crispEdges' fill='%23fff' stroke='%23000' stroke-width='2'%3E%3Crect x='11' y='2' width='6' height='14'/%3E%3Crect x='6' y='14' width='18' height='12'/%3E%3Crect x='2' y='16' width='6' height='6'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
-html{cursor:var(--arrow)}
-a,button{cursor:var(--hand)}
+html{cursor:var(--arrow) 2 2,default}
+a,button{cursor:var(--hand) 13 2,pointer}
+a{color:inherit;text-decoration:none}
 body{
-  margin:0; min-height:100vh; padding:18px 14px 64px 112px;
-  font:15px/1.3 'Pixelify Sans','Courier New',monospace; color:#000;
+  margin:0;min-height:100vh;padding:20px 16px 70px 118px;
+  font:15px/1.35 'Pixelify Sans','Courier New',monospace;color:var(--ink);
   background:
-    radial-gradient(ellipse 110% 38% at 25% 108%,#6cc32f 62%,transparent 63%),
-    radial-gradient(ellipse 100% 32% at 95% 106%,#3f9a1a 62%,transparent 63%),
-    radial-gradient(ellipse 150px 50px at 14% 16%,#fff 60%,transparent 64%),
-    radial-gradient(ellipse 230px 64px at 72% 10%,#fff 60%,transparent 64%),
-    radial-gradient(ellipse 180px 56px at 88% 46%,#fff 60%,transparent 64%),
-    linear-gradient(#2468d8,#8cc6ff 65%,#cfe8ff);
+    radial-gradient(ellipse 120% 30% at 20% 108%,#7bd13a 62%,transparent 63%),
+    radial-gradient(ellipse 100% 26% at 100% 106%,#3f9a1a 62%,transparent 63%),
+    var(--cloud) 0 0/900px 700px,
+    linear-gradient(#1f5fe0,#4f9bf5 55%,#a9d4ff);
   background-attachment:fixed;
 }
-body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background:radial-gradient(circle,#003 1px,transparent 1.6px) 0 0/4px 4px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.1;background:radial-gradient(circle,#002 1px,transparent 1.6px) 0 0/4px 4px}
 body.lang-en .i18n-ru,body:not(.lang-en) .i18n-en{display:none}
-:focus-visible{outline:1px dotted #000;outline-offset:-4px}
+:focus-visible{outline:2px dotted #ff0;outline-offset:2px}
 
-/* ---- desktop icons ---- */
-.icons{position:fixed;left:8px;top:14px;width:92px;display:grid;gap:12px;z-index:2}
-.icon{display:grid;justify-items:center;gap:4px;padding:4px 2px;text-align:center;color:#fff;text-shadow:1px 1px 0 #000,-1px 1px 0 #000;font-size:14px;line-height:1.05}
-.icon i{width:40px;height:40px;display:grid;place-items:center;border:2px solid #fff;outline:2px solid #000;box-shadow:3px 3px 0 rgba(0,0,0,.45);color:#fff}
-.icon svg{width:24px;height:24px}
-.icon:hover span,.icon:focus-visible span{background:var(--navy);outline:1px dotted #ff0}
-.t1{background:linear-gradient(#5fb0ff,#1a56c8)}.t2{background:linear-gradient(#ff7ab8,#c8105e)}.t3{background:linear-gradient(#7ee87e,#0c8a0c)}.t4{background:linear-gradient(#8a8aff,#2a2aa8)}.t5{background:linear-gradient(#ff8a5f,#c8200c)}.t6{background:linear-gradient(#444,#000)}
+/* иконки рабочего стола */
+.icons{position:fixed;left:10px;top:16px;width:94px;display:grid;gap:10px;z-index:3}
+.icon{display:grid;justify-items:center;gap:5px;text-align:center;color:#fff;font-size:14px;line-height:1;text-shadow:1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000}
+.icon i{width:44px;height:44px;display:grid;place-items:center;border:2px solid #fff;outline:2px solid var(--nv);box-shadow:3px 3px 0 rgba(0,0,40,.5);color:#fff}
+.icon svg{width:26px;height:26px}
+.icon span{padding:1px 4px}
+.icon:hover span,.icon:focus-visible span{background:var(--nv);outline:1px dotted #fff}
+.t1{background:linear-gradient(#69b6ff,#1a4fd0)}.t2{background:linear-gradient(#ff80be,#c8105e)}.t3{background:linear-gradient(#69b6ff,#1a4fd0)}.t4{background:linear-gradient(#9a9aff,#2a2aa8)}.t5{background:linear-gradient(#ff8a5f,#c8200c)}.t6{background:linear-gradient(#555,#000)}
 
-/* ---- layout ---- */
-.desk{max-width:1000px;display:grid;gap:22px;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);align-items:start}
-.w-me{grid-column:1/-1}
+.desk{max-width:1040px;display:grid;gap:26px}
 
-/* ---- windows (win98 bevel) ---- */
-.win{background:var(--g);border:2px solid;border-color:var(--hi) var(--dk) var(--dk) var(--hi);box-shadow:inset -1px -1px var(--lo),inset 1px 1px #dfdfdf,5px 5px 0 rgba(0,20,80,.45);padding:3px;position:relative}
+/* окна */
+.win{position:relative;background:var(--pale);border:3px solid var(--nv);box-shadow:inset 0 0 0 2px #fff,6px 6px 0 rgba(0,0,60,.5);padding:4px}
 .win.hidden{display:none}
-.tb{display:flex;align-items:center;gap:3px;height:24px;padding:2px 3px 2px 6px;background:linear-gradient(90deg,var(--navy),var(--blue));color:#fff;font-weight:700;touch-action:none;user-select:none}
-.win:not(.on) .tb{background:linear-gradient(90deg,#808080,#b0b0b0)}
-.tb h2{flex:1;margin:0;font:inherit;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.tb button{width:18px;height:18px;padding:0;display:grid;place-items:center;font:700 12px/1 'Pixelify Sans',monospace;background:var(--g);color:#000;border:2px solid;border-color:var(--hi) var(--dk) var(--dk) var(--hi);box-shadow:inset -1px -1px var(--lo)}
-.tb button:active{border-color:var(--dk) var(--hi) var(--hi) var(--dk);box-shadow:none}
-.inner{margin:3px 0 0;padding:12px;background:#fff;border:2px solid;border-color:var(--lo) var(--hi) var(--hi) var(--lo);box-shadow:inset 1px 1px var(--dk)}
-.sb{margin-top:3px;min-height:22px;padding:2px 6px;border:1px solid;border-color:var(--lo) var(--hi) var(--hi) var(--lo);font-size:14px}
+.tb{position:relative;display:flex;align-items:center;justify-content:center;height:28px;margin:-1px -1px 4px;background:linear-gradient(#3a3ad0,var(--nv2) 45%,var(--nv));color:#fff;font-weight:700;font-size:16px;letter-spacing:.04em;touch-action:none;user-select:none;border-bottom:2px solid var(--nv)}
+.tb h2{margin:0;font:inherit;padding:0 76px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ctls{position:absolute;right:4px;top:3px;display:flex;gap:3px}
+.ctls button{width:20px;height:20px;padding:0;display:grid;place-items:center;font:700 13px/1 'Pixelify Sans',monospace;color:var(--nv);background:var(--pale);border:2px solid var(--nv);box-shadow:inset 1px 1px #fff,inset -1px -1px var(--lav)}
+.ctls button:active{background:var(--lav);box-shadow:none}
+.inner{padding:14px;background:#fff;border:2px solid var(--nv)}
+.sb{margin-top:4px;min-height:24px;padding:3px 8px;font-size:14px;background:var(--pale);border:2px solid var(--nv)}
 
-/* ---- profile ---- */
-.me{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;padding:22px 12px;text-align:center;background:var(--green,#0f0);background:#08e008 radial-gradient(circle,rgba(0,60,0,.35) 1px,transparent 1.6px) 0 0/4px 4px}
-.pfp{width:116px;height:116px;border:3px solid;border-color:var(--lo) var(--hi) var(--hi) var(--lo);background:#fff;box-shadow:0 0 0 3px var(--g),0 0 0 5px var(--dk)}
-.pfp img{width:100%;height:100%;object-fit:cover;display:block;image-rendering:pixelated}
-h1{margin:0;font-size:clamp(36px,8vw,68px);line-height:1;font-weight:700;font-style:italic;
-  background:linear-gradient(#fff200 10%,#ff8a00 50%,#d01800 52%,#ff3a00);-webkit-background-clip:text;background-clip:text;color:transparent;
-  -webkit-text-stroke:2px #1a0a00;filter:drop-shadow(3px 3px 0 #1a0a00)}
-.status{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:5px 10px;background:#fff;border:2px solid;border-color:var(--lo) var(--hi) var(--hi) var(--lo);box-shadow:inset 1px 1px var(--dk)}
-.status:hover{background:#ffff9a}
-.dot{flex:none;width:11px;height:11px;background:#f00;border:2px solid #000;animation:b 1s steps(2) infinite}
+/* профиль */
+.me{display:flex;align-items:center;justify-content:center;gap:26px;flex-wrap:wrap;padding:28px 14px;text-align:center;background:#12e012 radial-gradient(circle,rgba(0,70,0,.4) 1px,transparent 1.7px) 0 0/4px 4px}
+.pfp{position:relative;width:124px;height:124px;display:grid;place-items:center;background:var(--pale);border:4px solid var(--nv);outline:3px solid #fff;box-shadow:5px 5px 0 var(--nv);font-size:40px;font-weight:700;color:var(--nv2)}
+.pfp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+h1{margin:0;font-size:clamp(36px,7.4vw,74px);line-height:1;font-weight:700;font-style:italic;
+  background:linear-gradient(#fff200 8%,#ff9a00 48%,#d41800 52%,#ff3a00);-webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-stroke:3px #1a0a00;paint-order:stroke fill;filter:drop-shadow(4px 4px 0 #1a0a00)}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;background:#fff;border:3px solid var(--nv);box-shadow:4px 4px 0 var(--nv);font-weight:600}
+.status:hover{background:#fff7a0}
+.dot{flex:none;width:12px;height:12px;background:#f00;border:2px solid #000;animation:b 1s steps(2) infinite}
 @keyframes b{50%{opacity:0}}
 
-/* ---- game panels ---- */
-.games{display:grid;gap:18px}
-.game{display:block;background:#000;border:3px solid;border-color:var(--hi) var(--lo) var(--lo) var(--hi);outline:2px solid #000;color:#fff}
-.game .hd{display:flex;justify-content:space-between;gap:8px;padding:3px 8px;color:#000;font-weight:700;background:linear-gradient(90deg,#ff7a7a,#ffc47a,#fff27a,#7aff9a,#7ac8ff,#c27aff)}
-.shot{position:relative;aspect-ratio:16/9;background:#000 center/cover;image-rendering:pixelated}
-.shot::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(0,0,50,.6) 1px,transparent 1.7px) 0 0/3px 3px;mix-blend-mode:multiply}
-.game .tx{padding:10px 12px;background:#000;font-size:14px;line-height:1.35;text-align:center}
-.game .tx p{margin:0 0 6px}
-.game .tx .m{color:#7ae0ff}
-.game:hover .hd,.game:focus-visible .hd{filter:invert(1)}
+/* игры */
+.inner.g{background:var(--lav) radial-gradient(circle,rgba(12,12,106,.28) 1px,transparent 1.6px) 0 0/4px 4px}
+.games{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr))}
+.game{display:flex;flex-direction:column;background:#000;border:4px solid;border-color:#fff #777 #777 #fff;outline:3px solid var(--nv);box-shadow:5px 5px 0 var(--nv);color:#fff}
+.game .hd{display:flex;justify-content:space-between;gap:8px;padding:4px 9px;color:#000;font-weight:700;background:linear-gradient(90deg,#ff7a7a,#ffc47a,#fff27a,#7aff9a,#7ac8ff,#c27aff)}
 .game h3{margin:0;font:inherit}
+.shot{aspect-ratio:16/9;background:#000 center/cover;image-rendering:pixelated;border-bottom:3px solid #fff}
+.tx{flex:1;padding:12px;font-size:14.5px;text-align:center;background:#000 radial-gradient(circle,#1a1a40 1px,transparent 1.6px) 0 0/4px 4px}
+.tx p{margin:0 0 8px}.tx .m{margin:0;color:#7ae0ff}
+.game:hover .hd,.game:focus-visible .hd{filter:invert(1)}
+.game:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--nv)}
 
-/* ---- 88x31 style buttons ---- */
-.btns{display:grid;gap:12px;justify-items:center;padding:4px 0}
-.b{display:flex;align-items:center;justify-content:center;gap:6px;width:132px;height:46px;border:2px solid #000;outline:2px solid #fff;font-weight:700;font-size:17px;text-align:center;line-height:1}
+/* кнопки 88x31 */
+.btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:8px 0}
+.b{display:flex;align-items:center;justify-content:center;gap:7px;width:132px;height:46px;border:2px solid #000;outline:2px solid #fff;box-shadow:3px 3px 0 var(--nv);font-weight:700;font-size:17px;line-height:1}
 .b svg{width:20px;height:20px;flex:none}
-.b:hover{transform:translate(1px,1px);filter:brightness(1.2) saturate(1.3)}
-.k1{background:repeating-conic-gradient(#000 0 25%,#222 0 50%) 0 0/8px 8px;color:#ffe600}
+.b:hover{transform:translate(1px,1px);filter:brightness(1.25) saturate(1.3)}
+.k1{background:repeating-conic-gradient(#000 0 25%,#262626 0 50%) 0 0/8px 8px;color:#ffe600}
 .k2{background:linear-gradient(#200,#c01800 60%,#ffb000);color:#fff;text-shadow:1px 1px #000}
 .k3{background:radial-gradient(circle,#fff 1px,transparent 1.6px) 0 0/9px 9px,#100a50;color:#9ff}
 .k4{background:repeating-linear-gradient(45deg,#ff5fa8 0 8px,#ffe600 8px 16px,#5fd0ff 16px 24px);color:#000;text-shadow:1px 1px #fff}
-.k5{background:#000;color:#18ff18;text-shadow:0 0 5px #18ff18}
+.k5{background:#000;color:#18ff18;text-shadow:0 0 6px #18ff18}
 .k6{background:radial-gradient(circle,#fff 1px,transparent 1.6px) 0 0/4px 4px,#ff5fa8;color:#fff;text-shadow:1px 1px #000}
 
-/* ---- taskbar ---- */
-.task{position:fixed;left:0;right:0;bottom:0;z-index:999;height:38px;display:flex;align-items:center;gap:4px;padding:3px;background:var(--g);border-top:2px solid var(--hi);box-shadow:0 -1px var(--g)}
-.tab{height:30px;max-width:180px;padding:0 12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:700 14px 'Pixelify Sans',monospace;background:var(--g);border:2px solid;border-color:var(--hi) var(--dk) var(--dk) var(--hi);box-shadow:inset -1px -1px var(--lo)}
-.tab.on{border-color:var(--dk) var(--hi) var(--hi) var(--dk);box-shadow:inset 1px 1px var(--lo);background:repeating-conic-gradient(#fff 0 25%,var(--g) 0 50%) 0 0/2px 2px}
-.tray{margin-left:auto;display:flex;align-items:center;gap:8px;height:30px;padding:0 8px;border:2px solid;border-color:var(--lo) var(--hi) var(--hi) var(--lo);font-weight:700;white-space:nowrap}
-.tray button{font:inherit;border:0;background:transparent;padding:2px 6px}
-.tray button.active{background:var(--navy);color:#fff}
+/* курсоры-украшения */
+.cur{position:absolute;width:34px;height:34px;background:var(--hand) center/contain no-repeat;pointer-events:none;z-index:4;filter:drop-shadow(2px 2px 0 rgba(0,0,60,.5))}
+.c1{right:-16px;top:70px;transform:rotate(-20deg)}.c2{left:40%;top:-22px;transform:rotate(15deg)}.c3{right:60px;bottom:-24px;transform:rotate(-8deg)}
 
-@media (max-width:820px){
-  body{padding:12px 10px 60px}
-  .icons{position:static;width:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:16px}
-  .icon{width:78px}
-  .desk{grid-template-columns:1fr}
-  .tab{display:none}
+/* панель задач */
+.task{position:fixed;left:0;right:0;bottom:0;z-index:999;height:40px;display:flex;align-items:center;gap:6px;padding:4px;background:linear-gradient(#e9ecff,var(--lav));border-top:3px solid var(--nv)}
+.tab{height:30px;max-width:170px;padding:0 12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:700 14px 'Pixelify Sans',monospace;color:var(--ink);background:var(--pale);border:2px solid var(--nv);box-shadow:inset 1px 1px #fff,inset -2px -2px var(--lav)}
+.tab.on{background:var(--lav);box-shadow:inset 2px 2px rgba(12,12,106,.4)}
+.tray{margin-left:auto;display:flex;align-items:center;gap:8px;height:30px;padding:0 8px;background:var(--pale);border:2px solid var(--nv);font-weight:700;white-space:nowrap}
+.tray button{font:inherit;border:0;background:transparent;color:var(--ink);padding:2px 6px}
+.tray button.active{background:var(--nv);color:#fff}
+
+@media (max-width:860px){
+  body{padding:14px 10px 64px}
+  .icons{position:static;width:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:20px}
+  .icon{width:80px}
+  .tab,.cur{display:none}
   .tray{margin:0 auto}
 }
-@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}.game:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -126,10 +128,10 @@ h1{margin:0;font-size:clamp(36px,8vw,68px);line-height:1;font-weight:700;font-st
 
 <div class="desk">
 
-  <section class="win w-me on h-card" id="w-me" data-t="Danielle Choster">
-    <div class="tb"><h2>Danielle Choster</h2><button type="button" data-a="min">_</button><button type="button" data-a="max">□</button><button type="button" data-a="min">×</button></div>
+  <section class="win h-card" id="w-me">
+    <div class="tb"><h2>Danielle Choster</h2><div class="ctls"><button type="button" data-a="min">_</button><button type="button">□</button><button type="button" data-a="min">×</button></div></div>
     <div class="inner me">
-      <div class="pfp"><img class="u-photo" src="avatar.png" alt="Danielle Choster"></div>
+      <div class="pfp">DC<img class="u-photo" src="avatar.png" alt="Danielle Choster" onerror="this.remove()"></div>
       <div>
         <h1 class="p-name">Danielle Choster</h1>
         <a class="status u-url" rel="me noopener" href="https://t.me/Sran_Dev" target="_blank">
@@ -139,28 +141,29 @@ h1{margin:0;font-size:clamp(36px,8vw,68px);line-height:1;font-weight:700;font-st
         </a>
       </div>
     </div>
+    <i class="cur c1"></i>
   </section>
 
-  <section class="win on" id="w-games">
-    <div class="tb"><h2><span class="i18n-ru">Игры</span><span class="i18n-en">Games</span></h2><button type="button" data-a="min">_</button><button type="button" data-a="max">□</button><button type="button" data-a="min">×</button></div>
-    <div class="inner"><div class="games" id="gamesGrid"></div></div>
+  <section class="win" id="w-games">
+    <div class="tb"><h2><span class="i18n-ru">Игры</span><span class="i18n-en">Games</span></h2><div class="ctls"><button type="button" data-a="min">_</button><button type="button">□</button><button type="button" data-a="min">×</button></div></div>
+    <div class="inner g"><div class="games" id="gamesGrid"></div></div>
+    <i class="cur c2"></i>
   </section>
 
-  <section class="win on" id="w-links">
-    <div class="tb"><h2><span class="i18n-ru">Ссылки</span><span class="i18n-en">Links</span></h2><button type="button" data-a="min">_</button><button type="button" data-a="max">□</button><button type="button" data-a="min">×</button></div>
+  <section class="win" id="w-links">
+    <div class="tb"><h2><span class="i18n-ru">Ссылки</span><span class="i18n-en">Links</span></h2><div class="ctls"><button type="button" data-a="min">_</button><button type="button">□</button><button type="button" data-a="min">×</button></div></div>
     <div class="inner"><div class="btns" id="linksGrid"></div></div>
     <div class="sb" id="sb">&nbsp;</div>
+    <i class="cur c3"></i>
   </section>
 
 </div>
 
 <div class="task">
-  <span id="tabs" style="display:flex;gap:4px"></span>
+  <span id="tabs" style="display:flex;gap:6px"></span>
   <div class="tray">
     <span>© <span id="year"></span> Danielle Choster</span>
-    <span class="lang" role="group" aria-label="Language / Язык">
-      <button class="lang-btn" data-lang="ru" type="button">RU</button><button class="lang-btn" data-lang="en" type="button">EN</button>
-    </span>
+    <span role="group" aria-label="Language / Язык"><button class="lang-btn" data-lang="ru" type="button">RU</button><button class="lang-btn" data-lang="en" type="button">EN</button></span>
   </div>
 </div>
 
@@ -218,31 +221,23 @@ document.querySelectorAll('.b').forEach(b => {
 });
 $('year').textContent = new Date().getFullYear();
 
-/* ---- окна: перетаскивание, фокус, сворачивание, панель задач ---- */
+/* окна: перетаскивание, фокус, сворачивание, панель задач */
 const wins = [...document.querySelectorAll('.win')];
 const tabs = $('tabs');
 let z = 10;
-const mq = window.matchMedia('(min-width:821px)');
+const mq = window.matchMedia('(min-width:861px)');
 
-function focusWin(w){
-  wins.forEach(x => { x.classList.toggle('on', x === w); const t = document.querySelector(`[data-w="${x.id}"]`); if (t) t.classList.toggle('on', x === w && !x.classList.contains('hidden')); });
-  w.style.zIndex = ++z;
-}
 wins.forEach(w => {
-  const title = w.querySelector('h2');
   const tab = document.createElement('button');
-  tab.type = 'button'; tab.className = 'tab on'; tab.dataset.w = w.id; tab.innerHTML = title.innerHTML;
-  tab.addEventListener('click', () => {
-    if (w.classList.contains('hidden')) { w.classList.remove('hidden'); focusWin(w); }
-    else if (w.classList.contains('on')) { w.classList.add('hidden'); tab.classList.remove('on'); }
-    else focusWin(w);
-  });
+  tab.type = 'button'; tab.className = 'tab on'; tab.innerHTML = w.querySelector('h2').innerHTML;
+  const hide = () => { w.classList.add('hidden'); tab.classList.remove('on'); };
+  const show = () => { w.classList.remove('hidden'); tab.classList.add('on'); w.style.zIndex = ++z; };
+  tab.addEventListener('click', () => w.classList.contains('hidden') ? show() : hide());
   tabs.appendChild(tab);
+  w.querySelectorAll('[data-a="min"]').forEach(b => b.addEventListener('click', hide));
+  w.addEventListener('pointerdown', () => { w.style.zIndex = ++z; });
 
-  w.addEventListener('pointerdown', () => focusWin(w));
-  w.querySelectorAll('[data-a="min"]').forEach(b => b.addEventListener('click', () => { w.classList.add('hidden'); tab.classList.remove('on'); }));
-
-  let tx = 0, ty = 0, sx, sy, drag = false;
+  let tx = 0, ty = 0, sx = 0, sy = 0, drag = false;
   const tb = w.querySelector('.tb');
   tb.addEventListener('pointerdown', e => {
     if (e.target.closest('button') || !mq.matches) return;
@@ -253,10 +248,10 @@ wins.forEach(w => {
     tx = e.clientX - sx; ty = e.clientY - sy;
     w.style.transform = `translate(${tx}px,${ty}px)`;
   });
-  tb.addEventListener('pointerup', () => drag = false);
+  tb.addEventListener('pointerup', () => { drag = false; });
 });
 
-/* ---- язык ---- */
+/* язык */
 const btns = document.querySelectorAll('.lang-btn');
 function setLang(lang){
   document.body.classList.toggle('lang-en', lang === 'en');
