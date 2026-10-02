@@ -69,7 +69,21 @@ h1 b{display:inline-block;padding:.04em .14em;line-height:1.05;font-weight:400}
 /* сетка */
 .grid{display:grid;grid-template-columns:200px 1fr;gap:10px;padding:8px 6px;align-items:start}
 .side{display:flex;flex-direction:column;gap:12px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.two{display:flex;gap:12px;margin-top:12px}.two>.w{flex:1;min-width:0}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.gc{position:relative;display:block}
+.gc .d{display:none;position:absolute;left:0;right:0;top:100%;z-index:8;margin:2px 0 0;padding:6px;background:#fff;border:2px solid #000;box-shadow:3px 3px 0 #000}
+.gc:hover .d,.gc.sel .d{display:block}
+.gc.sel .m{outline:3px dashed var(--p);outline-offset:3px}
+.ls{max-height:230px;overflow:auto;scrollbar-color:#6a70a8 #dde}
+.po{margin:0 0 6px}.po summary{cursor:pointer}.po p{margin:4px 0 0}
+.lr{margin:0 0 8px;padding-bottom:6px;border-bottom:1px dotted var(--n)}
+.lr i,.po i{padding:0 4px;margin-right:4px;font:700 11px var(--px);font-style:normal;color:#fff;background:var(--n)}
+.ch{display:inline-block;margin-left:4px;padding:0 5px;background:var(--y);border:1px solid #000;font-weight:700;cursor:pointer}
+.ch:hover{background:var(--p)}
+.cnt{padding:1px 6px;font:700 13px 'Courier New',monospace;letter-spacing:2px;color:#39ff6a;background:#000;border:2px solid;border-color:var(--in)}
+.cnt::before{content:"◉ ";color:#ff5b8a}
+.ed input,.ed select,.ed textarea{display:block;width:100%;margin:0 0 4px;font:11px var(--ui)}
 .w{position:relative;z-index:10;padding:2px;background:var(--f);border:2px solid;border-color:var(--out);box-shadow:2px 2px 0 #0005}
 .w.h{display:none}
 .w.s>:not(.t):not(.o){display:none}
@@ -88,7 +102,7 @@ h1 b{display:inline-block;padding:.04em .14em;line-height:1.05;font-weight:400}
 
 /* картинки выпрыгивают за рамку */
 .m{position:relative;height:130px;margin-bottom:8px;border:2px solid;border-color:var(--in);background:#10204a;transition:transform .2s steps(4)}
-.m.big{height:210px}
+.gc .m{height:120px}
 .m:hover{transform:scale(1.4) rotate(-2deg);z-index:7;box-shadow:4px 4px 0 #000}
 .m img{width:100%;height:100%;object-fit:cover;display:block}
 h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px dotted var(--n)}
@@ -103,7 +117,6 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
 .n a:hover{transform:scale(1.2) rotate(-2deg);z-index:7;box-shadow:inset 0 0 0 1px #fff9,3px 3px 0 #000}
 .n a:nth-child(even):hover{transform:scale(1.2) rotate(2deg)}
 .n b{font:700 16px/1.1 var(--px)}
-.n small{font-size:11px;line-height:1.1}
 .n a:nth-child(1){background:linear-gradient(#6f86ff,#14147a);color:#fff}
 .n a:nth-child(2){background:var(--ck) 0 0/8px 8px;color:#fff}
 .n a:nth-child(2) b,.n a:nth-child(2) small{background:#000;padding:0 4px}
@@ -125,7 +138,7 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
 @media (min-width:941px){.side>.w:first-child{margin:-44px 0 0 -26px}}
 @media (max-width:940px){
 .shell{width:auto;margin:14px 8px 60px}
-.grid,.two{grid-template-columns:1fr}
+.grid{grid-template-columns:1fr}.two{flex-direction:column}
 .in{padding:30px 130px 40px 14px}
 .face{top:10px;right:4px;width:150px;height:150px}
 }
@@ -165,58 +178,33 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
         <div class="b"><div class="av"><img class="u-photo" src="avatar.png" alt="Danielle Choster" onerror="this.parentNode.innerHTML='<div>DC</div>'"></div></div>
         <svg class="o d" style="top:-14px;right:-12px;animation-delay:-.4s" viewBox="0 0 9 9"><use href="#sp"/></svg>
       </section>
-
       <nav class="w">
         <div class="t"><span><span class="ru">Ссылки</span><span class="en">Links</span></span></div>
         <div class="b n">
-          <a rel="me noopener" href="https://t.me/Sran_Dev" target="_blank"><b><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></b><small><span class="ru">тг-канал студии — новости и апдейты</span><span class="en">studio's Telegram channel — news &amp; updates</span></small></a>
-          <a rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank"><b>itch.io</b><small><span class="ru">все игры в одном месте</span><span class="en">all games in one place</span></small></a>
-          <a rel="me noopener" href="https://t.me/DanielleChoster" target="_blank"><b><span class="ru">Личка</span><span class="en">DM</span></b><small><span class="ru">написать напрямую в тг</span><span class="en">message directly on Telegram</span></small></a>
-          <a rel="me noopener" href="https://discord.com/users/975382866122903582" target="_blank"><b>Discord</b><small><span class="ru">написать в дискорде</span><span class="en">message on Discord</span></small></a>
-          <a rel="me noopener" href="https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC" target="_blank"><b>YouTube</b><small><span class="ru">видео и разработка</span><span class="en">videos &amp; devlogs</span></small></a>
-          <a rel="me noopener" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq" target="_blank"><b>TikTok</b><small><span class="ru">короткие клипы</span><span class="en">short clips</span></small></a>
+          <a rel="me noopener" href="https://t.me/Sran_Dev" target="_blank"><b><span class="ru">Срань.dev</span><span class="en">Sran.dev</span></b></a>
+          <a rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank"><b>itch.io</b></a>
+          <a rel="me noopener" href="https://t.me/DanielleChoster" target="_blank"><b><span class="ru">Личка</span><span class="en">DM</span></b></a>
+          <a rel="me noopener" href="https://discord.com/users/975382866122903582" target="_blank"><b>Discord</b></a>
+          <a rel="me noopener" href="https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC" target="_blank"><b>YouTube</b></a>
+          <a rel="me noopener" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq" target="_blank"><b>TikTok</b></a>
         </div>
       </nav>
-
-      <section class="w">
-        <div class="t"><span>itch.io</span></div>
-        <a class="b" rel="me noopener" href="https://daniellechoster.itch.io/" target="_blank">
-          <div class="ims"><img src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif" alt="" loading="lazy"><img src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif" alt="" loading="lazy"><img src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png" alt="" loading="lazy"></div>
-          <p><span class="ru">все игры в одном месте</span><span class="en">all games in one place</span></p>
-        </a>
-      </section>
     </aside>
 
     <main>
-      <article class="w">
-        <div class="t"><span><span class="ru">В разработке</span><span class="en">In development</span></span></div>
-        <a class="b" href="https://daniellechoster.itch.io/what-the-car" target="_blank" rel="noopener">
-          <div class="m big"><img src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif" alt="WHAT THE CAR" loading="lazy"></div>
-          <h3>WHAT THE CAR</h3>
-          <p><span class="ru">Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.</span><span class="en">An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride.</span></p>
-          <p class="mt"><span class="ru">следить в тг-канале</span><span class="en">follow the channel</span></p>
-        </a>
+      <article class="w" id="wg">
+        <div class="t"><span><span class="ru">Игры</span><span class="en">Games</span></span></div>
+        <div class="b gl" id="gl"></div>
         <svg class="o" style="bottom:-14px;right:-12px" viewBox="0 0 9 9"><use href="#sp"/></svg>
       </article>
-
       <div class="two">
-        <article class="w">
-          <div class="t"><span><span class="ru">Последнее демо</span><span class="en">Latest demo</span></span></div>
-          <a class="b" href="https://daniellechoster.itch.io/outpatient" target="_blank" rel="noopener">
-            <div class="m"><img src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif" alt="OUTPATIENT" loading="lazy"></div>
-            <h3>OUTPATIENT</h3>
-            <p><span class="ru">Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.</span><span class="en">An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors.</span></p>
-            <p class="mt">88 MB · Windows</p>
-          </a>
+        <article class="w" id="wp">
+          <div class="t"><span><span class="ru">Посты</span><span class="en">Posts</span></span></div>
+          <div class="b ls" id="pl"></div>
         </article>
-        <article class="w">
-          <div class="t"><span><span class="ru">4.9 ★ · 8 оценок</span><span class="en">4.9 ★ · 8 ratings</span></span></div>
-          <a class="b" href="https://daniellechoster.itch.io/loop-protocol" target="_blank" rel="noopener">
-            <div class="m"><img src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png" alt="LOOP PROTOCOL" loading="lazy"></div>
-            <h3>LOOP PROTOCOL</h3>
-            <p><span class="ru">Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.</span><span class="en">Write code — watch it come to life. A puzzle game about programming your character with commands.</span></p>
-            <p class="mt">53 MB · Windows, Android</p>
-          </a>
+        <article class="w" id="wl">
+          <div class="t"><span><span class="ru">Ченджлог</span><span class="en">Changelog</span></span></div>
+          <div class="b ls" id="cl"></div>
           <svg class="o d" style="top:-14px;right:-12px;animation-delay:-1.3s" viewBox="0 0 9 9"><use href="#sp"/></svg>
         </article>
       </div>
@@ -230,6 +218,7 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
       <button class="lb" data-lang="en" type="button">EN</button>
     </div>
     <div id="tbz"></div>
+    <div class="cnt" id="cnt">——</div>
     <div class="tr">© <span id="year"></span> Danielle Choster</div>
   </footer>
 
@@ -248,6 +237,57 @@ document.getElementById('year').textContent=new Date().getFullYear();
 const RW='.:-=+*#%@~'.repeat(60);
 document.querySelectorAll('.rain').forEach(e=>e.innerHTML='<i>'+RW+'</i>');
 
+/* =====================================================================
+   ТВОИ ДАННЫЕ — правишь только тут. Всё остальное собирается само.
+   ИГРА:  добавь объект в GAMES (id — латиницей, без пробелов).
+   ПОСТ:  добавь объект в POSTS; game:'id игры' — в посте появится ссылка на игру.
+   ЧЕНДЖЛОГ: добавь объект в LOG; game — по желанию. Новое — сверху.
+   Подсказка: открой сайт с #edit на конце адреса — форма выдаст готовую строку.
+   ===================================================================== */
+const NEKOWEB='';/* ← сюда твой логин на nekoweb: счётчик заходов берётся оттуда */
+const GAMES=[
+ {id:'what-the-car',title:'WHAT THE CAR',img:'https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif',url:'https://daniellechoster.itch.io/what-the-car',
+  ru:'Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.',en:'An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride.',meta:['следить в тг-канале','follow the channel']},
+ {id:'outpatient',title:'OUTPATIENT',img:'https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif',url:'https://daniellechoster.itch.io/outpatient',
+  ru:'Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.',en:"An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors.",meta:'88 MB · Windows'},
+ {id:'loop-protocol',title:'LOOP PROTOCOL',img:'https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png',url:'https://daniellechoster.itch.io/loop-protocol',
+  ru:'Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.',en:'Write code — watch it come to life. A puzzle game about programming your character with commands.',meta:['4.9 ★ · 8 оценок · 53 MB · Windows, Android','4.9 ★ · 8 ratings · 53 MB · Windows, Android']}
+];
+const POSTS=[
+ /* {date:'02.10.2026',game:'what-the-car',title:'Заголовок',ru:'Текст поста',en:'Post text'}, */
+];
+const LOG=[
+ {date:'02.10.2026',game:'what-the-car',ru:'В разработке. Новости — в тг-канале.',en:'In development. News in the Telegram channel.'},
+ {date:'02.10.2026',game:'outpatient',ru:'Последнее демо: 88 MB, Windows.',en:'Latest demo: 88 MB, Windows.'},
+ {date:'02.10.2026',game:'loop-protocol',ru:'4.9 ★ · 8 оценок.',en:'4.9 ★ · 8 ratings.'},
+ {date:'02.10.2026',ru:'UI: сайт переделан — окна, ссылки, счётчик заходов, ченджлог. Игры, посты и ченджлог добавляются в одном месте.',en:'UI: site redesigned — windows, links, visit counter, changelog. Games, posts and changelog are added in one place.'}
+];
+
+/* ---------- сборка окон из данных ---------- */
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const T=(r,e)=>`<span class="ru">${esc(r)}</span><span class="en">${esc(e||r)}</span>`;
+const M=m=>Array.isArray(m)?T(m[0],m[1]):T(m);
+const chip=id=>{const g=GAMES.find(x=>x.id===id);return g?`<a class="ch" href="#g-${esc(id)}" data-g="${esc(id)}">${esc(g.title)}</a>`:''};
+document.getElementById('gl').innerHTML=GAMES.map(g=>`<a class="gc" id="g-${esc(g.id)}" href="${esc(g.url)}" target="_blank" rel="noopener"><div class="m"><img src="${esc(g.img)}" alt="${esc(g.title)}" loading="lazy"></div><h3>${esc(g.title)}</h3><p class="mt">${M(g.meta||'')}</p><p class="d">${T(g.ru||'',g.en)}</p></a>`).join('');
+document.getElementById('pl').innerHTML=POSTS.map(p=>`<details class="po"><summary><i>${esc(p.date||'')}</i>${esc(p.title||'')}${chip(p.game)}</summary><p>${T(p.ru||'',p.en)}</p></details>`).join('');
+document.getElementById('cl').innerHTML=LOG.map(l=>`<div class="lr"><i>${esc(l.date||'')}</i>${T(l.ru||'',l.en)}${chip(l.game)}</div>`).join('');
+if(!POSTS.length)document.getElementById('wp').classList.add('h');
+function goto(id){const c=document.getElementById('g-'+id);if(!c)return;const w=c.closest('.w');if(w._c)w._c.remove();w.classList.remove('h','s');w.style.zIndex=++zi;document.querySelectorAll('.gc.sel').forEach(e=>e.classList.remove('sel'));c.classList.add('sel');c.scrollIntoView({block:'center',behavior:'smooth'});setTimeout(()=>c.classList.remove('sel'),4000)}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-g]');if(a){e.preventDefault();goto(a.dataset.g)}});
+
+/* ---------- счётчик заходов (статистику ведёт сам nekoweb) ---------- */
+(async()=>{const el=document.getElementById('cnt');try{const d=await(await fetch('https://nekoweb.org/api/site/info/'+NEKOWEB)).json();if(d.views!=null)el.textContent=String(d.views).padStart(6,'0')}catch(e){}})();
+
+/* ---------- форма для себя: открой сайт с #edit ---------- */
+if(location.hash==='#edit'){
+  const f=['id','title','img','url','game','date','meta','ru','en'],w=document.createElement('section');
+  w.className='w';w.style.cssText='position:fixed;right:12px;top:12px;z-index:900;width:290px';
+  w.innerHTML='<div class="t"><span>edit</span></div><div class="b ed"><select id="ty"><option>GAMES</option><option>POSTS</option><option>LOG</option></select>'+f.map(k=>`<input id="e-${k}" placeholder="${k}">`).join('')+'<textarea id="eo" rows="4" readonly></textarea></div>';
+  document.body.append(w);
+  const up=()=>{const o={};f.forEach(k=>{const v=document.getElementById('e-'+k).value.trim();if(v)o[k]=v});document.getElementById('eo').value=document.getElementById('ty').value+':\n'+JSON.stringify(o)+','};
+  w.addEventListener('input',up);document.getElementById('eo').onfocus=e=>e.target.select();up();
+}
+
 /* ---------- окна: тащи за заголовок, [_] сворачивает, [x] в таскбар ---------- */
 document.querySelectorAll('.t').forEach(t=>t.insertAdjacentHTML('beforeend','<svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span>'));
 const tbz=document.getElementById('tbz');let zi=11;
@@ -264,7 +304,7 @@ document.querySelectorAll('.w').forEach(w=>{
   t.querySelector('.x').onclick=()=>{
     w.classList.add('h');
     const b=document.createElement('button');b.className='tz';b.type='button';b.innerHTML=t.firstElementChild.innerHTML;
-    b.onclick=()=>{w.classList.remove('h');w.style.zIndex=++zi;b.remove()};tbz.append(b);
+    b.onclick=()=>{w.classList.remove('h');w.style.zIndex=++zi;b.remove()};w._c=b;tbz.append(b);
   };
 });
 
