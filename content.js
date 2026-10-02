@@ -1,5 +1,6 @@
 /* =========================================================
-   КОНТЕНТ САЙТА — редактируй только этот файл
+   КОНТЕНТ САЙТА
+   РЕДАКТИРУЙ ТОЛЬКО ЭТОТ ФАЙЛ
    ========================================================= */
 
 
@@ -100,7 +101,7 @@ const POSTS = [
 
 
 /* =========================================================
-   ЧЕНДЖЛОГ
+   CHANGLEOG
    ========================================================= */
 
 const LOG = [
@@ -148,6 +149,57 @@ const LOG = [
       'UI: сайт переделан — окна, ссылки, ченджлог и посты.',
       'UI: website rebuilt — windows, links, changelog and posts.'
     ]
+  }
+
+];
+
+
+/* =========================================================
+   PICS
+   Меняй URL здесь — index.html трогать не надо.
+   ========================================================= */
+
+const PICS = [
+
+  {
+    url: 'https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png',
+    alt: 'Konata Izumi'
+  },
+
+  {
+    url: 'https://i.kym-cdn.com/photos/images/newsfeed/001/169/579/73f.png',
+    alt: 'Konata Izumi'
+  },
+
+  {
+    url: 'https://i.kym-cdn.com/photos/images/newsfeed/000/869/992/0d2.jpg',
+    alt: 'Konata Izumi'
+  },
+
+  {
+    url: 'https://i.kym-cdn.com/photos/images/newsfeed/000/956/172/c9e.jpg',
+    alt: 'Konata Izumi'
+  },
+
+
+  {
+    url: 'https://i.kym-cdn.com/photos/images/newsfeed/000/494/436/128.png',
+    alt: 'Rei Ayanami'
+  },
+
+  {
+    url: 'https://i.kym-cdn.com/photos/images/newsfeed/000/751/443/14d.jpg',
+    alt: 'Rei Ayanami'
+  },
+
+  {
+    url: 'https://i.kym-cdn.com/photos/images/newsfeed/000/750/621/205.jpg',
+    alt: 'Rei Ayanami'
+  },
+
+  {
+    url: 'https://i.kym-cdn.com/photos/images/newsfeed/001/867/600/0f3.jpg',
+    alt: 'Rei Ayanami'
   }
 
 ];
