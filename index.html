@@ -60,17 +60,16 @@ body:not(.lang-en) .en{display:none}
 h1{margin:0;display:flex;flex-wrap:wrap;gap:8px 20px;font:400 clamp(24px,4vw,38px)/1 'Alfa Slab One',serif;color:#fff;filter:drop-shadow(2px 2px 0 #0007)}
 .wd{display:flex;white-space:nowrap}
 h1 b{display:inline-block;padding:.04em .14em;line-height:1.05;font-weight:400}
-.face{position:absolute;z-index:9;right:24px;top:-48px;width:250px;height:250px;pointer-events:none;filter:drop-shadow(2px 2px 0 #000)}
+.face{position:absolute;z-index:9;right:24px;top:-48px;width:250px;height:250px;pointer-events:none;filter:drop-shadow(0 7px 0 #0009) drop-shadow(2px 2px 0 #000)}
 .np{display:flex;gap:8px;align-items:center;height:22px;margin-top:2px;padding:0 8px;background:var(--n);color:#39ff6a;font:700 12px var(--px)}
 .mq{display:block;flex:1;overflow:hidden;white-space:nowrap;color:#39ff6a}
 .mq>span{display:inline-block;padding-left:100%;animation:mq 16s linear infinite}
 @keyframes mq{to{transform:translateX(-100%)}}
 
 /* сетка */
-.grid{display:grid;grid-template-columns:200px 1fr;gap:10px;padding:8px 6px;align-items:start}
-.side{display:flex;flex-direction:column;gap:12px}
-.two{display:flex;gap:12px;margin-top:12px}.two>.w{flex:1;min-width:0}
-.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:180px minmax(0,1fr);gap:8px;padding:8px 6px;align-items:start}
+.side{display:flex;flex-direction:column;gap:10px;position:relative;z-index:30}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px}
 .gc{position:relative;display:block}
 .gc .d{display:none;position:absolute;left:0;right:0;top:100%;z-index:8;margin:2px 0 0;padding:6px;background:#fff;border:2px solid #000;box-shadow:3px 3px 0 #000}
 .gc:hover .d,.gc.sel .d{display:block}
@@ -84,15 +83,43 @@ h1 b{display:inline-block;padding:.04em .14em;line-height:1.05;font-weight:400}
 .cnt{padding:1px 6px;font:700 13px 'Courier New',monospace;letter-spacing:2px;color:#39ff6a;background:#000;border:2px solid;border-color:var(--in)}
 .cnt::before{content:"◉ ";color:#ff5b8a}
 .ed input,.ed select,.ed textarea{display:block;width:100%;margin:0 0 4px;font:11px var(--ui)}
-.w{position:relative;z-index:10;padding:2px;background:var(--f);border:2px solid;border-color:var(--out);box-shadow:2px 2px 0 #0005}
+.w{position:relative;z-index:10;padding:2px;background:var(--f);border:2px solid;border-color:var(--out);box-shadow:3px 3px 0 #0007}
 .w.h{display:none}
 .w.s>:not(.t):not(.o){display:none}
 .w:has(.m:hover,.n a:hover,.ims img:hover){z-index:500!important}
-.b{display:block;margin:2px 0 0;padding:8px;background:linear-gradient(#f2f4ff,#bcc7ec);border:2px solid;border-color:var(--in)}
+.b{display:block;margin:2px 0 0;padding:7px;background:linear-gradient(#f2f4ff,#bcc7ec);border:2px solid;border-color:var(--in)}
 .b p{margin:0 0 6px}
 .o{position:absolute;z-index:6;width:30px;height:30px;color:#fff;filter:drop-shadow(2px 2px 0 #000);animation:bl 1.4s steps(1) infinite;pointer-events:none}
 .o.d{color:var(--y)}
 @keyframes bl{50%{transform:scale(.5)}}
+
+
+
+
+/* ---------- комментарии ---------- */
+.comments-window{margin-top:8px}
+.comments-layout{display:grid;grid-template-columns:minmax(0,1fr) 185px;gap:8px}
+.comment-list{max-height:330px;overflow:auto;padding:4px;background:#d7d9e2;border:2px inset #fff}
+.comment{margin:0 0 7px;padding:7px;background:#f4f5fb;border:1px solid #858aa9;box-shadow:1px 1px 0 #fff}
+.comment:last-child{margin-bottom:0}
+.comment-head{display:flex;align-items:baseline;gap:6px;justify-content:space-between;border-bottom:1px dotted #777;margin-bottom:4px;padding-bottom:3px}
+.comment-name{font:700 12px var(--px);color:var(--n)}
+.comment-date{font:10px var(--ui);color:#666;white-space:nowrap}
+.comment-site{font-size:10px;color:#394b99}
+.comment-text{margin:4px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.comment-form{padding:7px;background:#d7d9e2;border:2px inset #fff}
+.comment-form h3{font-size:14px;margin-bottom:7px}
+.comment-form input,.comment-form textarea{display:block;width:100%;margin:0 0 5px;padding:4px 5px;background:#fff;border:2px inset #fff;font:11px var(--ui);color:#111}
+.comment-form textarea{min-height:94px;resize:vertical}
+.comment-form .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.comment-form button{padding:4px 10px;background:linear-gradient(#fff,#bcc7ec);border:2px solid;border-color:var(--out);font:700 11px var(--ui);cursor:pointer}
+.comment-form button:active{border-color:var(--in)}
+.comment-note{margin-top:5px;font-size:9px;color:#555}
+.comment-status{min-height:13px;margin-top:4px;font-size:10px}
+.comment-empty{padding:18px 8px;text-align:center;color:#666}
+@media (max-width:940px){
+  .comments-layout{grid-template-columns:1fr}
+}
 
 /* аватар */
 .av{width:120px;height:120px;margin:0 auto;padding:6px;background:var(--ck) 0 0/10px 10px;border:1px solid #fff;display:flex;transform:rotate(-2deg)}
@@ -107,6 +134,11 @@ h1 b{display:inline-block;padding:.04em .14em;line-height:1.05;font-weight:400}
 .m img{width:100%;height:100%;object-fit:cover;display:block}
 h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px dotted var(--n)}
 .mt{display:inline-block;margin:0;padding:1px 6px;background:var(--y);border:2px solid;border-color:var(--out);font-weight:700}
+.gactions{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.ga{display:inline-block;padding:3px 7px;background:#111;color:#fff;border:2px solid #000;box-shadow:2px 2px 0 #000; font:700 11px var(--ui)}
+.ga:hover{background:var(--p);color:#111}
+.ga.itch{background:#fff;color:#111}
+
 .ims{display:flex;gap:3px;margin-bottom:6px}
 .ims img{position:relative;flex:1;min-width:0;height:56px;object-fit:cover;border:2px solid;border-color:var(--in);transition:transform .2s steps(4)}
 .ims img:hover{transform:scale(2.3) rotate(3deg);z-index:7;box-shadow:3px 3px 0 #000}
@@ -135,10 +167,9 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
 .tz{padding:2px 10px;max-width:150px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .tr{font:11px var(--ui);white-space:nowrap}
 
-@media (min-width:941px){.side>.w:first-child{margin:-44px 0 0 -26px}}
 @media (max-width:940px){
 .shell{width:auto;margin:14px 8px 60px}
-.grid{grid-template-columns:1fr}.two{flex-direction:column}
+.grid{grid-template-columns:1fr}
 .in{padding:30px 130px 40px 14px}
 .face{top:10px;right:4px;width:150px;height:150px}
 }
@@ -189,6 +220,12 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
           <a rel="me noopener" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq" target="_blank"><b>TikTok</b></a>
         </div>
       </nav>
+
+      <section class="w" id="wl">
+        <div class="t"><span><span class="ru">Ченджлог</span><span class="en">Changelog</span></span></div>
+        <div class="b ls" id="cl"></div>
+        <svg class="o d" style="top:-14px;right:-12px;animation-delay:-1.3s" viewBox="0 0 9 9"><use href="#sp"/></svg>
+      </section>
     </aside>
 
     <main>
@@ -197,17 +234,43 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
         <div class="b gl" id="gl"></div>
         <svg class="o" style="bottom:-14px;right:-12px" viewBox="0 0 9 9"><use href="#sp"/></svg>
       </article>
-      <div class="two">
-        <article class="w" id="wp">
-          <div class="t"><span><span class="ru">Посты</span><span class="en">Posts</span></span></div>
-          <div class="b ls" id="pl"></div>
-        </article>
-        <article class="w" id="wl">
-          <div class="t"><span><span class="ru">Ченджлог</span><span class="en">Changelog</span></span></div>
-          <div class="b ls" id="cl"></div>
-          <svg class="o d" style="top:-14px;right:-12px;animation-delay:-1.3s" viewBox="0 0 9 9"><use href="#sp"/></svg>
-        </article>
-      </div>
+      <article class="w" id="wp">
+        <div class="t"><span><span class="ru">Посты</span><span class="en">Posts</span></span></div>
+        <div class="b ls" id="pl"></div>
+      </article>
+      <section class="w comments-window" id="comments">
+        <div class="t">
+          <span><span class="ru">Комментарии</span><span class="en">Comments</span></span>
+        </div>
+        <div class="b comments-layout">
+          <div class="comment-list" id="commentList">
+            <div class="comment-empty">
+              <span class="ru">Загрузка комментариев...</span>
+              <span class="en">Loading comments...</span>
+            </div>
+          </div>
+
+          <form class="comment-form" id="commentForm">
+            <h3><span class="ru">Оставить комментарий</span><span class="en">Leave a comment</span></h3>
+            <div class="cf-row">
+              <input id="commentName" name="name" maxlength="40" required
+                     placeholder="Ник">
+              <input id="commentSite" name="site" maxlength="120"
+                     placeholder="Сайт (необязательно)">
+            </div>
+            <textarea id="commentText" name="message" maxlength="1000" required
+                      placeholder="Сообщение"></textarea>
+            <button type="submit">
+              <span class="ru">Отправить</span><span class="en">Submit</span>
+            </button>
+            <div class="comment-status" id="commentStatus"></div>
+            <div class="comment-note">
+              <span class="ru">Сайт можно оставить пустым.</span>
+              <span class="en">Website is optional.</span>
+            </div>
+          </form>
+        </div>
+      </section>
     </main>
 
   </div>
@@ -224,11 +287,12 @@ h3{margin:0 0 6px;font:700 17px/1.1 var(--px);color:var(--n);border-bottom:2px d
 
 </div>
 
+<script src="content.js"></script>
 <script>
 /* ---------- язык ---------- */
 const bs=document.querySelectorAll('.lb');
-function setLang(l){document.body.classList.toggle('lang-en',l==='en');document.documentElement.lang=l;bs.forEach(b=>b.classList.toggle('on',b.dataset.lang===l));try{localStorage.setItem('site-lang',l)}catch(e){}}
-bs.forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+function setLang(l){document.body.classList.toggle('lang-en',l==='en');document.documentElement.lang=l;bs.forEach(b=>b.classList.toggle('on',b.dataset.lang===l));const n=document.getElementById('commentName'),t=document.getElementById('commentText'),s=document.getElementById('commentSite');if(n)n.placeholder=l==='en'?'Name':'Ник';if(t)t.placeholder=l==='en'?'Message':'Сообщение';if(s)s.placeholder=l==='en'?'Website (optional)':'Сайт (необязательно)';try{localStorage.setItem('site-lang',l)}catch(e){}}
+bs.forEach(b=>b.onclick=()=>{setLang(b.dataset.lang);if(typeof loadComments==='function')loadComments()});
 let L='ru';try{const s=localStorage.getItem('site-lang');if(s==='ru'||s==='en')L=s;else if((navigator.language||'').toLowerCase().startsWith('en'))L='en'}catch(e){}
 setLang(L);
 document.getElementById('year').textContent=new Date().getFullYear();
@@ -244,49 +308,121 @@ document.querySelectorAll('.rain').forEach(e=>e.innerHTML='<i>'+RW+'</i>');
    ЧЕНДЖЛОГ: добавь объект в LOG; game — по желанию. Новое — сверху.
    Подсказка: открой сайт с #edit на конце адреса — форма выдаст готовую строку.
    ===================================================================== */
-const NEKOWEB='';/* ← сюда твой логин на nekoweb: счётчик заходов берётся оттуда */
-const GAMES=[
- {id:'what-the-car',title:'WHAT THE CAR',img:'https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif',url:'https://daniellechoster.itch.io/what-the-car',
-  ru:'Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.',en:'An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride.',meta:['следить в тг-канале','follow the channel']},
- {id:'outpatient',title:'OUTPATIENT',img:'https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif',url:'https://daniellechoster.itch.io/outpatient',
-  ru:'Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.',en:"An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors.",meta:'88 MB · Windows'},
- {id:'loop-protocol',title:'LOOP PROTOCOL',img:'https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png',url:'https://daniellechoster.itch.io/loop-protocol',
-  ru:'Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.',en:'Write code — watch it come to life. A puzzle game about programming your character with commands.',meta:['4.9 ★ · 8 оценок · 53 MB · Windows, Android','4.9 ★ · 8 ratings · 53 MB · Windows, Android']}
-];
-const POSTS=[
- /* {date:'02.10.2026',game:'what-the-car',title:'Заголовок',ru:'Текст поста',en:'Post text'}, */
-];
-const LOG=[
- {date:'02.10.2026',game:'what-the-car',ru:'В разработке. Новости — в тг-канале.',en:'In development. News in the Telegram channel.'},
- {date:'02.10.2026',game:'outpatient',ru:'Последнее демо: 88 MB, Windows.',en:'Latest demo: 88 MB, Windows.'},
- {date:'02.10.2026',game:'loop-protocol',ru:'4.9 ★ · 8 оценок.',en:'4.9 ★ · 8 ratings.'},
- {date:'02.10.2026',ru:'UI: сайт переделан — окна, ссылки, счётчик заходов, ченджлог. Игры, посты и ченджлог добавляются в одном месте.',en:'UI: site redesigned — windows, links, visit counter, changelog. Games, posts and changelog are added in one place.'}
-];
+const SUPABASE_URL='';
+const SUPABASE_ANON_KEY='';
+const COMMENTS_TABLE='comments';
 
+/* Данные сайта находятся в content.js */
 /* ---------- сборка окон из данных ---------- */
 const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const T=(r,e)=>`<span class="ru">${esc(r)}</span><span class="en">${esc(e||r)}</span>`;
-const M=m=>Array.isArray(m)?T(m[0],m[1]):T(m);
+const T=x=>esc(x||'');
+const M=m=>Array.isArray(m)?esc(m[0]||''):esc(m||'');
 const chip=id=>{const g=GAMES.find(x=>x.id===id);return g?`<a class="ch" href="#g-${esc(id)}" data-g="${esc(id)}">${esc(g.title)}</a>`:''};
-document.getElementById('gl').innerHTML=GAMES.map(g=>`<a class="gc" id="g-${esc(g.id)}" href="${esc(g.url)}" target="_blank" rel="noopener"><div class="m"><img src="${esc(g.img)}" alt="${esc(g.title)}" loading="lazy"></div><h3>${esc(g.title)}</h3><p class="mt">${M(g.meta||'')}</p><p class="d">${T(g.ru||'',g.en)}</p></a>`).join('');
-document.getElementById('pl').innerHTML=POSTS.map(p=>`<details class="po"><summary><i>${esc(p.date||'')}</i>${esc(p.title||'')}${chip(p.game)}</summary><p>${T(p.ru||'',p.en)}</p></details>`).join('');
-document.getElementById('cl').innerHTML=LOG.map(l=>`<div class="lr"><i>${esc(l.date||'')}</i>${T(l.ru||'',l.en)}${chip(l.game)}</div>`).join('');
-if(!POSTS.length)document.getElementById('wp').classList.add('h');
+document.getElementById('gl').innerHTML=GAMES.map(g=>`
+  <article class="gc" id="g-${esc(g.id)}">
+    <div class="m"><img src="${esc(g.img)}" alt="${esc(g.title)}" loading="lazy"></div>
+    <h3>${esc(g.title)}</h3>
+    <p class="mt">${M(g.meta||'')}</p>
+    <p class="d">${T(g.text||'')}</p>
+    <div class="gactions">
+      <a class="ga itch" href="${esc(g.itch||g.url||'#')}" target="_blank" rel="noopener">Открыть на itch.io</a>
+    </div>
+  </article>`).join('');
+document.getElementById('pl').innerHTML=POSTS.map(p=>`<details class="po"><summary><i>${esc(p.date||'')}</i>${esc(p.title||'')}${chip(p.game)}</summary><p>${T(p.text||'')}</p></details>`).join('');
+document.getElementById('cl').innerHTML=LOG.map(l=>`<div class="lr"><i>${esc(l.date||'')}</i>${T(l.text||'')}${chip(l.game)}</div>`).join('');
 function goto(id){const c=document.getElementById('g-'+id);if(!c)return;const w=c.closest('.w');if(w._c)w._c.remove();w.classList.remove('h','s');w.style.zIndex=++zi;document.querySelectorAll('.gc.sel').forEach(e=>e.classList.remove('sel'));c.classList.add('sel');c.scrollIntoView({block:'center',behavior:'smooth'});setTimeout(()=>c.classList.remove('sel'),4000)}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-g]');if(a){e.preventDefault();goto(a.dataset.g)}});
 
-/* ---------- счётчик заходов (статистику ведёт сам nekoweb) ---------- */
-(async()=>{const el=document.getElementById('cnt');try{const d=await(await fetch('https://nekoweb.org/api/site/info/'+NEKOWEB)).json();if(d.views!=null)el.textContent=String(d.views).padStart(6,'0')}catch(e){}})();
+/* ---------- комментарии ---------- */
+const commentList=document.getElementById('commentList');
+const commentForm=document.getElementById('commentForm');
+const commentStatus=document.getElementById('commentStatus');
 
-/* ---------- форма для себя: открой сайт с #edit ---------- */
-if(location.hash==='#edit'){
-  const f=['id','title','img','url','game','date','meta','ru','en'],w=document.createElement('section');
-  w.className='w';w.style.cssText='position:fixed;right:12px;top:12px;z-index:900;width:290px';
-  w.innerHTML='<div class="t"><span>edit</span></div><div class="b ed"><select id="ty"><option>GAMES</option><option>POSTS</option><option>LOG</option></select>'+f.map(k=>`<input id="e-${k}" placeholder="${k}">`).join('')+'<textarea id="eo" rows="4" readonly></textarea></div>';
-  document.body.append(w);
-  const up=()=>{const o={};f.forEach(k=>{const v=document.getElementById('e-'+k).value.trim();if(v)o[k]=v});document.getElementById('eo').value=document.getElementById('ty').value+':\n'+JSON.stringify(o)+','};
-  w.addEventListener('input',up);document.getElementById('eo').onfocus=e=>e.target.select();up();
+const demoComments=[
+  {name:'visitor',site:'',message:'Первый комментарий. Оставь свой, если хочешь.',created_at:'2026-10-02T20:00:00Z'}
+];
+
+function safeSite(v){
+  v=(v||'').trim();
+  if(!v)return '';
+  if(!/^https?:\/\//i.test(v))v='https://'+v;
+  try{return new URL(v).href}catch(e){return '';}
 }
+function renderComments(items){
+  if(!items.length){
+    commentList.innerHTML='<div class="comment-empty"><span class="ru">Пока никто ничего не написал.</span><span class="en">No comments yet.</span></div>';
+    return;
+  }
+  commentList.innerHTML=items.map(c=>{
+    const name=esc(c.name||'Anonymous');
+    const site=safeSite(c.site);
+    const nm=site?`<a class="comment-name" href="${esc(site)}" target="_blank" rel="noopener nofollow">${name}</a>`:`<span class="comment-name">${name}</span>`;
+    const date=c.created_at?new Date(c.created_at).toLocaleDateString(document.documentElement.lang==='en'?'en-US':'ru-RU'):'';
+    return `<article class="comment"><div class="comment-head">${nm}<span class="comment-date">${esc(date)}</span></div><div class="comment-text">${esc(c.message||'')}</div></article>`;
+  }).join('');
+}
+
+async function loadComments(){
+  try{
+    if(SUPABASE_URL&&SUPABASE_ANON_KEY){
+      const r=await fetch(`${SUPABASE_URL}/rest/v1/${COMMENTS_TABLE}?select=id,created_at,name,site,message&order=created_at.desc&limit=100`,{
+        headers:{apikey:SUPABASE_ANON_KEY,Authorization:`Bearer ${SUPABASE_ANON_KEY}`}
+      });
+      if(!r.ok)throw new Error('comments load failed');
+      renderComments(await r.json());
+      return;
+    }
+  }catch(e){
+    commentStatus.textContent='Comments service unavailable.';
+  }
+  try{
+    const local=JSON.parse(localStorage.getItem('site-comments')||'[]');
+    renderComments(local.length?local:demoComments);
+  }catch(e){renderComments(demoComments)}
+}
+
+commentForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const name=document.getElementById('commentName').value.trim();
+  const site=safeSite(document.getElementById('commentSite').value);
+  const message=document.getElementById('commentText').value.trim();
+  if(!name||!message)return;
+
+  const item={name,site,message,created_at:new Date().toISOString()};
+  commentStatus.textContent='';
+
+  try{
+    if(SUPABASE_URL&&SUPABASE_ANON_KEY){
+      const r=await fetch(`${SUPABASE_URL}/rest/v1/${COMMENTS_TABLE}`,{
+        method:'POST',
+        headers:{
+          apikey:SUPABASE_ANON_KEY,
+          Authorization:`Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type':'application/json',
+          Prefer:'return=minimal'
+        },
+        body:JSON.stringify(item)
+      });
+      if(!r.ok)throw new Error('comments save failed');
+      commentForm.reset();
+      commentStatus.textContent='✓ Sent';
+      await loadComments();
+      return;
+    }
+
+    const local=JSON.parse(localStorage.getItem('site-comments')||'[]');
+    local.unshift(item);
+    localStorage.setItem('site-comments',JSON.stringify(local.slice(0,100)));
+    commentForm.reset();
+    commentStatus.textContent='✓ Saved in this browser (demo mode)';
+    renderComments(local);
+  }catch(err){
+    commentStatus.textContent='Could not send comment.';
+  }
+});
+
+loadComments();
+
 
 /* ---------- окна: тащи за заголовок, [_] сворачивает, [x] в таскбар ---------- */
 document.querySelectorAll('.t').forEach(t=>t.insertAdjacentHTML('beforeend','<svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg><span class="tb"><button class="mn" type="button"></button><button class="x" type="button"><svg viewBox="0 0 7 7"><use href="#xx"/></svg></button></span>'));
