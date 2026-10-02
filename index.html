@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Danielle Choster — Срань.dev</title>
 <meta name="description" content="Игры, проекты и ссылки Danielle Choster (Срань.dev)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231a1a80'/%3E%3Crect x='4' y='4' width='56' height='56' fill='%23c0c0c0'/%3E%3Ctext x='32' y='45' font-family='monospace' font-weight='700' font-size='38' fill='%231a1a80' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000080'/%3E%3Crect x='4' y='4' width='56' height='56' fill='%23c0c0c0'/%3E%3Ctext x='32' y='45' font-family='monospace' font-weight='700' font-size='38' fill='%23000080' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Danielle Choster — Срань.dev">
 <meta property="og:description" content="Игры и ссылки Danielle Choster (Срань.dev)">
@@ -13,192 +13,164 @@
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy:#1c1c8a; --navy2:#3a3ad0; --lav:#c9cdf2; --gray:#c6c6c6; --w:#fff; --dk:#0b0b0b; --sh:#404040;
-  --rain:linear-gradient(90deg,#ff9ac8,#ffd89a,#fff59a,#a8ffb5,#9ad8ff,#c9a8ff,#ff9ac8);
-  --body:'VT323','Courier New',monospace; --head:'Pixelify Sans','VT323',monospace;
-}
+:root{--f:'VT323','Courier New',monospace;--g:#c0c0c0;--w:#fff;--d:#808080;--k:#000;--navy:#000080;
+  --rain:linear-gradient(90deg,#ff9ac8,#ffd89a,#fff59a,#a8ffb5,#9ad8ff,#c9a8ff,#ff9ac8)}
 *{box-sizing:border-box}
-html{background:#2f6fd0}
-body{margin:0;min-height:100vh;padding:16px 10px 40px;font:20px/1.15 var(--body);color:var(--dk)}
-
-/* Bliss-style wallpaper */
-.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;
+html,body{margin:0;height:100%}
+body{font:18px/1.1 var(--f);color:var(--k);overflow:hidden;
   background:
-    radial-gradient(ellipse 260px 70px at 18% 22%,rgba(255,255,255,.9),transparent 70%),
-    radial-gradient(ellipse 340px 90px at 72% 14%,rgba(255,255,255,.85),transparent 70%),
-    radial-gradient(ellipse 300px 80px at 88% 48%,rgba(255,255,255,.8),transparent 70%),
-    radial-gradient(ellipse 220px 60px at 40% 40%,rgba(255,255,255,.7),transparent 70%),
-    linear-gradient(#2b66cc,#5b9bea 40%,#bcdcf7 62%)}
-.sky::after{content:"";position:absolute;left:-20%;right:-20%;bottom:-28vh;height:62vh;border-radius:50%;
-  background:radial-gradient(ellipse at 40% 20%,#7cc23a,#4a9a1c 55%,#2c6e10)}
-a{color:inherit}
-:focus-visible{outline:2px dotted #fff;outline-offset:2px}
+    linear-gradient(#000080 0 0) 0 100%/100% 8% no-repeat,
+    linear-gradient(90deg,#c0c0c0 0 14.28%,#c0c000 0 28.56%,#00c0c0 0 42.84%,#00c000 0 57.12%,#c000c0 0 71.4%,#c00000 0 85.68%,#0000c0 0) 0 0/100% 75% no-repeat,
+    linear-gradient(90deg,#0000c0 0 14.28%,#111 0 28.56%,#c000c0 0 42.84%,#111 0 57.12%,#00c0c0 0 71.4%,#111 0 85.68%,#c0c0c0 0) 0 75%/100% 8% no-repeat,
+    #101010}
 body.en .ru,body:not(.en) .en{display:none}
+a{color:inherit}
+:focus-visible{outline:1px dotted #000;outline-offset:1px}
 
-.wrap{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:230px 1fr;gap:16px;align-items:start}
-@media(max-width:760px){.wrap{grid-template-columns:1fr}}
-.col{display:grid;gap:16px;align-content:start}
+.desktop{position:absolute;inset:0 0 32px 0;overflow:auto}
 
-/* window */
-.win{background:var(--gray);border:2px solid;border-color:var(--w) var(--sh) var(--sh) var(--w);box-shadow:0 0 0 2px #000,5px 5px 0 2px rgba(0,0,0,.55);padding:3px}
-.tb{display:flex;align-items:center;justify-content:center;position:relative;min-height:26px;padding:2px 30px;color:#fff;text-align:center;
-  background:linear-gradient(#3535c8,var(--navy));font:600 17px/1.1 var(--head)}
-.tb h1,.tb h2,.tb h3{margin:0;font:inherit}
-.tb.rb{background:var(--rain);color:#111}
-.x{position:absolute;right:3px;top:3px;width:20px;height:20px;background:#000;border:1px solid #fff;color:#fff}
-.x::before,.x::after{content:"";position:absolute;left:3px;right:3px;top:8px;height:2px;background:#fff;transform:rotate(45deg)}
-.x::after{transform:rotate(-45deg)}
-.pane{background:var(--dk);color:#fff;text-align:center;padding:10px;margin-top:3px;
-  background-image:linear-gradient(45deg,#161616 25%,transparent 25% 75%,#161616 75%),linear-gradient(45deg,#161616 25%,transparent 25% 75%,#161616 75%);background-size:16px 16px;background-position:0 0,8px 8px}
-.pane.lt{background:var(--lav);color:var(--dk);background-image:none;border:2px solid;border-color:var(--sh) var(--w) var(--w) var(--sh)}
+/* icons */
+.icons{position:absolute;left:8px;top:8px;width:96px;display:grid;gap:10px;z-index:1}
+.ico{display:flex;flex-direction:column;align-items:center;gap:3px;width:96px;padding:2px;background:none;border:1px dotted transparent;color:#fff;font:17px/1 var(--f);text-align:center;text-shadow:1px 1px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000;cursor:pointer}
+.ico:hover,.ico:focus-visible{border-color:#fff;outline:0}
+.ico .pic{width:44px;height:44px;border:2px solid #fff;background:#000;object-fit:cover;display:block;box-shadow:1px 1px 0 #000}
+.ico svg{width:44px;height:44px;display:block}
 
-/* buttons */
-.btn{display:block;text-decoration:none;text-align:center;color:#000;background:var(--gray);padding:5px 8px;font:600 17px/1.1 var(--head);
-  border:2px solid;border-color:var(--w) var(--sh) var(--sh) var(--w);box-shadow:0 0 0 1px #000;cursor:pointer}
-.btn:hover,.btn:focus-visible{background:var(--navy);color:#fff;border-color:var(--sh) var(--w) var(--w) var(--sh)}
-button.btn{width:100%}
-button.btn[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--sh) var(--w) var(--w) var(--sh)}
-.nav{display:grid;gap:6px;margin:0;padding:0;list-style:none}
-.nav .btn{text-align:left;padding-left:12px}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+/* windows */
+.win{position:absolute;width:330px;background:var(--g);border:2px solid;border-color:var(--w) var(--k) var(--k) var(--w);box-shadow:inset -1px -1px 0 var(--d),inset 1px 1px 0 #dfdfdf,3px 3px 0 rgba(0,0,0,.5);padding:2px}
+.win.hide{display:none}
+.tb{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:2px 3px;background:linear-gradient(90deg,var(--navy),#1084d0);color:#fff;font:19px/1 var(--f);cursor:move;user-select:none;touch-action:none}
+.tb.rb{background:var(--rain);color:#000}
+.tb h2{margin:0;font:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbtns{display:flex;gap:2px;flex:none}
+.tbtns button{width:18px;height:16px;padding:0;background:var(--g);color:#000;font:700 14px/1 var(--f);border:2px solid;border-color:var(--w) var(--k) var(--k) var(--w);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.tbtns button:active{border-color:var(--k) var(--w) var(--w) var(--k)}
+.body{padding:6px}
+.sunk{background:var(--w);border:2px solid;border-color:var(--d) var(--w) var(--w) var(--d);padding:6px}
+.blk{background:#000;color:#fff;border:2px solid;border-color:var(--d) var(--w) var(--w) var(--d);padding:6px;text-align:center}
+
+.btn{display:block;text-align:center;text-decoration:none;color:#000;background:var(--g);padding:3px 8px;border:2px solid;border-color:var(--w) var(--k) var(--k) var(--w);box-shadow:inset -1px -1px 0 var(--d);cursor:pointer;font:18px/1 var(--f)}
+.btn:active{border-color:var(--k) var(--w) var(--w) var(--k)}
 
 /* profile */
-.me .avatar,.me .ph{width:140px;height:140px;border:3px solid #fff;outline:2px solid #000;object-fit:cover;background:#222;image-rendering:auto}
-.me .ph{display:none;margin:0 auto;font:700 44px var(--head);align-items:center;justify-content:center}
-.me .avatar{margin:0 auto;display:block}
-.me .tb h1{font:700 24px/1.1 var(--head)}
+.me .avatar,.me .ph{width:100%;max-width:150px;aspect-ratio:1;display:block;margin:0 auto;object-fit:cover;background:#222;border:2px solid #fff;outline:1px solid #000}
+.me .ph{display:none;color:#fff;font-size:40px;align-items:center;justify-content:center}
+.stat{display:block;text-decoration:none;color:#000;font-size:18px;line-height:1.1}
+.stat:hover{background:#000;color:#fff}
 
-/* status */
-.status{display:block;text-decoration:none;color:#111;background:var(--rain);padding:6px 10px;font:600 17px/1.2 var(--head);text-align:center;border:2px solid #000}
-.status:hover{background:#000;color:#fff}
+/* game */
+.shot{display:block;line-height:0;border:2px solid;border-color:var(--d) var(--w) var(--w) var(--d);background:#000}
+.shot img{width:100%;height:130px;object-fit:cover;display:block}
+.tag{color:#ffd89a}
+.gi{display:grid;gap:5px;margin-top:6px;text-align:center}
+.gi p{margin:0}
+.meta{color:#aaa}
 
-/* games */
-.game{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;margin-top:3px;background:#000;border:2px solid #000}
-@media(max-width:560px){.game{grid-template-columns:1fr}}
-.shot{display:block;line-height:0;position:relative;background:#000;min-height:180px}
-.shot img{width:100%;height:100%;min-height:180px;object-fit:cover;display:block;filter:saturate(1.15)}
-.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,#000)}
-@media(max-width:560px){.shot::after{background:linear-gradient(transparent 55%,#000)}}
-.gi{padding:12px;color:#fff;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:8px;
-  background-image:linear-gradient(45deg,#181818 25%,transparent 25% 75%,#181818 75%),linear-gradient(45deg,#181818 25%,transparent 25% 75%,#181818 75%);background-size:20px 20px;background-position:0 0,10px 10px}
-.gi h3{margin:0;font:700 22px/1.1 var(--head)}
-.gi .tag{font-size:18px;color:#ffd89a}
-.gi p{margin:0;font-size:19px}
-.gi .meta{color:#aaa;font-size:17px}
-
-/* link button wall — cooltext-style animated text buttons */
-.wall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
-.wall a.b{display:flex;align-items:center;justify-content:center;height:46px;text-decoration:none;color:#fff;font:700 22px var(--head);letter-spacing:1px;
-  border:3px solid #000;box-shadow:0 0 0 1px #fff inset;text-shadow:-2px 0 #000,2px 0 #000,0 -2px #000,0 2px #000,3px 3px 0 #000;position:relative;overflow:hidden}
+/* link buttons */
+.wall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.wall a.b{display:flex;align-items:center;justify-content:center;height:31px;text-decoration:none;color:#fff;font:19px var(--f);letter-spacing:1px;border:2px solid #000;box-shadow:0 0 0 1px #fff inset;text-shadow:-1px 0 #000,1px 0 #000,0 -1px #000,0 1px #000,2px 2px 0 #000;overflow:hidden}
 .wall a.b:hover,.wall a.b:focus-visible{filter:invert(1)}
-.wall li:nth-child(1) a.b{background:conic-gradient(#f0f 25%,#0ff 0 50%,#ff0 0 75%,#0f0 0) 0 0/16px 16px;animation:sl 1s steps(8) infinite}
-.wall li:nth-child(2) a.b{background:repeating-linear-gradient(45deg,#fff 0 8px,#5ab8ff 8px 16px);background-size:22.6px 22.6px;animation:st 1s linear infinite}
-.wall li:nth-child(3) a.b{background:radial-gradient(#fff 1px,transparent 1.5px) 0 0/6px 6px,radial-gradient(#ffb0c8 1px,transparent 1.5px) 3px 3px/6px 6px,#8a0a2a;animation:gl .5s steps(2) infinite}
-.wall li:nth-child(4) a.b{background:#050510;color:#bff;text-shadow:0 0 4px #0ff,0 0 10px #0ff,0 0 18px #08f;border-color:#0ff;animation:ng 1.4s ease-in-out infinite alternate}
+.wall small{display:block;margin-top:2px;font-size:15px;line-height:1;text-align:center}
+.wall li:nth-child(1) a.b{background:conic-gradient(#f0f 25%,#0ff 0 50%,#ff0 0 75%,#0f0 0) 0 0/12px 12px;animation:sl 1s steps(6) infinite}
+.wall li:nth-child(2) a.b{background:repeating-linear-gradient(45deg,#fff 0 6px,#5ab8ff 6px 12px);background-size:17px 17px;animation:st 1s linear infinite}
+.wall li:nth-child(3) a.b{background:radial-gradient(#fff 1px,transparent 1.5px) 0 0/5px 5px,#8a0a2a;animation:gl .5s steps(2) infinite}
+.wall li:nth-child(4) a.b{background:#050510;color:#bff;text-shadow:0 0 4px #0ff,0 0 10px #08f;border-color:#0ff;animation:ng 1.4s ease-in-out infinite alternate}
 .wall li:nth-child(5) a.b{background:linear-gradient(#ffe14a,#ff7a00 35%,#c00 70%,#300);background-size:100% 200%;animation:fr .6s steps(3) infinite alternate}
-.wall li:nth-child(6) a.b{background:var(--rain);background-size:200% 100%;color:#fff;animation:rn 3s linear infinite}
-@keyframes sl{to{background-position:16px 0}}
-@keyframes st{to{background-position:22.6px 0}}
-@keyframes gl{50%{background-position:3px 3px,0 0,0 0}}
-@keyframes ng{to{box-shadow:0 0 0 1px #fff inset,0 0 12px #0ff}}
-@keyframes fr{to{background-position:0 100%}}
-@keyframes rn{to{background-position:200% 0}}
-.wall small{display:block;margin-top:4px;color:var(--dk);font-size:17px;line-height:1.05;text-align:center}
-.tb.rb{background-size:200% 100%;animation:rn 6s linear infinite}
-.me .tb h1{background:linear-gradient(#fff 0 45%,#9aa8c8 50%,#fff 55% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:3px #000;paint-order:stroke fill;filter:drop-shadow(2px 2px 0 #000)}
+.wall li:nth-child(6) a.b{background:var(--rain);background-size:200% 100%;animation:rn 3s linear infinite}
+@keyframes sl{to{background-position:12px 0}}@keyframes st{to{background-position:17px 0}}
+@keyframes gl{50%{background-position:3px 3px}}@keyframes ng{to{box-shadow:0 0 0 1px #fff inset,0 0 10px #0ff}}
+@keyframes fr{to{background-position:0 100%}}@keyframes rn{to{background-position:200% 0}}
 
-footer{grid-column:1/-1;text-align:center;color:#fff;text-shadow:1px 1px 0 #000;font-size:19px}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* taskbar */
+.task{position:fixed;left:0;right:0;bottom:0;height:32px;display:flex;align-items:center;gap:4px;padding:3px;background:var(--g);border-top:2px solid var(--w);box-shadow:0 -1px 0 var(--k);z-index:9999}
+.tasks{display:flex;gap:4px;flex:1;min-width:0;overflow-x:auto}
+.tk{flex:0 0 auto;max-width:170px;height:24px;padding:0 10px;background:var(--g);border:2px solid;border-color:var(--w) var(--k) var(--k) var(--w);font:17px/1 var(--f);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.tk.on{background:repeating-conic-gradient(#fff 0 25%,var(--g) 0 50%) 0 0/2px 2px;border-color:var(--k) var(--w) var(--w) var(--k)}
+.lang{display:flex;gap:3px;padding:2px;border:2px solid;border-color:var(--d) var(--w) var(--w) var(--d)}
+.lang button{height:20px;padding:0 8px;font:17px/1 var(--f);background:var(--g);border:2px solid;border-color:var(--w) var(--k) var(--k) var(--w);cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--k) var(--w) var(--w) var(--k)}
+
+@media(max-width:799px){
+  body{overflow:auto}
+  .desktop{position:static;padding:8px;display:flex;flex-direction:column;gap:10px;padding-bottom:44px}
+  .icons{position:static;width:auto;display:flex;flex-wrap:wrap}
+  .win{position:static;width:100%}
+  .tb{cursor:default}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
-<div class="sky" aria-hidden="true"></div>
-<div class="wrap">
+<div class="desktop" id="desk">
 
-<aside class="col">
-  <section class="win me">
-    <div class="tb"><h1>Danielle Choster</h1><span class="x"></span></div>
-    <div class="pane">
+  <div class="icons">
+    <button class="ico" data-open="g1"><img class="pic" alt="" src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif">WHAT THE CAR</button>
+    <button class="ico" data-open="g2"><img class="pic" alt="" src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif">OUTPATIENT</button>
+    <button class="ico" data-open="g3"><img class="pic" alt="" src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png">LOOP PROTOCOL</button>
+    <button class="ico" data-open="lk">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect width="16" height="16" fill="#000"/><path fill="#fff" d="M2 3h12v10H2z"/><path fill="#000080" d="M2 3h12v2H2z"/><path fill="#0a0" d="M4 7h3v1H4zM4 9h6v1H4zM4 11h4v1H4z"/><path fill="#c0c" d="M9 7h3v1H9z"/></svg>
+      <span class="ru">Ссылки</span><span class="en">Links</span></button>
+  </div>
+
+  <section class="win me" id="me" data-title="Danielle Choster">
+    <div class="tb"><h2>Danielle Choster</h2><span class="tbtns"><button type="button" data-act="hide">_</button><button type="button" data-act="hide">×</button></span></div>
+    <div class="body blk">
       <img class="avatar" id="av" src="avatar.png" alt="Danielle Choster">
       <div class="ph" id="ph">DC</div>
     </div>
   </section>
 
-  <section class="win">
-    <div class="tb rb"><h2><span class="ru">Навигация</span><span class="en">Navigation</span></h2></div>
-    <div class="pane lt"><ul class="nav">
-      <li><a class="btn" href="#games"><span class="ru">Игры</span><span class="en">Games</span></a></li>
-      <li><a class="btn" href="#links"><span class="ru">Ссылки</span><span class="en">Links</span></a></li>
-    </ul></div>
+  <section class="win" id="st" data-title="Срань.dev">
+    <div class="tb rb"><h2>Срань.dev</h2><span class="tbtns"><button type="button" data-act="hide">_</button><button type="button" data-act="hide">×</button></span></div>
+    <div class="body"><a class="sunk stat" href="https://t.me/Sran_Dev" target="_blank" rel="noopener">
+      <span class="ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span>
+      <span class="en">Currently in development: WHAT THE CAR — follow the channel</span></a></div>
   </section>
 
-  <section class="win">
-    <div class="tb"><h2><span class="ru">Язык</span><span class="en">Language</span></h2><span class="x"></span></div>
-    <div class="pane"><div class="pair">
-      <button class="btn" type="button" data-l="ru">RU</button>
-      <button class="btn" type="button" data-l="en">EN</button>
-    </div></div>
-  </section>
-</aside>
-
-<main class="col">
-  <a class="status" href="https://t.me/Sran_Dev" target="_blank" rel="noopener">
-    <span class="ru">Сейчас в разработке: WHAT THE CAR — следить в тг-канале</span>
-    <span class="en">Currently in development: WHAT THE CAR — follow the channel</span>
-  </a>
-
-  <section class="win" id="games">
-    <div class="tb"><h2><span class="ru">Игры</span><span class="en">Games</span></h2><span class="x"></span></div>
-    <div class="pane lt" style="display:grid;gap:14px">
-
-      <article class="win">
-        <div class="tb rb"><h3>WHAT THE CAR</h3></div>
-        <div class="game">
-          <a class="shot" href="https://daniellechoster.itch.io/what-the-car"><img loading="lazy" alt="WHAT THE CAR" src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif"></a>
-          <div class="gi">
-            <span class="tag"><span class="ru">В разработке</span><span class="en">In development</span></span>
-            <p><span class="ru">Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.</span><span class="en">An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride.</span></p>
-            <p class="meta"><span class="ru">следить в тг-канале</span><span class="en">follow the channel</span></p>
-            <a class="btn" href="https://daniellechoster.itch.io/what-the-car">itch.io</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="win">
-        <div class="tb rb"><h3>OUTPATIENT</h3></div>
-        <div class="game">
-          <a class="shot" href="https://daniellechoster.itch.io/outpatient"><img loading="lazy" alt="OUTPATIENT" src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif"></a>
-          <div class="gi">
-            <span class="tag"><span class="ru">Последнее демо</span><span class="en">Latest demo</span></span>
-            <p><span class="ru">Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.</span><span class="en">An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors.</span></p>
-            <p class="meta">88 MB · Windows</p>
-            <a class="btn" href="https://daniellechoster.itch.io/outpatient">itch.io</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="win">
-        <div class="tb rb"><h3>LOOP PROTOCOL</h3></div>
-        <div class="game">
-          <a class="shot" href="https://daniellechoster.itch.io/loop-protocol"><img loading="lazy" alt="LOOP PROTOCOL" src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png"></a>
-          <div class="gi">
-            <span class="tag"><span class="ru">4.9 ★ · 8 оценок</span><span class="en">4.9 ★ · 8 ratings</span></span>
-            <p><span class="ru">Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.</span><span class="en">Write code — watch it come to life. A puzzle game about programming your character with commands.</span></p>
-            <p class="meta">53 MB · Windows, Android</p>
-            <a class="btn" href="https://daniellechoster.itch.io/loop-protocol">itch.io</a>
-          </div>
-        </div>
-      </article>
-
+  <section class="win" id="g1" data-title="WHAT THE CAR">
+    <div class="tb"><h2>WHAT THE CAR</h2><span class="tbtns"><button type="button" data-act="hide">_</button><button type="button" data-act="hide">×</button></span></div>
+    <div class="body">
+      <a class="shot" href="https://daniellechoster.itch.io/what-the-car"><img loading="lazy" alt="WHAT THE CAR" src="https://img.itch.zone/aW1nLzI5ODk2NzE0LmdpZg==/original/NYSPcY.gif"></a>
+      <div class="gi blk">
+        <span class="tag"><span class="ru">В разработке</span><span class="en">In development</span></span>
+        <p><span class="ru">Бесконечное путешествие сквозь сотни миров на своей тачке. Телепортируйся, исследуй, кастомизируй авто.</span><span class="en">An endless journey through hundreds of worlds in your car. Teleport, explore, customize your ride.</span></p>
+        <span class="meta"><span class="ru">следить в тг-канале</span><span class="en">follow the channel</span></span>
+        <a class="btn" href="https://daniellechoster.itch.io/what-the-car">itch.io</a>
+      </div>
     </div>
   </section>
 
-  <section class="win" id="links">
-    <div class="tb"><h2><span class="ru">Ссылки</span><span class="en">Links</span></h2><span class="x"></span></div>
-    <div class="pane lt"><ul class="wall">
+  <section class="win" id="g2" data-title="OUTPATIENT">
+    <div class="tb"><h2>OUTPATIENT</h2><span class="tbtns"><button type="button" data-act="hide">_</button><button type="button" data-act="hide">×</button></span></div>
+    <div class="body">
+      <a class="shot" href="https://daniellechoster.itch.io/outpatient"><img loading="lazy" alt="OUTPATIENT" src="https://img.itch.zone/aW1nLzI5ODgwNjkzLmdpZg==/original/Qxnvlh.gif"></a>
+      <div class="gi blk">
+        <span class="tag"><span class="ru">Последнее демо</span><span class="en">Latest demo</span></span>
+        <p><span class="ru">Бесконечная поездка на операционном столе: не рулишь, только стреляешь. Психоделический шутер про безумие и врачей.</span><span class="en">An endless ride on an operating table: you don't steer, you just shoot. A psychedelic shooter about madness and doctors.</span></p>
+        <span class="meta">88 MB · Windows</span>
+        <a class="btn" href="https://daniellechoster.itch.io/outpatient">itch.io</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="win" id="g3" data-title="LOOP PROTOCOL">
+    <div class="tb"><h2>LOOP PROTOCOL</h2><span class="tbtns"><button type="button" data-act="hide">_</button><button type="button" data-act="hide">×</button></span></div>
+    <div class="body">
+      <a class="shot" href="https://daniellechoster.itch.io/loop-protocol"><img loading="lazy" alt="LOOP PROTOCOL" src="https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png"></a>
+      <div class="gi blk">
+        <span class="tag"><span class="ru">4.9 ★ · 8 оценок</span><span class="en">4.9 ★ · 8 ratings</span></span>
+        <p><span class="ru">Пиши код — смотри, как он оживает. Головоломка про программирование персонажа командами.</span><span class="en">Write code — watch it come to life. A puzzle game about programming your character with commands.</span></p>
+        <span class="meta">53 MB · Windows, Android</span>
+        <a class="btn" href="https://daniellechoster.itch.io/loop-protocol">itch.io</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="win" id="lk" data-title="Ссылки">
+    <div class="tb"><h2><span class="ru">Ссылки</span><span class="en">Links</span></h2><span class="tbtns"><button type="button" data-act="hide">_</button><button type="button" data-act="hide">×</button></span></div>
+    <div class="body sunk" style="margin:4px"><ul class="wall">
       <li><a class="b" rel="me" href="https://t.me/Sran_Dev">Срань.dev</a><small><span class="ru">тг-канал студии — новости и апдейты</span><span class="en">studio's Telegram channel — news &amp; updates</span></small></li>
       <li><a class="b" rel="me" href="https://daniellechoster.itch.io/">itch.io</a><small><span class="ru">все игры в одном месте</span><span class="en">all games in one place</span></small></li>
       <li><a class="b" rel="me" href="https://t.me/DanielleChoster"><span class="ru">Личка</span><span class="en">DM</span></a><small><span class="ru">написать напрямую в тг</span><span class="en">message directly on Telegram</span></small></li>
@@ -207,22 +179,88 @@ footer{grid-column:1/-1;text-align:center;color:#fff;text-shadow:1px 1px 0 #000;
       <li><a class="b" rel="me" href="https://www.tiktok.com/@danielle_choster?_r=1&amp;_t=ZS-99tH59FkTQq">TikTok</a><small><span class="ru">короткие клипы</span><span class="en">short clips</span></small></li>
     </ul></div>
   </section>
-</main>
+</div>
 
-<footer>© <span id="y"></span> Danielle Choster</footer>
+<div class="task">
+  <div class="tasks" id="tasks"></div>
+  <div class="lang"><button type="button" data-l="ru">RU</button><button type="button" data-l="en">EN</button></div>
 </div>
 
 <script>
-document.getElementById('y').textContent=new Date().getFullYear();
+(function(){
+var desk=document.getElementById('desk'),wins=[].slice.call(document.querySelectorAll('.win')),z=10,moved=false;
 var av=document.getElementById('av');
 av.addEventListener('error',function(){av.style.display='none';document.getElementById('ph').style.display='flex'});
-var bs=document.querySelectorAll('button[data-l]');
+
+function wide(){return window.innerWidth>=800}
+function front(w){w.style.zIndex=++z;sync()}
+function layout(){
+  if(!wide()){wins.forEach(function(w){w.style.left=w.style.top=''});return}
+  var x0=112,cw=344,n=Math.max(1,Math.floor((window.innerWidth-x0-8)/cw)),h=[];
+  for(var i=0;i<n;i++)h.push(8);
+  wins.forEach(function(w){
+    if(w.classList.contains('hide'))return;
+    var c=h.indexOf(Math.min.apply(null,h));
+    w.style.left=(x0+c*cw)+'px';w.style.top=h[c]+'px';
+    h[c]+=w.offsetHeight+14;
+  });
+}
+/* taskbar */
+var tasks=document.getElementById('tasks');
+wins.forEach(function(w){
+  var b=document.createElement('button');b.type='button';b.className='tk';b.dataset.for=w.id;
+  b.innerHTML=w.querySelector('.tb h2').innerHTML;
+  b.addEventListener('click',function(){
+    if(w.classList.contains('hide')){show(w)}
+    else if(+w.style.zIndex===z){w.classList.add('hide');sync()}
+    else front(w);
+  });
+  tasks.appendChild(b);
+});
+function sync(){
+  [].forEach.call(tasks.children,function(b){
+    var w=document.getElementById(b.dataset.for);
+    b.classList.toggle('on',!w.classList.contains('hide'));
+  });
+}
+function show(w){w.classList.remove('hide');if(!moved)layout();front(w)}
+/* icons */
+[].forEach.call(document.querySelectorAll('[data-open]'),function(i){
+  i.addEventListener('click',function(){show(document.getElementById(i.dataset.open))});
+});
+/* window controls + drag */
+wins.forEach(function(w,i){
+  w.style.zIndex=10+i;z=Math.max(z,10+i);
+  w.addEventListener('pointerdown',function(){front(w)});
+  [].forEach.call(w.querySelectorAll('[data-act=hide]'),function(b){
+    b.addEventListener('pointerdown',function(e){e.stopPropagation()});
+    b.addEventListener('click',function(){w.classList.add('hide');sync()});
+  });
+  var tb=w.querySelector('.tb'),sx,sy,ox,oy,drag=false;
+  tb.addEventListener('pointerdown',function(e){
+    if(!wide()||e.target.closest('button'))return;
+    drag=true;moved=true;sx=e.clientX;sy=e.clientY;ox=w.offsetLeft;oy=w.offsetTop;tb.setPointerCapture(e.pointerId);
+  });
+  tb.addEventListener('pointermove',function(e){
+    if(!drag)return;
+    w.style.left=Math.max(0,ox+e.clientX-sx)+'px';
+    w.style.top=Math.max(0,oy+e.clientY-sy)+'px';
+  });
+  tb.addEventListener('pointerup',function(){drag=false});
+});
+window.addEventListener('resize',function(){if(!moved)layout()});
+window.addEventListener('load',function(){if(!moved)layout()});
+
+/* language */
+var lb=document.querySelectorAll('button[data-l]');
 function setLang(l){document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;
-  bs.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l)});
-  try{localStorage.setItem('site-lang',l)}catch(e){}}
-bs.forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
+  lb.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l)});
+  try{localStorage.setItem('site-lang',l)}catch(e){}
+  [].forEach.call(tasks.children,function(b){b.innerHTML=document.getElementById(b.dataset.for).querySelector('.tb h2').innerHTML});}
+lb.forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
 var s='ru';try{var v=localStorage.getItem('site-lang');if(v==='ru'||v==='en')s=v;else if((navigator.language||'').toLowerCase().indexOf('en')===0)s='en'}catch(e){}
-setLang(s);
+setLang(s);sync();layout();
+})();
 </script>
 </body>
 </html>
