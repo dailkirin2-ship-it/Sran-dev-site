@@ -3992,7 +3992,7 @@ let last=0;
   if(typeof STICKERS==='undefined')return;
   const W=document.querySelectorAll('.w');
   STICKERS.forEach(a=>{
-    const w=W[a.window];
+    const w=a.id?document.getElementById(a.id):W[a.window];
     if(!w)return;
     const i=document.createElement('img');
     i.className='stk';

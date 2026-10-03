@@ -160,6 +160,7 @@ const PICS = [
    Гифки/картинки с прозрачным фоном, которые «стоят» на верхнем
    краю окна и двигаются вместе с ним. Пока список пустой.
 
+   id     — id окна (например 'comments'), либо
    window — номер окна по порядку (0, 1, 2 …)
    src    — файл в репозитории, например 'stickers/cat.gif'
    width  — ширина в пикселях
@@ -173,11 +174,11 @@ const PICS = [
 
 const STICKERS = [
 
-  { window: 1, src: 'https://media.tenor.com/2Lk8flZAaG0AAAAj/girl-cute-anime.gif',
-    width: 90,  side: 'right', x: 24, y: 0 },
+  { id: 'comments', src: 'https://media.tenor.com/2Lk8flZAaG0AAAAj/girl-cute-anime.gif',
+    width: 90,  side: 'left',  x: 40, y: 0 },
 
   { window: 3, src: 'https://media.tenor.com/Zx8ctkiYqagAAAAj/hololive-shirakami-fubuki.gif',
-    width: 90,  side: 'right', x: 80, y: 0 },
+    width: 90,  side: 'left',  x: 80, y: 0 },
 
   { window: 6, src: 'https://media.tenor.com/WT70fOcKC7oAAAAj/k-on.gif',
     width: 120, side: 'left',  x: 24, y: 0 }
