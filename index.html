@@ -343,6 +343,31 @@ h1 b{
   to{transform:translateX(-100%)}
 }
 
+/* покачивание при наведении */
+
+@keyframes wob{
+  0%,100%{transform:translate(-2px,-2px) scale(var(--s,1.08)) rotate(-4deg)}
+  50%{transform:translate(2px,-2px) scale(var(--s,1.08)) rotate(4deg)}
+}
+
+.m:hover,
+.pics-grid a:hover,
+.n a:hover,
+.ga:hover,
+.tz:hover,
+.lb:hover{
+  animation:wob .7s ease-in-out infinite;
+  z-index:50
+}
+
+.ims img:hover{
+  --s:2.3;
+  animation:wob .7s ease-in-out infinite
+}
+
+.pics-grid a:hover{--s:1.15}
+.n a:hover{--s:1.05}
+
 /* плеер */
 
 .pb{
@@ -2474,7 +2499,7 @@ const tbz=
     'tbz'
   );
 
-let zi=11;
+let zi=11,wi=0;
 
 
 document
@@ -2485,10 +2510,26 @@ document
       w.querySelector('.t');
 
 
-    let ox=0,
-        oy=0,
+    /* лёгкий сдвиг окон по горизонтали: x, y (px), без наклона */
+    const SKEW=[
+      [-3, 0],
+      [ 4, 0],
+      [-1, 0],
+      [ 0, 3],
+      [ 5, 0],
+      [-4, 0],
+      [ 3, 0],
+      [-5, 0]
+    ];
+
+    const K=SKEW[wi++ % SKEW.length];
+
+    let ox=K[0],
+        oy=K[1],
         sx=0,
         sy=0;
+
+    w.style.translate=ox+'px '+oy+'px';
 
 
     w.addEventListener(
