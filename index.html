@@ -1346,6 +1346,14 @@ h3{
   will-change:transform
 }
 
+/* стикеры на окнах */
+
+.stk{
+  position:absolute;
+  z-index:5;
+  pointer-events:none
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation:none!important
@@ -3975,6 +3983,27 @@ let last=0;
   }
   addEventListener('scroll',()=>{if(!t){t=true;requestAnimationFrame(f);}},{passive:true});
   f();
+})();
+</script>
+
+<script>
+/* ---------- стикеры, стоящие на окнах (список — в content.js) ---------- */
+(function(){
+  if(typeof STICKERS==='undefined')return;
+  const W=document.querySelectorAll('.w');
+  STICKERS.forEach(a=>{
+    const w=W[a.window];
+    if(!w)return;
+    const i=document.createElement('img');
+    i.className='stk';
+    i.src=a.src;
+    i.alt='';
+    i.setAttribute('aria-hidden','true');
+    i.style.width=(a.width||100)+'px';
+    i.style[a.side==='left'?'left':'right']=(a.x==null?20:a.x)+'px';
+    i.style.bottom='calc(100% - '+(a.y||0)+'px)';
+    w.appendChild(i);
+  });
 })();
 </script>
 

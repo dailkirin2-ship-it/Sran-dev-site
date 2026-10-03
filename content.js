@@ -153,3 +153,33 @@ const PICS = [
   /* 7 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/001/867/600/0f3.jpg' }
 
 ];
+
+
+/* =========================================================
+   СТИКЕРЫ НА ОКНАХ
+   Гифки/картинки с прозрачным фоном, которые «стоят» на верхнем
+   краю окна и двигаются вместе с ним. Пока список пустой.
+
+   window — номер окна по порядку (0, 1, 2 …)
+   src    — файл в репозитории, например 'stickers/cat.gif'
+   width  — ширина в пикселях
+   side   — 'left' или 'right' (с какой стороны окна)
+   x      — отступ от этого края, px
+   y      — насколько стикер заходит на окно вниз, px (0 = стоит на краю)
+
+   Пример (раскомментируй и поменяй файл):
+   { window: 1, src: 'stickers/cat.gif', width: 110, side: 'right', x: 24, y: 0 },
+   ========================================================= */
+
+const STICKERS = [
+
+  { window: 1, src: 'https://media.tenor.com/2Lk8flZAaG0AAAAj/girl-cute-anime.gif',
+    width: 90,  side: 'right', x: 24, y: 0 },
+
+  { window: 3, src: 'https://media.tenor.com/Zx8ctkiYqagAAAAj/hololive-shirakami-fubuki.gif',
+    width: 90,  side: 'right', x: 80, y: 0 },
+
+  { window: 6, src: 'https://media.tenor.com/WT70fOcKC7oAAAAj/k-on.gif',
+    width: 120, side: 'left',  x: 24, y: 0 }
+
+];
