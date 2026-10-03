@@ -1169,6 +1169,11 @@ h3{
   user-select:none
 }
 
+.term-t{
+  cursor:move;
+  touch-action:none
+}
+
 .term-t svg.ic{
   position:absolute;
   left:5px;
@@ -1320,7 +1325,7 @@ h3{
 
 .say{
   position:fixed;
-  z-index:1000002;
+  z-index:2147483000;
   pointer-events:none;
   padding:1px 6px;
   background:#fff;
@@ -3762,6 +3767,64 @@ let last=0;
 
   let isOpen=false,busy=false,ph=null,fid=0,first=true,ti=0;
 
+  /* --- перетаскивание и порядок окон --- */
+
+  let zc=1000010;
+
+  function raise(el){
+    el.style.zIndex=++zc;
+    if(el===term&&ph)cat.style.zIndex=++zc;
+  }
+
+  function followCat(){
+    if(!ph)return;
+    const t=target();
+    cat.style.transition='none';
+    cat.style.left=t.left+'px';
+    cat.style.top=t.top+'px';
+  }
+
+  function drag(el,h,after){
+    h.addEventListener('pointerdown',e=>{
+      if(e.target.closest('button')||e.button>0)return;
+      if(el===term&&busy)return;
+
+      const r=el.getBoundingClientRect();
+
+      if(el===term){
+        el.style.inset='auto';
+        el.style.margin='0';
+      }
+      el.style.left=r.left+'px';
+      el.style.top=r.top+'px';
+
+      const dx=e.clientX-r.left,dy=e.clientY-r.top;
+      h.setPointerCapture(e.pointerId);
+      e.preventDefault();
+
+      const mv=ev=>{
+        const x=Math.max(-r.width+80,Math.min(innerWidth-80,ev.clientX-dx));
+        const y=Math.max(0,Math.min(innerHeight-30,ev.clientY-dy));
+        el.style.left=x+'px';
+        el.style.top=y+'px';
+        if(after)after();
+      };
+
+      const up=()=>{
+        h.removeEventListener('pointermove',mv);
+        h.removeEventListener('pointerup',up);
+        h.removeEventListener('pointercancel',up);
+      };
+
+      h.addEventListener('pointermove',mv);
+      h.addEventListener('pointerup',up);
+      h.addEventListener('pointercancel',up);
+    });
+  }
+
+  drag(term,term.querySelector('.term-t'),followCat);
+  term.addEventListener('pointerdown',()=>raise(term));
+
   /* --- вывод --- */
 
   function print(html,cls){
@@ -3820,7 +3883,10 @@ let last=0;
       '</div>';
 
     w.querySelector('.term-x').onclick=()=>closeTip(n);
+    drag(w,w.querySelector('.term-t'));
+    w.addEventListener('pointerdown',()=>raise(w));
     document.body.appendChild(w);
+    raise(w);
     slots[n]=w;
   }
 
@@ -3975,6 +4041,8 @@ let last=0;
     first=true;
     ti=0;
     out.innerHTML='';
+    zc=1000010;
+    term.style.zIndex='';
     term.style.display='flex';
     print('Sran.dev [Version 1.0.2026]');
     print('(c) Danielle Choster.');
