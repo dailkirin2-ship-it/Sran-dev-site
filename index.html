@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=1100">
 <title>Danielle Choster — Срань.dev</title>
 <meta name="description" content="Игры, проекты и ссылки Danielle Choster (Срань.dev)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231E6FE0'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='800' font-size='30' fill='white' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Danielle Choster — Срань.dev">
@@ -46,15 +47,6 @@ body{
   color:#10124a;
   overflow-x:hidden;
   background:#070b2a
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(#0a0f5ad9,#0a0f5ad9),
-    url(https://img.itch.zone/aW1nLzI3NDExMzIxLnBuZw==/original/zeFXv1.png) center/cover
 }
 
 body::after{
@@ -1342,6 +1334,18 @@ h3{
   100%{transform:translate(-50%,-46px) scale(1);opacity:0}
 }
 
+/* обои */
+
+.wall{
+  position:fixed;
+  inset:-50px;
+  z-index:0;
+  pointer-events:none;
+  background:#1c64c8 url(bliss.png) center/cover no-repeat;
+  image-rendering:pixelated;
+  will-change:transform
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation:none!important
@@ -1366,7 +1370,10 @@ h3{
   </symbol>
 </svg>
 
+<div class="wall" aria-hidden="true"></div>
+
 <div class="shell h-card">
+
 
   <div class="st">
     <svg class="ic" viewBox="0 0 9 9">
@@ -2627,7 +2634,7 @@ document
       w.querySelector('.t');
 
 
-    /* лёгкий сдвиг окон по горизонтали: x, y (px), без наклона */
+    /* лёгкий сдвиг окон: x, y (px), без наклона */
     const SKEW=[
       [-3, 0],
       [ 4, 0],
@@ -3951,6 +3958,23 @@ let last=0;
     cat.style.left=r.left+'px';
     cat.style.top=r.top+'px';
   });
+})();
+</script>
+
+<script>
+/* ---------- лёгкий параллакс обоев ---------- */
+(function(){
+  const w=document.querySelector('.wall');
+  if(!w)return;
+  let t=false;
+  function f(){
+    t=false;
+    if(document.body.classList.contains('no-anim')){w.style.transform='';return;}
+    const y=Math.max(-36,Math.min(36,-scrollY*0.04));
+    w.style.transform='translate3d(0,'+y+'px,0)';
+  }
+  addEventListener('scroll',()=>{if(!t){t=true;requestAnimationFrame(f);}},{passive:true});
+  f();
 })();
 </script>
 
