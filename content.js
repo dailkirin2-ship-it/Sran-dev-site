@@ -162,7 +162,7 @@ const PICS = [
 
 const STICKERS = [
 
-  { id: 'comments', src: 'https://gifs.ru/embed/qYpM2T',
+  { id: 'comments', src: 'cat-guitar.gif',
     width: 90,  side: 'left',  x: 40, y: 0 },
 
   { window: 3, src: 'https://media.tenor.com/Zx8ctkiYqagAAAAj/hololive-shirakami-fubuki.gif',
