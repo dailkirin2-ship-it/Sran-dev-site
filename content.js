@@ -174,7 +174,7 @@ const PICS = [
 
 const STICKERS = [
 
-  { id: 'comments', src: 'https://tenor.com/ru/view/cobson-miku-gif-13954520335322370690',
+  { id: 'comments', src: 'https://gifs.ru/stickers/kotik-playing-guitar-cat-qYpM2T?utm_source=share&utm_medium=copy_link',
     width: 90,  side: 'left',  x: 40, y: 0 },
 
   { window: 3, src: 'https://media.tenor.com/Zx8ctkiYqagAAAAj/hololive-shirakami-fubuki.gif',
