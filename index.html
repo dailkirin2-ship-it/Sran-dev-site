@@ -306,7 +306,8 @@ h1 b{
   top:-48px;
   width:250px;
   height:250px;
-  pointer-events:none;
+  pointer-events:auto;
+  cursor:pointer;
   filter:
     drop-shadow(0 14px 0 #000b)
     drop-shadow(0 22px 16px #0008)
@@ -1131,6 +1132,132 @@ h3{
 .ga:hover{transform:translate(2px,-2px) scale(1.5)}
 
 .av{transition:transform .25s steps(4)}
+
+/* терминал */
+
+.face.fly{
+  filter:drop-shadow(2px 2px 0 #000)
+}
+
+.term{
+  position:fixed;
+  inset:0;
+  margin:auto;
+  width:640px;
+  height:390px;
+  display:none;
+  flex-direction:column;
+  z-index:1000000;
+  padding:2px;
+  background:var(--f);
+  border:2px solid;
+  border-color:var(--out);
+  box-shadow:0 0 0 1px #000,6px 6px 0 #0008
+}
+
+.term-t{
+  position:relative;
+  flex:none;
+  height:20px;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  background:var(--tt);
+  color:#fff;
+  font:700 12px var(--ui);
+  white-space:nowrap;
+  user-select:none
+}
+
+.term-t svg.ic{
+  position:absolute;
+  left:5px;
+  top:4px;
+  width:12px;
+  height:12px;
+  color:var(--y)
+}
+
+.term-x{
+  position:absolute;
+  right:2px;
+  top:3px;
+  width:16px;
+  height:14px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--f);
+  border:2px solid;
+  border-color:var(--out);
+  color:#000;
+  cursor:pointer
+}
+
+.term-x svg{
+  width:7px;
+  height:7px
+}
+
+.term-b{
+  flex:1;
+  min-height:0;
+  margin-top:2px;
+  padding:6px 150px 6px 8px;
+  overflow:auto;
+  background:#000;
+  color:#c8c8c8;
+  font:13px/1.4 'Courier New',monospace;
+  border:2px solid;
+  border-color:var(--in);
+  cursor:text
+}
+
+.term-b div{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere
+}
+
+.term-b .cat{
+  color:#39ff6a
+}
+
+.term-b a{
+  color:#8fe3ff;
+  text-decoration:underline
+}
+
+.term-b a.tbtn{
+  display:inline-block;
+  padding:0 6px;
+  background:var(--y);
+  border:1px solid #fff;
+  color:#000;
+  font-weight:700;
+  text-decoration:none
+}
+
+.term-b a.tbtn:hover{
+  background:var(--p)
+}
+
+.term-in{
+  display:flex;
+  gap:0
+}
+
+.term-in input{
+  flex:1;
+  min-width:0;
+  padding:0;
+  background:transparent;
+  border:0;
+  outline:0;
+  color:#fff;
+  font:inherit;
+  caret-color:#39ff6a
+}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
@@ -3493,6 +3620,236 @@ let last=0;
   sk.addEventListener('pointermove',e=>{if(drag)seek(e);});
   sk.addEventListener('pointerup',()=>{drag=false;});
   sk.addEventListener('pointercancel',()=>{drag=false;});
+})();
+</script>
+
+<script>
+/* ---------- терминал и кот ---------- */
+(function(){
+  const cat=document.getElementById('face');
+  if(!cat)return;
+
+  const SIZE=140;
+
+  const TIPS=[
+    {t:['А вы знали, что OUTPATIENT — бред полный',
+        'Did you know that OUTPATIENT is complete nonsense']},
+    {t:['А вы знали, что LOOP PROTOCOL — это проект для колледжа',
+        'Did you know that LOOP PROTOCOL is a college project']},
+    {t:['А вы знали, что вы многое упускаете, не заходя в тгк',
+        'Did you know that you are missing out by not visiting the Telegram channel'],
+     btn:'SRAN_DEV',href:'https://t.me/Sran_Dev'},
+    {t:['А вы знали, что What the car вдохновлён трилогией «Назад в будущее»',
+        'Did you know that What the car is inspired by the “Back to the Future” trilogy']}
+  ];
+
+  const HELP_TIP=['Напиши help для ввода команд.','Type help to see the list of commands.'];
+
+  const LINKS=[
+    ['Sran.dev','https://t.me/Sran_Dev'],
+    ['itch.io','https://daniellechoster.itch.io/'],
+    ['DM','https://t.me/DanielleChoster'],
+    ['Discord','https://discord.com/users/975382866122903582'],
+    ['YouTube','https://youtube.com/@dster_gmdv?si=H_LPjM1zBuVGGLkC'],
+    ['TikTok','https://www.tiktok.com/@danielle_choster?_r=1&_t=ZS-99tH59FkTQq']
+  ];
+
+  const en=()=>document.body.classList.contains('lang-en');
+  const L=v=>en()?v[1]:v[0];
+  const E=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  document.body.insertAdjacentHTML('beforeend',`
+    <div class="term" id="term" role="dialog" aria-label="Terminal">
+      <div class="term-t">
+        <svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg>
+        <span>C:\\SRAN.DEV\\cmd.exe</span>
+        <button class="term-x" id="termX" type="button" aria-label="Close">
+          <svg viewBox="0 0 7 7"><use href="#xx"/></svg>
+        </button>
+      </div>
+      <div class="term-b" id="termB">
+        <div id="termO"></div>
+        <form class="term-in" id="termF" autocomplete="off">
+          <span>C:\\SRAN&gt;</span>
+          <input id="termI" type="text" spellcheck="false" autocapitalize="off" autocomplete="off">
+        </form>
+      </div>
+    </div>`);
+
+  const term=document.getElementById('term'),
+        bodyEl=document.getElementById('termB'),
+        out=document.getElementById('termO'),
+        form=document.getElementById('termF'),
+        inp=document.getElementById('termI');
+
+  let isOpen=false,busy=false,ph=null,fid=0,first=true,ti=0;
+
+  /* --- вывод --- */
+
+  function print(html,cls){
+    const d=document.createElement('div');
+    if(cls)d.className=cls;
+    d.innerHTML=html;
+    out.appendChild(d);
+    bodyEl.scrollTop=bodyEl.scrollHeight;
+  }
+
+  function tip(){
+    let x;
+    if(first){
+      first=false;
+      print('[=^.^=] '+E(L(HELP_TIP)),'cat');
+      return;
+    }
+    x=TIPS[ti++%TIPS.length];
+    print('[=^.^=] '+E(L(x.t))+(x.btn
+      ?' <a class="tbtn" href="'+E(x.href)+'" target="_blank" rel="noopener">'+E(x.btn)+'</a>'
+      :''),'cat');
+  }
+
+  /* --- команды --- */
+
+  function run(raw){
+    const c=raw.trim();
+    print('C:\\SRAN&gt;'+E(raw));
+    if(!c)return;
+    const k=c.toLowerCase();
+
+    if(k==='help'){
+      [
+        ['help ','список команд','list of commands'],
+        ['games','игры','games'],
+        ['links','ссылки','links'],
+        ['tip  ','совет от кота','a tip from the cat'],
+        ['clear','очистить экран','clear the screen'],
+        ['exit ','закрыть терминал','close the terminal']
+      ].forEach(r=>print(E(r[0])+'  — '+E(en()?r[2]:r[1])));
+    }else if(k==='games'){
+      (typeof DATA_GAMES!=='undefined'?DATA_GAMES:[]).forEach(g=>{
+        print(E(g.title)+(g.itch?'  <a href="'+E(g.itch)+'" target="_blank" rel="noopener">itch.io</a>':''));
+      });
+    }else if(k==='links'){
+      LINKS.forEach(l=>print(E(l[0])+'  <a href="'+E(l[1])+'" target="_blank" rel="noopener">'+E(l[1].replace(/^https?:\/\//,'').slice(0,48))+'</a>'));
+    }else if(k==='tip'){
+      tip();
+    }else if(k==='clear'||k==='cls'){
+      out.innerHTML='';
+    }else if(k==='exit'){
+      closeTerm();
+    }else{
+      print(en()
+        ?"'"+E(c)+"' is not recognized. Type help."
+        :"'"+E(c)+"' не является командой. Напиши help.");
+    }
+  }
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const v=inp.value;
+    inp.value='';
+    run(v);
+  });
+
+  bodyEl.addEventListener('click',()=>{
+    if(!String(getSelection()))inp.focus({preventScroll:true});
+  });
+
+  /* --- полёт кота --- */
+
+  function target(){
+    const b=bodyEl.getBoundingClientRect();
+    return {left:b.right-SIZE-8,top:b.bottom-SIZE-8,width:SIZE,height:SIZE};
+  }
+
+  function detach(){
+    const r=cat.getBoundingClientRect();
+    ph=document.createElement('div');
+    ph.className='face';
+    ph.style.visibility='hidden';
+    ph.setAttribute('aria-hidden','true');
+    cat.parentNode.insertBefore(ph,cat);
+    document.body.appendChild(cat);
+    cat.classList.add('fly');
+    Object.assign(cat.style,{
+      position:'fixed',
+      right:'auto',
+      left:r.left+'px',
+      top:r.top+'px',
+      width:r.width+'px',
+      height:r.height+'px',
+      zIndex:1000001,
+      transition:'none'
+    });
+    void cat.offsetWidth;
+  }
+
+  function fly(r,done){
+    const id=++fid;
+    busy=true;
+    const e='cubic-bezier(.6,-.2,.3,1.2)';
+    cat.style.transition='left .75s '+e+',top .75s '+e+',width .75s ease,height .75s ease';
+    cat.style.left=r.left+'px';
+    cat.style.top=r.top+'px';
+    cat.style.width=r.width+'px';
+    cat.style.height=r.height+'px';
+    setTimeout(()=>{
+      if(id!==fid)return;
+      busy=false;
+      if(done)done();
+    },790);
+  }
+
+  function restore(){
+    if(!ph)return;
+    cat.removeAttribute('style');
+    cat.classList.remove('fly');
+    ph.replaceWith(cat);
+    ph=null;
+  }
+
+  /* --- открыть / закрыть --- */
+
+  function openTerm(){
+    if(isOpen||busy)return;
+    isOpen=true;
+    first=true;
+    ti=0;
+    out.innerHTML='';
+    term.style.display='flex';
+    print('Sran.dev [Version 1.0.2026]');
+    print('(c) Danielle Choster.');
+    print('&nbsp;');
+    tip();
+    detach();
+    fly(target(),()=>inp.focus({preventScroll:true}));
+  }
+
+  function closeTerm(){
+    if(!isOpen)return;
+    isOpen=false;
+    term.style.display='none';
+    inp.blur();
+    fly(ph.getBoundingClientRect(),restore);
+  }
+
+  cat.addEventListener('click',()=>{
+    if(!isOpen)openTerm();
+    else if(!busy)tip();
+  });
+
+  document.getElementById('termX').onclick=closeTerm;
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&isOpen)closeTerm();
+  });
+
+  addEventListener('resize',()=>{
+    if(!isOpen||busy)return;
+    const r=target();
+    cat.style.transition='none';
+    cat.style.left=r.left+'px';
+    cat.style.top=r.top+'px';
+  });
 })();
 </script>
 
