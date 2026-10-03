@@ -1259,6 +1259,84 @@ h3{
   caret-color:#39ff6a
 }
 
+/* окошки с советами */
+
+.tipw{
+  position:fixed;
+  width:210px;
+  z-index:1000000;
+  padding:2px;
+  background:var(--f);
+  border:2px solid;
+  border-color:var(--out);
+  box-shadow:0 0 0 1px #000,4px 4px 0 #0008;
+  animation:tipin .3s steps(5)
+}
+
+.tipw-b{
+  margin-top:2px;
+  padding:9px 10px;
+  background:#fff;
+  color:#000;
+  font:12px/1.4 var(--ui);
+  border:2px solid;
+  border-color:var(--in)
+}
+
+.tipw-b a.tbtn{
+  display:inline-block;
+  margin-top:6px;
+  padding:1px 7px;
+  background:var(--y);
+  border:1px solid #000;
+  color:#000;
+  font:700 12px var(--px);
+  text-decoration:none
+}
+
+.tipw-b a.tbtn:hover{
+  background:var(--p)
+}
+
+@keyframes tipin{
+  0%{transform:scale(.4);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
+
+/* реакция кота на клик */
+
+.face.poke{
+  transform-origin:50% 100%;
+  animation:poke .45s ease-out
+}
+
+@keyframes poke{
+  0%{transform:scale(1,1)}
+  20%{transform:scale(1.2,.78)}
+  50%{transform:translateY(-14px) scale(.93,1.1)}
+  75%{transform:scale(1.06,.94)}
+  100%{transform:scale(1,1)}
+}
+
+.say{
+  position:fixed;
+  z-index:1000002;
+  pointer-events:none;
+  padding:1px 6px;
+  background:#fff;
+  color:#000;
+  border:2px solid #000;
+  font:700 13px var(--px);
+  white-space:nowrap;
+  animation:say 1s ease-out forwards
+}
+
+@keyframes say{
+  0%{transform:translate(-50%,0) scale(.5);opacity:0}
+  15%{transform:translate(-50%,-6px) scale(1);opacity:1}
+  100%{transform:translate(-50%,-46px) scale(1);opacity:0}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation:none!important
@@ -3694,18 +3772,97 @@ let last=0;
     bodyEl.scrollTop=bodyEl.scrollHeight;
   }
 
+  /* --- окошки с советами рядом с терминалом --- */
+
+  const slots=[null,null,null,null];
+  let si=0;
+
+  function slotPos(n){
+    const t=term.getBoundingClientRect();
+    const W=210;
+    const right=n%2===0;
+    let left=right?t.right+10:t.left-W-10;
+    let top=t.top+(n<2?0:150)+(n%2?40:0);
+    left=Math.max(6,Math.min(innerWidth-W-6,left));
+    top=Math.max(6,top);
+    return {left,top};
+  }
+
+  function closeTip(n){
+    if(slots[n]){slots[n].remove();slots[n]=null;}
+  }
+
+  function closeAllTips(){
+    for(let n=0;n<slots.length;n++)closeTip(n);
+    si=0;
+  }
+
+  function tipWindow(x){
+    const n=si++%slots.length;
+    closeTip(n);
+
+    const p=slotPos(n);
+    const w=document.createElement('div');
+    w.className='tipw';
+    w.style.left=p.left+'px';
+    w.style.top=p.top+'px';
+    w.innerHTML=
+      '<div class="term-t">'+
+        '<svg class="ic" viewBox="0 0 9 9"><use href="#sp"/></svg>'+
+        '<span>'+E(en()?'Cat tip':'Совет от кота')+'</span>'+
+        '<button class="term-x" type="button" aria-label="Close">'+
+          '<svg viewBox="0 0 7 7"><use href="#xx"/></svg>'+
+        '</button>'+
+      '</div>'+
+      '<div class="tipw-b">'+E(L(x.t))+(x.btn
+        ?'<br><a class="tbtn" href="'+E(x.href)+'" target="_blank" rel="noopener">'+E(x.btn)+'</a>'
+        :'')+
+      '</div>';
+
+    w.querySelector('.term-x').onclick=()=>closeTip(n);
+    document.body.appendChild(w);
+    slots[n]=w;
+  }
+
   function tip(){
-    let x;
     if(first){
       first=false;
-      print('[=^.^=] '+E(L(HELP_TIP)),'cat');
+      tipWindow({t:HELP_TIP});
       return;
     }
-    x=TIPS[ti++%TIPS.length];
-    print('[=^.^=] '+E(L(x.t))+(x.btn
-      ?' <a class="tbtn" href="'+E(x.href)+'" target="_blank" rel="noopener">'+E(x.btn)+'</a>'
-      :''),'cat');
+    tipWindow(TIPS[ti++%TIPS.length]);
   }
+
+  /* --- реакция кота на клик --- */
+
+  const SAY=['mrrp!','nya~','<3','meow','!','mrow?','purr...'];
+  let sayI=0;
+
+  function poke(){
+    cat.classList.remove('poke');
+    void cat.offsetWidth;
+    cat.classList.add('poke');
+
+    try{
+      bl=1;
+      setTimeout(()=>{bl=0;},160);
+    }catch(e){}
+
+    if(document.body.classList.contains('no-anim'))return;
+
+    const r=cat.getBoundingClientRect();
+    const d=document.createElement('div');
+    d.className='say';
+    d.textContent=SAY[sayI++%SAY.length];
+    d.style.left=(r.left+r.width/2)+'px';
+    d.style.top=(r.top+r.height*.12)+'px';
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(),1000);
+  }
+
+  cat.addEventListener('animationend',e=>{
+    if(e.animationName==='poke')cat.classList.remove('poke');
+  });
 
   /* --- команды --- */
 
@@ -3719,6 +3876,7 @@ let last=0;
       [
         ['help ','список команд','list of commands'],
         ['games','игры','games'],
+        ['okno ','тгк OKNO','OKNO Telegram channel'],
         ['links','ссылки','links'],
         ['tip  ','совет от кота','a tip from the cat'],
         ['clear','очистить экран','clear the screen'],
@@ -3728,6 +3886,8 @@ let last=0;
       (typeof DATA_GAMES!=='undefined'?DATA_GAMES:[]).forEach(g=>{
         print(E(g.title)+(g.itch?'  <a href="'+E(g.itch)+'" target="_blank" rel="noopener">itch.io</a>':''));
       });
+    }else if(k==='okno'){
+      print(E(en()?'OKNO Telegram channel:':'ТГК OKNO:')+' <a class="tbtn" href="https://t.me/oknogmdv" target="_blank" rel="noopener">t.me/oknogmdv</a>');
     }else if(k==='links'){
       LINKS.forEach(l=>print(E(l[0])+'  <a href="'+E(l[1])+'" target="_blank" rel="noopener">'+E(l[1].replace(/^https?:\/\//,'').slice(0,48))+'</a>'));
     }else if(k==='tip'){
@@ -3828,11 +3988,13 @@ let last=0;
     if(!isOpen)return;
     isOpen=false;
     term.style.display='none';
+    closeAllTips();
     inp.blur();
     fly(ph.getBoundingClientRect(),restore);
   }
 
   cat.addEventListener('click',()=>{
+    poke();
     if(!isOpen)openTerm();
     else if(!busy)tip();
   });
