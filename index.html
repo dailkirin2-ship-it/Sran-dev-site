@@ -367,6 +367,39 @@ h1 b{
   color:#000
 }
 
+/* визуализатор и прогресс */
+
+.vz{
+  flex:none;
+  font:12px/1 'Courier New',monospace;
+  white-space:pre;
+  color:#39ff6a
+}
+
+.sk{
+  flex:none;
+  position:relative;
+  width:130px;
+  height:12px;
+  background:#000;
+  border:2px solid #39ff6a;
+  cursor:pointer;
+  touch-action:none
+}
+
+.sk i{
+  display:block;
+  width:0;
+  height:100%;
+  background:#39ff6a
+}
+
+.tm{
+  flex:none;
+  font:700 11px var(--px);
+  white-space:nowrap
+}
+
 /* сетка */
 
 .grid{
@@ -1171,6 +1204,12 @@ h3{
       <span id="tt">Panchiko — D>E>A>T>H>M>E>T>A_L</span>
     </div>
 
+    <span class="vz" id="vz" aria-hidden="true">▁▁▁▁▁▁▁▁▁▁▁▁</span>
+
+    <div class="sk" id="sk" aria-label="Seek"><i id="skf"></i></div>
+
+    <span class="tm" id="tm">0:00/0:00</span>
+
     <audio id="aud" src="death-metal.mp3" preload="none"></audio>
   </div>
 
@@ -1771,7 +1810,7 @@ const M=m=>{
 
 
 /* текст без перевода: как вписано в content.js */
-const T=v=>esc(Array.isArray(v)?v[0]:v);
+const T=v=>Array.isArray(v)?M(v):esc(v);
 
 
 const chip=id=>{
@@ -3387,13 +3426,20 @@ let last=0;
         b=document.getElementById('pb'),
         pv=document.getElementById('pv'),
         nx=document.getElementById('nx'),
-        tt=document.getElementById('tt');
+        tt=document.getElementById('tt'),
+        vz=document.getElementById('vz'),
+        sk=document.getElementById('sk'),
+        skf=document.getElementById('skf'),
+        tm=document.getElementById('tm');
 
   if(!a||!b)return;
 
   let i=0;
 
+  /* --- воспроизведение --- */
+
   function play(){
+    startAudioGraph();
     const p=a.play();
     if(p&&p.catch)p.catch(e=>console.error('[music] не удалось запустить:',e));
   }
@@ -3402,6 +3448,7 @@ let last=0;
     i=(n+TRACKS.length)%TRACKS.length;
     a.src=TRACKS[i].src;
     tt.textContent=TRACKS[i].title;
+    showTime();
     if(autoplay)play();
   }
 
@@ -3410,12 +3457,110 @@ let last=0;
   nx.onclick=()=>load(i+1,!a.paused);
 
   a.addEventListener('error',()=>{
-    tt.textContent=TRACKS[i].title+' — файл «'+TRACKS[i].src+'» не найден';
+    const en=document.body.classList.contains('lang-en');
+    tt.textContent=TRACKS[i].title+(en
+      ?' — file «'+TRACKS[i].src+'» not found'
+      :' — файл «'+TRACKS[i].src+'» не найден');
   });
 
   a.addEventListener('ended',()=>load(i+1,true));
   a.addEventListener('play',()=>b.textContent='❚❚');
   a.addEventListener('pause',()=>b.textContent='▶');
+
+  /* --- прогресс и время --- */
+
+  const fmt=t=>{
+    if(!isFinite(t))return '0:00';
+    t=Math.floor(t);
+    return Math.floor(t/60)+':'+String(t%60).padStart(2,'0');
+  };
+
+  function showTime(){
+    const d=a.duration,c=a.currentTime||0;
+    tm.textContent=fmt(c)+'/'+fmt(d);
+    skf.style.width=(isFinite(d)&&d>0?c/d*100:0)+'%';
+  }
+
+  a.addEventListener('timeupdate',showTime);
+  a.addEventListener('loadedmetadata',showTime);
+  a.addEventListener('emptied',showTime);
+
+  function seek(e){
+    const r=sk.getBoundingClientRect();
+    const k=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));
+    if(isFinite(a.duration)&&a.duration>0){
+      a.currentTime=k*a.duration;
+      showTime();
+    }
+  }
+
+  let drag=false;
+
+  sk.addEventListener('pointerdown',e=>{
+    drag=true;
+    sk.setPointerCapture(e.pointerId);
+    seek(e);
+  });
+  sk.addEventListener('pointermove',e=>{if(drag)seek(e);});
+  sk.addEventListener('pointerup',()=>{drag=false;});
+  sk.addEventListener('pointercancel',()=>{drag=false;});
+
+  /* --- ASCII-визуализатор --- */
+
+  const CH='▁▂▃▄▅▆▇█',N=12;
+  let ctx=null,an=null,data=null,tried=false;
+
+  function startAudioGraph(){
+    if(tried){
+      if(ctx&&ctx.state==='suspended')ctx.resume();
+      return;
+    }
+    tried=true;
+    try{
+      const AC=window.AudioContext||window.webkitAudioContext;
+      ctx=new AC();
+      const src=ctx.createMediaElementSource(a);
+      an=ctx.createAnalyser();
+      an.fftSize=64;
+      an.smoothingTimeConstant=.75;
+      data=new Uint8Array(an.frequencyBinCount);
+      src.connect(an);
+      an.connect(ctx.destination);
+    }catch(e){
+      console.error('[music] визуализатор недоступен, рисую имитацию:',e);
+      an=null;
+    }
+  }
+
+  let lastDraw=0;
+
+  (function draw(t){
+    requestAnimationFrame(draw);
+
+    if(t-lastDraw<55)return;
+    lastDraw=t;
+
+    if(document.hidden)return;
+
+    let out='';
+
+    if(a.paused||document.body.classList.contains('no-anim')){
+      out=CH[0].repeat(N);
+    }else if(an){
+      an.getByteFrequencyData(data);
+      for(let k=0;k<N;k++){
+        const v=Math.sqrt(data[k+1]/255);
+        out+=CH[Math.min(7,Math.floor(v*8))];
+      }
+    }else{
+      for(let k=0;k<N;k++){
+        const v=.5+.5*Math.sin(t/180+k*.9)*Math.sin(t/410+k*.4);
+        out+=CH[Math.min(7,Math.floor(v*8))];
+      }
+    }
+
+    if(vz.textContent!==out)vz.textContent=out;
+  })(0);
 })();
 </script>
 
