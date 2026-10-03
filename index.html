@@ -2426,19 +2426,6 @@ function renderComments(items){
               </button>
 
 
-              <button
-                type="button"
-                data-delete="${esc(c.id)}">
-
-                <span class="ru">
-                  Удалить
-                </span>
-
-                <span class="en">
-                  Delete
-                </span>
-
-              </button>
 
             </div>
 
@@ -2459,38 +2446,42 @@ function renderComments(items){
 }
 
 
-function loadComments(){
+/* ---------- Supabase: общие комментарии ---------- */
 
-  let a=[];
+const SB_URL='https://hegchbpqhniszzlaqtkj.supabase.co';
+const SB_KEY='sb_publishable_zqxV0_Z9GmwTAiglRV4ZIQ_C2nJwehk';
+const SB_HEAD={
+  apikey:SB_KEY,
+  'Content-Type':'application/json'
+};
+
+let commentCache=null;
+
+function bi(ru,en){
+  return '<span class="ru">'+ru+'</span><span class="en">'+en+'</span>';
+}
+
+async function loadComments(){
+  if(commentCache)renderComments(commentCache);
 
   try{
-
-    a=
-      JSON.parse(
-        localStorage.getItem(
-          'site-comments'
-        )||'[]'
-      );
-
-  }catch(e){}
-
-  renderComments(a);
+    const r=await fetch(
+      SB_URL+'/rest/v1/comments?select=*&order=created_at.asc&limit=500',
+      {headers:SB_HEAD}
+    );
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    commentCache=await r.json();
+    renderComments(commentCache);
+  }catch(err){
+    console.error('[comments] не удалось загрузить:',err);
+    if(!commentCache){
+      commentList.innerHTML=
+        '<div class="comment-empty">'+
+          bi('Не удалось загрузить комментарии.','Could not load comments.')+
+        '</div>';
+    }
+  }
 }
-
-
-function saveComments(a){
-
-  localStorage.setItem(
-    'site-comments',
-    JSON.stringify(
-      a.slice(-200)
-    )
-  );
-
-}
-
-
-/* ответы / удаление */
 
 commentList.addEventListener(
   'click',
@@ -2528,192 +2519,72 @@ commentList.addEventListener(
     }
 
 
-    const d=
-      e.target.closest(
-        '[data-delete]'
-      );
-
-    if(d){
-
-      let a=[];
-
-      try{
-
-        a=
-          JSON.parse(
-            localStorage.getItem(
-              'site-comments'
-            )||'[]'
-          );
-
-      }catch(x){}
-
-
-      const gone=
-        new Set([
-          d.dataset.delete
-        ]);
-
-
-      let again=true;
-
-      while(again){
-
-        again=false;
-
-        a.forEach(c=>{
-
-          if(
-            c.parent_id &&
-            gone.has(
-              String(c.parent_id)
-            ) &&
-            !gone.has(
-              String(c.id)
-            )
-          ){
-
-            gone.add(
-              String(c.id)
-            );
-
-            again=true;
-
-          }
-
-        });
-
-      }
-
-
-      saveComments(
-        a.filter(
-          c=>
-            !gone.has(
-              String(c.id)
-            )
-        )
-      );
-
-      loadComments();
-
-    }
-
   }
 );
 
 
 /* отправка */
 
-commentForm.addEventListener(
-  'submit',
-  e=>{
+const nameInp=document.getElementById('commentName'),
+      siteInp=document.getElementById('commentSite'),
+      textInp=document.getElementById('commentText');
 
-    e.preventDefault();
+nameInp.maxLength=40;
+siteInp.maxLength=180;
+textInp.maxLength=1000;
 
+commentForm.addEventListener('submit',async e=>{
+  e.preventDefault();
 
-    const name=
-      document
-        .getElementById(
-          'commentName'
-        )
-        .value
-        .trim();
+  const name=nameInp.value.trim();
+  const site=safeSite(siteInp.value)||null;
+  const message=textInp.value.trim();
+  const parent_id=document.getElementById('replyTo').value||null;
 
+  if(!name||!message)return;
 
-    const site=
-      safeSite(
-        document
-          .getElementById(
-            'commentSite'
-          )
-          .value
-      );
+  /* защита от спама: не чаще раза в 20 секунд */
+  let last=0;
+  try{last=+localStorage.getItem('site-comment-last')||0;}catch(x){}
+  const wait=Math.ceil((last+20000-Date.now())/1000);
+  if(wait>0){
+    commentStatus.innerHTML=bi(
+      'Подожди ещё '+wait+' сек.',
+      'Please wait '+wait+' s.'
+    );
+    return;
+  }
 
+  const btn=commentForm.querySelector('button[type="submit"],button:not([type])');
+  if(btn)btn.disabled=true;
+  commentStatus.innerHTML=bi('Отправляю…','Sending…');
 
-    const message=
-      document
-        .getElementById(
-          'commentText'
-        )
-        .value
-        .trim();
-
-
-    const parent_id=
-      document.getElementById(
-        'replyTo'
-      ).value||null;
-
-
-    if(!name||!message)
-      return;
-
-
-    let a=[];
-
-    try{
-
-      a=
-        JSON.parse(
-          localStorage.getItem(
-            'site-comments'
-          )||'[]'
-        );
-
-    }catch(x){}
-
-
-    a.push({
-
-      id:
-        Date.now()+
-        '-' +
-        Math.random()
-          .toString(36)
-          .slice(2),
-
-      created_at:
-        new Date().toISOString(),
-
-      name,
-      site,
-      message,
-      parent_id
-
+  try{
+    const r=await fetch(SB_URL+'/rest/v1/comments',{
+      method:'POST',
+      headers:{...SB_HEAD,Prefer:'return=minimal'},
+      body:JSON.stringify({name,site,message,parent_id})
     });
+    if(!r.ok)throw new Error('HTTP '+r.status+' '+await r.text());
 
-
-    saveComments(a);
+    try{localStorage.setItem('site-comment-last',String(Date.now()));}catch(x){}
 
     commentForm.reset();
-
-    document.getElementById(
-      'replyTo'
-    ).value='';
-
-
-    commentStatus.innerHTML=`
-
-      <span class="ru">
-        ✓ Сохранено
-      </span>
-
-      <span class="en">
-        ✓ Saved
-      </span>
-
-    `;
-
-
-    loadComments();
-
+    document.getElementById('replyTo').value='';
+    commentStatus.innerHTML=bi('✓ Отправлено','✓ Sent');
+    await loadComments();
+  }catch(err){
+    console.error('[comments] не удалось отправить:',err);
+    commentStatus.innerHTML=bi(
+      'Не получилось отправить. Попробуй позже.',
+      'Could not send. Try again later.'
+    );
+  }finally{
+    if(btn)btn.disabled=false;
   }
-);
-
+});
 
 loadComments();
-
 
 /* ---------- окна ---------- */
 
