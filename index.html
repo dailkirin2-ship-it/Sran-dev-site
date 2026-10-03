@@ -343,31 +343,6 @@ h1 b{
   to{transform:translateX(-100%)}
 }
 
-/* покачивание при наведении */
-
-@keyframes wob{
-  0%,100%{transform:translate(-2px,-2px) scale(var(--s,1.08)) rotate(-4deg)}
-  50%{transform:translate(2px,-2px) scale(var(--s,1.08)) rotate(4deg)}
-}
-
-.m:hover,
-.pics-grid a:hover,
-.n a:hover,
-.ga:hover,
-.tz:hover,
-.lb:hover{
-  animation:wob .7s ease-in-out infinite;
-  z-index:50
-}
-
-.ims img:hover{
-  --s:2.3;
-  animation:wob .7s ease-in-out infinite
-}
-
-.pics-grid a:hover{--s:1.15}
-.n a:hover{--s:1.05}
-
 /* плеер */
 
 .pb{
@@ -1101,6 +1076,33 @@ h3{
 .opts .lg{
   margin-top:2px
 }
+
+/* наведение: увеличение за пределы окна + очень медленное покачивание */
+
+@keyframes wob{
+  0%,100%{rotate:0deg}
+  25%{rotate:2deg}
+  75%{rotate:-2deg}
+}
+
+.m:hover,
+.av:hover,
+.pics-grid a:hover,
+.n a:hover,
+.ga:hover,
+.ims img:hover{
+  position:relative;
+  z-index:999;
+  animation:wob 5s ease-in-out .3s infinite
+}
+
+.m:hover{transform:translate(-2px,-2px) scale(1.35)}
+.av:hover{transform:scale(1.55) rotate(-2deg)}
+.pics-grid a:hover{transform:scale(1.9)}
+.n a:hover{transform:translate(2px,-2px) scale(1.3)}
+.ga:hover{transform:translate(2px,-2px) scale(1.5)}
+
+.av{transition:transform .25s steps(4)}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
@@ -2534,6 +2536,14 @@ document
 
     w.addEventListener(
       'pointerdown',
+      ()=>{
+        w.style.zIndex=
+          ++zi;
+      }
+    );
+
+    w.addEventListener(
+      'pointerenter',
       ()=>{
         w.style.zIndex=
           ++zi;
