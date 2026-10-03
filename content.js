@@ -76,6 +76,7 @@ const GAMES = [
 
 /* =========================================================
    ПОСТЫ
+   (без перевода — пиши текстом как есть)
    ========================================================= */
 
 const POSTS = [
@@ -85,15 +86,9 @@ const POSTS = [
 
     game: 'what-the-car',
 
-    title: [
-      'Я всё запорол',
-      'I screwed everything up'
-    ],
+    title: 'Я всё запорол',
 
-    text: [
-      'Я всё починил',
-      'I fixed everything'
-    ]
+    text: 'Я всё починил'
   }
 
 ];
@@ -101,6 +96,7 @@ const POSTS = [
 
 /* =========================================================
    ЧЕНДЖЛОГ
+   (без перевода — пиши текстом как есть)
    ========================================================= */
 
 const LOG = [
@@ -110,10 +106,7 @@ const LOG = [
 
     game: 'what-the-car',
 
-    text: [
-      'В разработке. Новости — в тг-канале.',
-      'In development. News — on Telegram.'
-    ]
+    text: 'В разработке. Новости — в тг-канале.'
   },
 
 
@@ -122,10 +115,7 @@ const LOG = [
 
     game: 'outpatient',
 
-    text: [
-      'Последнее демо: 88 MB, Windows.',
-      'Latest demo: 88 MB, Windows.'
-    ]
+    text: 'Последнее демо: 88 MB, Windows.'
   },
 
 
@@ -134,20 +124,32 @@ const LOG = [
 
     game: 'loop-protocol',
 
-    text: [
-      '4.9 ★ · 8 оценок.',
-      '4.9 ★ · 8 ratings.'
-    ]
+    text: '4.9 ★ · 8 оценок.'
   },
 
 
   {
     date: '02.10.2026',
 
-    text: [
-      'UI: сайт переделан — окна, ссылки, ченджлог и посты.',
-      'UI: website rebuilt — windows, links, changelog and posts.'
-    ]
+    text: 'UI: сайт переделан — окна, ссылки, ченджлог и посты.'
   }
+
+];
+
+
+/* =========================================================
+   КАРТИНКИ (блок «Картинки» слева)
+   Чтобы заменить картинку — поменяй src в нужной строке.
+   ========================================================= */
+
+const PICS = [
+
+  /* 1 */ { alt: 'Konata Izumi', src: 'https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png' },
+  /* 2 */ { alt: 'Konata Izumi', src: 'https://i.kym-cdn.com/photos/images/newsfeed/001/169/579/73f.png' },
+  /* 3 */ { alt: 'Konata Izumi', src: 'https://i.kym-cdn.com/photos/images/newsfeed/000/799/792/ef4.png' },
+  /* 4 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/000/494/436/128.png' },
+  /* 5 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/000/751/443/14d.jpg' },
+  /* 6 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/000/750/621/205.jpg' },
+  /* 7 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/001/867/600/0f3.jpg' }
 
 ];

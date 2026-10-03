@@ -336,7 +336,8 @@ h1 b{
 .gl{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
-  gap:10px
+  gap:10px;
+  align-items:start
 }
 
 .gc{
@@ -345,22 +346,13 @@ h1 b{
 }
 
 .gc .d{
-  display:none;
-  position:absolute;
-  left:0;
-  right:0;
-  top:100%;
-  z-index:8;
-  margin:2px 0 0;
+  margin:6px 0 0;
   padding:6px;
   background:#fff;
-  border:2px solid #000;
-  box-shadow:3px 3px 0 #000
-}
-
-.gc:hover .d,
-.gc.sel .d{
-  display:block
+  border:2px solid;
+  border-color:var(--in);
+  font-size:11px;
+  line-height:1.4
 }
 
 .gc.sel .m{
@@ -449,7 +441,7 @@ h1 b{
   display:none
 }
 
-.w:has(.m:hover,.n a:hover,.ims img:hover,.pics-grid a:hover){
+.w:has(.n a:hover,.ims img:hover,.pics-grid a:hover){
   z-index:500!important
 }
 
@@ -516,10 +508,8 @@ h1 b{
 }
 
 .m:hover{
-  transform:scale(1.4) rotate(-3deg);
-  z-index:999;
-  position:relative;
-  box-shadow:5px 5px 0 #000
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 #000
 }
 
 .m img{
@@ -703,6 +693,10 @@ h3{
 
 .pics-grid a:nth-child(even):hover{
   transform:scale(1.45) rotate(3deg)
+}
+
+.pics-grid a:last-child:nth-child(odd){
+  grid-column:1/-1
 }
 
 /* комментарии */
@@ -1235,97 +1229,7 @@ h3{
 
         </div>
 
-        <div class="b pics-grid">
-
-          <a
-            href="https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png"
-            target="_blank"
-            rel="noopener">
-
-            <img
-              src="https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png"
-              alt="Konata Izumi">
-
-          </a>
-
-          <a
-            href="https://i.kym-cdn.com/photos/images/newsfeed/001/169/579/73f.png"
-            target="_blank"
-            rel="noopener">
-
-            <img
-              src="https://i.kym-cdn.com/photos/images/newsfeed/001/169/579/73f.png"
-              alt="Konata Izumi">
-
-          </a>
-
-          <a
-            href="https://i.kym-cdn.com/photos/images/newsfeed/000/799/792/ef4.png"
-            target="_blank"
-            rel="noopener">
-
-            <img
-              src="https://i.kym-cdn.com/photos/images/newsfeed/000/799/792/ef4.png"
-              alt="Konata Izumi">
-
-          </a>
-
-          <a
-            href="https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png"
-            target="_blank"
-            rel="noopener">
-
-            <img
-              src="https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png"
-              alt="Konata Izumi">
-
-          </a>
-
-          <a
-            href="https://i.kym-cdn.com/photos/images/newsfeed/000/494/436/128.png"
-            target="_blank"
-            rel="noopener">
-
-            <img
-              src="https://i.kym-cdn.com/photos/images/newsfeed/000/494/436/128.png"
-              alt="Rei Ayanami">
-
-          </a>
-
-          <a
-            href="https://i.kym-cdn.com/photos/images/newsfeed/000/751/443/14d.jpg"
-            target="_blank"
-            rel="noopener">
-
-            <img
-              src="https://i.kym-cdn.com/photos/images/newsfeed/000/751/443/14d.jpg"
-              alt="Rei Ayanami">
-
-          </a>
-
-          <a
-            href="https://i.kym-cdn.com/photos/images/newsfeed/000/750/621/205.jpg"
-            target="_blank"
-            rel="noopener">
-
-            <img
-              src="https://i.kym-cdn.com/photos/images/newsfeed/000/750/621/205.jpg"
-              alt="Rei Ayanami">
-
-          </a>
-
-          <a
-            href="https://i.kym-cdn.com/photos/images/newsfeed/001/867/600/0f3.jpg"
-            target="_blank"
-            rel="noopener">
-
-            <img
-              src="https://i.kym-cdn.com/photos/images/newsfeed/001/867/600/0f3.jpg"
-              alt="Rei Ayanami">
-
-          </a>
-
-        </div>
+        <div class="b pics-grid" id="pg"></div>
 
       </article>
 
@@ -1675,6 +1579,10 @@ const M=m=>{
 };
 
 
+/* текст без перевода: как вписано в content.js */
+const T=v=>esc(Array.isArray(v)?v[0]:v);
+
+
 const chip=id=>{
 
   const g=
@@ -1726,7 +1634,7 @@ GAMES.map(g=>`
 
 
     <p class="d">
-      ${esc(g.text||'')}
+      ${M(g.text||'')}
     </p>
 
 
@@ -1738,13 +1646,36 @@ GAMES.map(g=>`
         target="_blank"
         rel="noopener">
 
-        Открыть на itch.io
+        ${M(['Открыть на itch.io','Open on itch.io'])}
 
       </a>
 
     </div>
 
   </article>
+
+`).join('');
+
+
+/* ---------- картинки ---------- */
+
+document.getElementById(
+  'pg'
+).innerHTML=
+
+PICS.map(p=>`
+
+  <a
+    href="${esc(p.src)}"
+    target="_blank"
+    rel="noopener">
+
+    <img
+      src="${esc(p.src)}"
+      alt="${esc(p.alt||'')}"
+      loading="lazy">
+
+  </a>
 
 `).join('');
 
@@ -1765,14 +1696,14 @@ POSTS.map(p=>`
         ${esc(p.date||'')}
       </i>
 
-      ${esc(p.title||'')}
+      ${T(p.title)}
 
       ${chip(p.game)}
 
     </summary>
 
     <p>
-      ${esc(p.text||'')}
+      ${T(p.text)}
     </p>
 
   </details>
@@ -1794,7 +1725,7 @@ LOG.map(l=>`
       ${esc(l.date||'')}
     </i>
 
-    ${esc(l.text||'')}
+    ${T(l.text)}
 
     ${chip(l.game)}
 
