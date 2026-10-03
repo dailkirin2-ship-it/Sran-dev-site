@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=1100">
 <title>Danielle Choster — Срань.dev</title>
 <meta name="description" content="Игры, проекты и ссылки Danielle Choster (Срань.dev)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231E6FE0'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='800' font-size='30' fill='white' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
@@ -341,6 +341,28 @@ h1 b{
 
 @keyframes mq{
   to{transform:translateX(-100%)}
+}
+
+/* плеер */
+
+.pb{
+  flex:none;
+  width:18px;
+  height:16px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+  border:2px solid #39ff6a;
+  color:#39ff6a;
+  font:700 10px/1 var(--px);
+  cursor:pointer
+}
+
+.pb:hover{
+  background:#39ff6a;
+  color:#000
 }
 
 /* сетка */
@@ -1055,50 +1077,6 @@ h3{
   margin-top:2px
 }
 
-@media (max-width:940px){
-
-  .shell{
-    width:auto;
-    margin:14px 8px 60px
-  }
-
-  .grid{
-    grid-template-columns:repeat(2,minmax(0,1fr))
-  }
-
-  main{
-    grid-column:1/-1;
-    order:-1
-  }
-
-  .in{
-    padding:30px 130px 40px 14px
-  }
-
-  .face{
-    top:10px;
-    right:4px;
-    width:150px;
-    height:150px
-  }
-
-  .comments-layout{
-    grid-template-columns:1fr
-  }
-}
-
-@media (max-width:600px){
-
-  .grid{
-    grid-template-columns:minmax(0,1fr)
-  }
-
-  .b.gl{
-    grid-template-columns:minmax(0,1fr)
-  }
-
-}
-
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation:none!important
@@ -1156,24 +1134,13 @@ h3{
   <canvas class="face" id="face" aria-hidden="true"></canvas>
 
   <div class="np">
-    <span aria-hidden="true">▶</span>
+    <button class="pb" id="pb" type="button" aria-label="Play / Pause">▶</button>
 
-    <a class="mq"
-       rel="me noopener"
-       href="https://t.me/Sran_Dev"
-       target="_blank">
+    <div class="mq">
+      <span>Panchiko — DEATH METAL</span>
+    </div>
 
-      <span>
-        <span class="ru">
-          Сейчас в разработке: WHAT THE CAR — следить в тг-канале
-        </span>
-
-        <span class="en">
-          Currently in development: WHAT THE CAR — follow the channel
-        </span>
-      </span>
-
-    </a>
+    <audio id="aud" src="death-metal.mp3" loop preload="none"></audio>
   </div>
 
   <div class="grid">
@@ -2538,8 +2505,7 @@ document
       e=>{
 
         if(
-          e.target.closest('button')||
-          innerWidth<=940
+          e.target.closest('button')
         )
           return;
 
@@ -3351,6 +3317,22 @@ let last=0;
 
 })(0);
 
+</script>
+
+<script>
+/* ---------- музыка ---------- */
+(function(){
+  const a=document.getElementById('aud'),b=document.getElementById('pb');
+  if(!a||!b)return;
+  b.onclick=()=>{
+    if(a.paused){
+      const p=a.play();
+      if(p&&p.catch)p.catch(e=>console.error('[music] не удалось запустить:',e));
+    }else a.pause();
+  };
+  a.addEventListener('play',()=>b.textContent='❚❚');
+  a.addEventListener('pause',()=>b.textContent='▶');
+})();
 </script>
 
 </body>
