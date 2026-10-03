@@ -2011,7 +2011,7 @@ const M=m=>{
 
 
 /* текст без перевода: как вписано в content.js */
-const T=v=>Array.isArray(v)?M(v):esc(v);
+const T=v=>esc(Array.isArray(v)?v[0]:v);
 
 
 const chip=id=>{
