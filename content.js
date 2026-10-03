@@ -174,7 +174,7 @@ const PICS = [
 
 const STICKERS = [
 
-  { id: 'comments', src: 'https://media.tenor.com/2Lk8flZAaG0AAAAj/girl-cute-anime.gif',
+  { id: 'comments', src: 'https://tenor.com/ru/view/cobson-miku-gif-13954520335322370690',
     width: 90,  side: 'left',  x: 40, y: 0 },
 
   { window: 3, src: 'https://media.tenor.com/Zx8ctkiYqagAAAAj/hololive-shirakami-fubuki.gif',
