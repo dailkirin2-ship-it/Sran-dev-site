@@ -145,12 +145,12 @@ const LOG = [
 const PICS = [
 
   /* 1 */ { alt: 'Konata Izumi', src: 'https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png' },
-  /* 2 */ { alt: 'Konata Izumi', src: 'https://i.kym-cdn.com/photos/images/newsfeed/001/169/579/73f.png' },
+  /* 2 */ { alt: 'Konata Izumi', src: 'https://i.kym-cdn.com/photos/images/original/002/194/255/837.jpg' },
   /* 3 */ { alt: 'Konata Izumi', src: 'https://i.kym-cdn.com/photos/images/newsfeed/000/799/792/ef4.png' },
-  /* 4 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/000/494/436/128.png' },
+  /* 4 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/entries/icons/original/000/016/648/maxresdefault.jpeg' },
   /* 5 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/000/751/443/14d.jpg' },
   /* 6 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/000/750/621/205.jpg' },
-  /* 7 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/photos/images/newsfeed/001/867/600/0f3.jpg' }
+  /* 7 */ { alt: 'Rei Ayanami',  src: 'https://i.kym-cdn.com/entries/icons/original/000/014/531/cover1.jpg' }
 
 ];
 
