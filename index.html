@@ -3379,8 +3379,8 @@ let last=0;
 (function(){
   const TRACKS=[
     {src:'death-metal.mp3',title:'Panchiko — D>E>A>T>H>M>E>T>A_L'},
-    {src:'duvet.mp3',title:'bôa — Duvet'},
-    {src:'soft.mp3',title:'Vacations — Soft'}
+    {src:'Duvet.mp3',title:'bôa — Duvet'},
+    {src:'Soft.mp3',title:'Vacations — Soft'}
   ];
 
   const a=document.getElementById('aud'),
@@ -3408,6 +3408,10 @@ let last=0;
   b.onclick=()=>a.paused?play():a.pause();
   pv.onclick=()=>load(i-1,!a.paused);
   nx.onclick=()=>load(i+1,!a.paused);
+
+  a.addEventListener('error',()=>{
+    tt.textContent=TRACKS[i].title+' — файл «'+TRACKS[i].src+'» не найден';
+  });
 
   a.addEventListener('ended',()=>load(i+1,true));
   a.addEventListener('play',()=>b.textContent='❚❚');
