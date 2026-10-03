@@ -1540,6 +1540,44 @@ document.querySelectorAll(
 
 /* ---------- данные ---------- */
 
+/* если content.js не обновили или в нём чего-то нет — сайт всё равно работает */
+
+const get=(name,fallback)=>{
+  try{
+    return (0,eval)('typeof '+name)!=='undefined'
+      ?(0,eval)(name)
+      :fallback;
+  }catch(e){
+    return fallback;
+  }
+};
+
+const list=(v,fallback=[])=>Array.isArray(v)?v:fallback;
+
+const DATA_GAMES=list(get('GAMES',[]));
+const DATA_POSTS=list(get('POSTS',[]));
+const DATA_LOG=list(get('LOG',[]));
+
+const DATA_PICS=list(get('PICS',null),[
+  {alt:'Konata Izumi',src:'https://i.kym-cdn.com/photos/images/newsfeed/001/169/456/8f4.png'},
+  {alt:'Konata Izumi',src:'https://i.kym-cdn.com/photos/images/newsfeed/001/169/579/73f.png'},
+  {alt:'Konata Izumi',src:'https://i.kym-cdn.com/photos/images/newsfeed/000/799/792/ef4.png'},
+  {alt:'Rei Ayanami',src:'https://i.kym-cdn.com/photos/images/newsfeed/000/494/436/128.png'},
+  {alt:'Rei Ayanami',src:'https://i.kym-cdn.com/photos/images/newsfeed/000/751/443/14d.jpg'},
+  {alt:'Rei Ayanami',src:'https://i.kym-cdn.com/photos/images/newsfeed/000/750/621/205.jpg'},
+  {alt:'Rei Ayanami',src:'https://i.kym-cdn.com/photos/images/newsfeed/001/867/600/0f3.jpg'}
+]);
+
+/* каждый блок рисуется отдельно: ошибка в одном не ломает остальные */
+
+const safe=(name,fn)=>{
+  try{
+    fn();
+  }catch(e){
+    console.error('[site] блок «'+name+'» не отрисовался:',e);
+  }
+};
+
 const esc=x=>
   String(x??'').replace(
     /[&<>"]/g,
@@ -1586,7 +1624,7 @@ const T=v=>esc(Array.isArray(v)?v[0]:v);
 const chip=id=>{
 
   const g=
-    GAMES.find(x=>x.id===id);
+    DATA_GAMES.find(x=>x.id===id);
 
   return g
     ?`
@@ -1603,11 +1641,13 @@ const chip=id=>{
 
 /* ---------- игры ---------- */
 
+safe('игры',()=>{
+
 document.getElementById(
   'gl'
 ).innerHTML=
 
-GAMES.map(g=>`
+DATA_GAMES.map(g=>`
 
   <article
     class="gc"
@@ -1656,14 +1696,18 @@ GAMES.map(g=>`
 
 `).join('');
 
+});
+
 
 /* ---------- картинки ---------- */
+
+safe('картинки',()=>{
 
 document.getElementById(
   'pg'
 ).innerHTML=
 
-PICS.map(p=>`
+DATA_PICS.map(p=>`
 
   <a
     href="${esc(p.src)}"
@@ -1679,14 +1723,18 @@ PICS.map(p=>`
 
 `).join('');
 
+});
+
 
 /* ---------- посты ---------- */
+
+safe('посты',()=>{
 
 document.getElementById(
   'pl'
 ).innerHTML=
 
-POSTS.map(p=>`
+DATA_POSTS.map(p=>`
 
   <details class="po">
 
@@ -1710,14 +1758,18 @@ POSTS.map(p=>`
 
 `).join('');
 
+});
+
 
 /* ---------- ченджлог ---------- */
+
+safe('ченджлог',()=>{
 
 document.getElementById(
   'cl'
 ).innerHTML=
 
-LOG.map(l=>`
+DATA_LOG.map(l=>`
 
   <div class="lr">
 
@@ -1733,8 +1785,10 @@ LOG.map(l=>`
 
 `).join('');
 
+});
 
-if(!POSTS.length)
+
+if(!DATA_POSTS.length)
   document.getElementById(
     'wp'
   ).classList.add('h');
