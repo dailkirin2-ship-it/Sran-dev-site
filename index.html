@@ -34,7 +34,9 @@
   --ck:repeating-conic-gradient(#fff 0 25%,#000 0 50%);
   --out:#fff #3a3f78 #3a3f78 #fff;
   --in:#6a70a8 #fff #fff #6a70a8;
-  --tt:linear-gradient(#3a4090,#12154a)
+  --tt:linear-gradient(#3a4090,#12154a);
+  --scan:repeating-linear-gradient(#0000 0 2px,#000 2px 3px);
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")
 }
 
 body{
@@ -62,15 +64,52 @@ body::after{
   z-index:998;
   pointer-events:none;
   opacity:.35;
-  background:
-    repeating-linear-gradient(#0000 0 2px,#000 2px 3px),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+  background:var(--scan),var(--noise);
   animation:ns .35s steps(3) infinite
 }
 
 @keyframes ns{
   33%{background-position:0 0,40px 70px}
   66%{background-position:0 0,-60px 20px}
+}
+
+@keyframes ns1{
+  33%{background-position:40px 70px}
+  66%{background-position:-60px 20px}
+}
+
+/* настройки эффектов */
+
+body.no-scan::after{
+  background:var(--noise);
+  animation-name:ns1
+}
+
+body.no-static::after{
+  background:var(--scan);
+  animation:none
+}
+
+body.no-scan.no-static::after{
+  display:none
+}
+
+body.no-mq .rain{
+  display:none
+}
+
+body.no-mq .mq>span,
+body.no-anim .mq>span{
+  animation:none;
+  padding-left:0
+}
+
+body.no-anim::before,
+body.no-anim::after,
+body.no-anim *,
+body.no-anim *::before,
+body.no-anim *::after{
+  animation:none!important
 }
 
 a{
@@ -96,7 +135,7 @@ body:not(.lang-en) .en{display:none}
 .shell{
   position:relative;
   z-index:2;
-  width:880px;
+  width:min(1040px,calc(100% - 24px));
   margin:50px auto 70px;
   padding:2px;
   background:var(--f);
@@ -308,18 +347,40 @@ h1 b{
 
 .grid{
   display:grid;
-  grid-template-columns:180px minmax(0,1fr);
-  gap:8px;
-  padding:8px 6px;
-  align-items:start
+  grid-template-columns:200px minmax(0,1fr) 200px;
+  gap:6px;
+  padding:6px;
+  align-items:stretch
 }
 
-.side{
+.side,
+main{
   display:flex;
   flex-direction:column;
-  gap:10px;
-  position:relative;
-  z-index:30
+  gap:6px;
+  min-width:0
+}
+
+.bottom{
+  padding:0 6px 6px
+}
+
+.w{
+  display:flex;
+  flex-direction:column
+}
+
+.w>.b{
+  flex:1 1 auto
+}
+
+.side>.w:last-child,
+main>.w:last-child{
+  flex:1 1 auto
+}
+
+#pl.ls{
+  max-height:360px
 }
 
 .two{
@@ -333,16 +394,20 @@ h1 b{
   min-width:0
 }
 
-.gl{
+.b.gl{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
-  gap:10px;
-  align-items:start
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:8px
 }
 
 .gc{
   position:relative;
-  display:block
+  display:flex;
+  flex-direction:column
+}
+
+.gc>.mt{
+  align-self:flex-start
 }
 
 .gc .d{
@@ -441,10 +506,6 @@ h1 b{
   display:none
 }
 
-.w:has(.n a:hover,.ims img:hover,.pics-grid a:hover){
-  z-index:500!important
-}
-
 .b{
   display:block;
   margin:2px 0 0;
@@ -540,7 +601,8 @@ h3{
   display:flex;
   gap:5px;
   flex-wrap:wrap;
-  margin-top:6px
+  margin-top:auto;
+  padding-top:6px
 }
 
 .ga{
@@ -608,15 +670,10 @@ h3{
 }
 
 .n a:hover{
-  transform:scale(1.2) rotate(-2deg);
-  z-index:7;
+  transform:translate(2px,-2px);
   box-shadow:
     inset 0 0 0 1px #fff9,
     3px 3px 0 #000
-}
-
-.n a:nth-child(even):hover{
-  transform:scale(1.2) rotate(2deg)
 }
 
 .n b{
@@ -669,7 +726,7 @@ h3{
 .pics-grid a{
   position:relative;
   display:block;
-  height:105px;
+  height:80px;
   overflow:visible;
   border:2px solid;
   border-color:var(--in);
@@ -686,13 +743,8 @@ h3{
 }
 
 .pics-grid a:hover{
-  transform:scale(1.45) rotate(-3deg);
-  z-index:999;
-  box-shadow:5px 5px 0 #000
-}
-
-.pics-grid a:nth-child(even):hover{
-  transform:scale(1.45) rotate(3deg)
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 #000
 }
 
 .pics-grid a:last-child:nth-child(odd){
@@ -702,7 +754,7 @@ h3{
 /* комментарии */
 
 .comments-window{
-  margin-top:8px
+  margin:0
 }
 
 .comments-layout{
@@ -978,10 +1030,29 @@ h3{
   white-space:nowrap
 }
 
-@media (min-width:941px){
-  .side>.w:first-child{
-    margin:-44px 0 0 -26px
-  }
+/* настройки */
+
+.opts{
+  display:flex;
+  flex-direction:column;
+  gap:6px
+}
+
+.opts label{
+  display:flex;
+  align-items:flex-start;
+  gap:6px;
+  cursor:pointer
+}
+
+.opts input{
+  flex:none;
+  margin:1px 0 0;
+  accent-color:var(--n)
+}
+
+.opts .lg{
+  margin-top:2px
 }
 
 @media (max-width:940px){
@@ -992,7 +1063,12 @@ h3{
   }
 
   .grid{
-    grid-template-columns:1fr
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+
+  main{
+    grid-column:1/-1;
+    order:-1
   }
 
   .in{
@@ -1011,9 +1087,25 @@ h3{
   }
 }
 
+@media (max-width:600px){
+
+  .grid{
+    grid-template-columns:minmax(0,1fr)
+  }
+
+  .b.gl{
+    grid-template-columns:minmax(0,1fr)
+  }
+
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation:none!important
+  }
+
+  .mq>span{
+    padding-left:0
   }
 }
 </style>
@@ -1195,43 +1287,59 @@ h3{
       </nav>
 
 
-      <article class="w" id="wl">
+      <!-- НАСТРОЙКИ -->
+
+      <section class="w" id="ws">
 
         <div class="t">
           <span>
-            <span class="ru">Ченджлог</span>
-            <span class="en">Changelog</span>
+            <span class="ru">Настройки</span>
+            <span class="en">Settings</span>
           </span>
         </div>
 
-        <div class="b ls" id="cl"></div>
+        <div class="b opts">
 
-        <svg
-          class="o d"
-          style="top:-14px;right:-12px;animation-delay:-1.3s"
-          viewBox="0 0 9 9">
-          <use href="#sp"/>
-        </svg>
+          <label>
+            <input type="checkbox" data-fx="no-scan">
+            <span>
+              <span class="ru">Без сканлайнов</span>
+              <span class="en">No scanlines</span>
+            </span>
+          </label>
 
-      </article>
+          <label>
+            <input type="checkbox" data-fx="no-static">
+            <span>
+              <span class="ru">Без шума</span>
+              <span class="en">No static</span>
+            </span>
+          </label>
 
+          <label>
+            <input type="checkbox" data-fx="no-mq">
+            <span>
+              <span class="ru">Без бегущих строк</span>
+              <span class="en">No marquees</span>
+            </span>
+          </label>
 
-      <!-- АНИМЕ-КАРТИНКИ -->
+          <label>
+            <input type="checkbox" data-fx="no-anim">
+            <span>
+              <span class="ru">Пауза анимаций</span>
+              <span class="en">Pause animations</span>
+            </span>
+          </label>
 
-      <article class="w" id="pics">
-
-        <div class="t">
-
-          <span>
-            <span class="ru">Картинки</span>
-            <span class="en">Pics</span>
-          </span>
+          <div class="lg">
+            <button class="lb" data-lang="ru" type="button">RU</button>
+            <button class="lb" data-lang="en" type="button">EN</button>
+          </div>
 
         </div>
 
-        <div class="b pics-grid" id="pg"></div>
-
-      </article>
+      </section>
 
     </aside>
 
@@ -1282,8 +1390,57 @@ h3{
 
       </article>
 
+    </main>
 
-      <!-- КОММЕНТАРИИ -->
+
+    <aside class="side">
+
+      <article class="w" id="wl">
+
+        <div class="t">
+          <span>
+            <span class="ru">Ченджлог</span>
+            <span class="en">Changelog</span>
+          </span>
+        </div>
+
+        <div class="b ls" id="cl"></div>
+
+        <svg
+          class="o d"
+          style="top:-14px;right:-12px;animation-delay:-1.3s"
+          viewBox="0 0 9 9">
+          <use href="#sp"/>
+        </svg>
+
+      </article>
+
+
+      <!-- АНИМЕ-КАРТИНКИ -->
+
+      <article class="w" id="pics">
+
+        <div class="t">
+
+          <span>
+            <span class="ru">Картинки</span>
+            <span class="en">Pics</span>
+          </span>
+
+        </div>
+
+        <div class="b pics-grid" id="pg"></div>
+
+      </article>
+
+    </aside>
+
+  </div>
+
+
+  <!-- КОММЕНТАРИИ -->
+
+  <div class="bottom">
 
       <section class="w comments-window" id="comments">
 
@@ -1403,8 +1560,6 @@ h3{
         </div>
 
       </section>
-
-    </main>
 
   </div>
 
@@ -1734,9 +1889,9 @@ document.getElementById(
   'pl'
 ).innerHTML=
 
-DATA_POSTS.map(p=>`
+DATA_POSTS.map((p,i)=>`
 
-  <details class="po">
+  <details class="po"${i===0?' open':''}>
 
     <summary>
 
@@ -2478,6 +2633,50 @@ document
   });
 
 
+/* ---------- настройки эффектов ---------- */
+
+let fxSaved={};
+
+try{
+  fxSaved=JSON.parse(
+    localStorage.getItem('site-fx')||'{}'
+  )||{};
+}catch(e){}
+
+document
+  .querySelectorAll('[data-fx]')
+  .forEach(i=>{
+
+    const k=i.dataset.fx;
+
+    i.checked=!!fxSaved[k];
+
+    document.body.classList.toggle(
+      k,
+      i.checked
+    );
+
+    i.onchange=()=>{
+
+      document.body.classList.toggle(
+        k,
+        i.checked
+      );
+
+      fxSaved[k]=i.checked;
+
+      try{
+        localStorage.setItem(
+          'site-fx',
+          JSON.stringify(fxSaved)
+        );
+      }catch(e){}
+
+    };
+
+  });
+
+
 /* ---------- заголовок ---------- */
 
 let s=11;
@@ -3114,7 +3313,7 @@ let last=0;
   if(
     t-last<60||
     document.hidden||
-    (still&&last)
+    ((still||document.body.classList.contains('no-anim'))&&last)
   )
     return;
 
