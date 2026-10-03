@@ -92,8 +92,8 @@ const POSTS = [
     ],
 
     text: [
-      'Я всё починил',
-      'I fixed everything'
+      'Я всё запорол удалив половину проекта. НО все окей я с божьей помощью все восстановил',
+      'I messed everything up by deleting half the project. BUT it's all good—with God's help, I restored everything.'
     ]
   }
 
