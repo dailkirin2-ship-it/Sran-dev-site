@@ -8,7 +8,27 @@
    ========================================================= */
 
 const GAMES = [
+   
+  {
+    id: 'vorago',
 
+    title: 'VORAGO',
+
+    img: 'https://img.itch.zone/aW1nLzMxNjk3NTc4LnBuZw==/315x250%23c/eMZ%2BKu.png',
+
+    itch: 'https://daniellechoster.itch.io/vorago',
+
+    text: [
+      ' Бесконечный bullet hell рогалик про паразитирование',
+      ' Endless Bullet Hell Roguelike about Parasites'
+    ],
+
+    meta: [
+      'следить в тг-канале',
+      'follow on Telegram'
+    ]
+  },
+   
   {
     id: 'what-the-car',
 
